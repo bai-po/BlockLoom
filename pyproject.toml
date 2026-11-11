@@ -1,0 +1,30 @@
+[project]
+name = "oxal-mc-studio"
+version = "0.1.40b0"
+description = "BlockLoom Minecraft tools for Blender 4.5 through 5.2"
+requires-python = ">=3.11,<3.12"
+dependencies = []
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+dev = [
+    "bpy==4.5.14",
+    "fake-bpy-module-4-5==20260730",
+    "ruff==0.17.3",
+    "pyright==1.1.414",
+    "zstandard==0.25.0",
+]
+
+[tool.ruff]
+target-version = "py311"
+
+[tool.ruff.lint]
+extend-select = ["I", "N", "UP", "SIM", "RUF012"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["N999"] # The extension checkout directory contains hyphens.
+
+[tool.ruff.lint.pep8-naming]
+extend-ignore-names = ["OXALMCSTUDIO_*"] # Blender RNA class identifiers.

@@ -1,0 +1,135 @@
+{
+  "source_archive": "OXAL_MC_Studio_v1.0.196-local.31_未验证修订.zip",
+  "source_sha256": "3ebe22dac73c97fe398ed8cc0f1b8f6be9df7538440d9ac3d261cff35395e3c0",
+  "kind": "immutable profiles and sanitized native resource data; no source Python implementation",
+  "files": [
+    {
+      "path": "lightning_profile42.json",
+      "source_path": "oxal_mc_studio/lightning_profile42.json",
+      "sha256": "f8e74d58ecd99a460eaefc23508659a0122d4479fe351e886b81975e1aaa6e64"
+    },
+    {
+      "path": "riptide_profile42.json",
+      "source_path": "oxal_mc_studio/riptide_profile42.json",
+      "sha256": "5d4bd01c2025365f640673e60e3fae0fef0de22dae7bccd89103b68572ee75fc"
+    },
+    {
+      "path": "potion_definitions217.json",
+      "source_path": "oxal_mc_studio/data/potion_definitions217.json",
+      "sha256": "55bcf83b217e4da3d23c4676944755afe73f1933354b1a9b9d6399e1ae205e6a"
+    },
+    {
+      "source_path": "Java26.3 ArrowModel renderer; immutable geometry capture from local.31 resource builder",
+      "path": "arrow_mesh.json",
+      "sha256": "f80044fca9164d1f52feb76c2e1299fa8347abb1c2e75a82136a32fbbd8cd122"
+    },
+    {
+      "source_path": "oxal_mc_studio/projectile_profiles214.json",
+      "path": "projectile_profiles214.json",
+      "sha256": "50c5ac647344b6060b9c6ada7b496c6b1403af1b052ff7b9817b2c3cb53b83a2"
+    },
+    {
+      "source_path": "oxal_mc_studio/data/arrow_particles219.json",
+      "path": "arrow_particles219.json",
+      "sha256": "6b8b55598cc4536d131fc843d51e6717af99fceb0ae0fda9efb40038bc49bc6a"
+    },
+    {
+      "path": "projectile_native.blend",
+      "sha256": "74683f139502bcad0f694cf69c03d597f5305226e8201403fbdd37db8c3cf3ef",
+      "kind": "sanitized immutable native Mesh/Geometry Nodes/material data",
+      "source_path": "local.31 projectile_effects214.py native-generated resource output; source Python remains QA only",
+      "source_script_sha256": "22c11931d63324731c998753c45675d1e94e7033a562534a4fe13e0da6bd5e7e",
+      "blender": "4.5.12 LTS",
+      "variants": 18,
+      "sanitization": [
+        "no Scene or camera driver ID dependencies",
+        "no Text blocks",
+        "source textures canonical metadata + packed image pixels",
+        "simple native drivers only",
+        "all frame evolution is native Geometry Nodes Scene Time",
+        "Image and ImagePackedFile paths share portable bundled logical texture paths; embedded PNG bytes retained exactly"
+      ],
+      "lossless_container_manifest": "../../CONTAINERS.json"
+    },
+    {
+      "path": "brewing_smoke42.json",
+      "source_path": "oxal_mc_studio/data/brewing_smoke42.json",
+      "sha256": "dec91d1bc761f346206e87620639dcbda472317900a63301a94cfe88e9097e50"
+    },
+    {
+      "path": "fire_shadow_roles207.json",
+      "source_path": "oxal_mc_studio/assets/fire-shadow-roles207.json",
+      "sha256": "f42d544256519cf11cf92e95f65fff3d2c537ba0ae548ce767fe0ad7bfcd8ab5",
+      "kind": "immutable resource roles"
+    },
+    {
+      "path": "torch_provider209.json",
+      "source_path": "oxal_mc_studio/torch_particles209.py",
+      "sha256": "03d7348eeb5ad7da9aa586af09b54dba3b8dddcf5018e3b681eb29ce0d2c54dd",
+      "kind": "declarative immutable parameter contracts; new native provider",
+      "source_script_sha256": "c0d2d65c4f34198f6f371f4bb98dc1f8cf9dc1f9d10eae157bb682ee2febf5c5"
+    },
+    {
+      "path": "rig_beacon.blend",
+      "sha256": "84ce1c2c10cf5f71e62e87bb95d2febc0f540c8925c7ab56f7fb68a62c8e595c",
+      "kind": "sanitized immutable native armature, widgets, meshes, materials and simple drivers",
+      "source_path": "local.31 actual Operator-generated native resource output; source Python remains QA only",
+      "source_scripts_sha256": {
+        "oxal_mc_studio\\asset_rigs.py": "7df4344ec7e9fe7f03dd452ae7f2d3efaabcfab30f18dc8e59b7efcd561f4739",
+        "oxal_mc_studio\\asset_controls.py": "133ac413d59f79dbeaa15678159fb428cb2d4d7691eb17696f558cd154813947"
+      },
+      "collection": "OXAL Native beacon",
+      "blender": "4.5.12 LTS",
+      "sanitization": [
+        "no source Scene/Text/handler dependencies",
+        "Scene FPS represented by a declared proxy and retargeted to the actual destination Scene on append",
+        "original Chinese controls, bone rest shapes, hierarchy and native driver expressions retained",
+        "source Object material overrides promoted to actual Mesh slots",
+        "textures packed; canonical logical texture metadata established on explicit import",
+        "per-polygon source material indices retained during Object-to-Mesh slot promotion",
+        "Image and ImagePackedFile paths share portable bundled logical texture paths; embedded PNG bytes retained exactly"
+      ]
+    },
+    {
+      "path": "rig_end_crystal.blend",
+      "sha256": "5a55600943de46af98273e76ee9798af9ec26beba317e20c5e2eb8980b1b91bb",
+      "kind": "sanitized immutable native armature, widgets, meshes, materials and simple drivers",
+      "source_path": "local.31 actual Operator-generated native resource output; source Python remains QA only",
+      "source_scripts_sha256": {
+        "oxal_mc_studio\\asset_rigs.py": "7df4344ec7e9fe7f03dd452ae7f2d3efaabcfab30f18dc8e59b7efcd561f4739",
+        "oxal_mc_studio\\asset_controls.py": "133ac413d59f79dbeaa15678159fb428cb2d4d7691eb17696f558cd154813947"
+      },
+      "collection": "OXAL Native end_crystal",
+      "blender": "4.5.12 LTS",
+      "sanitization": [
+        "no source Scene/Text/handler dependencies",
+        "Scene FPS represented by a declared proxy and retargeted to the actual destination Scene on append",
+        "original Chinese controls, bone rest shapes, hierarchy and native driver expressions retained",
+        "source Object material overrides promoted to actual Mesh slots",
+        "textures packed; canonical logical texture metadata established on explicit import",
+        "Image and ImagePackedFile paths share portable bundled logical texture paths; embedded PNG bytes retained exactly"
+      ]
+    },
+    {
+      "path": "book_native.blend",
+      "sha256": "4abef3b8811ef93d2071e9d53d980682c8278627ce1074d83eb419bf48428008",
+      "kind": "sanitized immutable native armature, widgets, meshes, materials and simple drivers",
+      "source_path": "local.31 actual Operator-generated native resource output; source Python remains QA only",
+      "source_scripts_sha256": {
+        "oxal_mc_studio\\asset_rigs.py": "7df4344ec7e9fe7f03dd452ae7f2d3efaabcfab30f18dc8e59b7efcd561f4739",
+        "oxal_mc_studio\\asset_controls.py": "133ac413d59f79dbeaa15678159fb428cb2d4d7691eb17696f558cd154813947"
+      },
+      "collection": "OXAL Native Book",
+      "blender": "4.5.12 LTS",
+      "sanitization": [
+        "no source Scene/Text/handler dependencies",
+        "Scene FPS represented by a declared proxy and retargeted to the actual destination Scene on append",
+        "original Chinese controls, bone rest shapes, hierarchy and native driver expressions retained",
+        "source Object material overrides promoted to actual Mesh slots",
+        "textures packed; canonical logical texture metadata established on explicit import",
+        "explicit immutable Object roles for independent book anchor, subrig and movable emitters",
+        "Image and ImagePackedFile paths share portable bundled logical texture paths; embedded PNG bytes retained exactly"
+      ]
+    }
+  ]
+}

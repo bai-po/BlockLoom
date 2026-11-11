@@ -1,0 +1,3879 @@
+{
+  "book": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "left_lid": {
+          "pivot": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -6.0,
+                -5.0,
+                -0.004999999888241291
+              ],
+              "size": [
+                6.0,
+                10.0,
+                0.004999999888241291
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right_lid": {
+          "pivot": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                -5.0,
+                -0.004999999888241291
+              ],
+              "size": [
+                6.0,
+                10.0,
+                0.004999999888241291
+              ],
+              "uv": [
+                16.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "seam": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0.0,
+            1.5707963705062866,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                -5.0,
+                0.0
+              ],
+              "size": [
+                2.0,
+                10.0,
+                0.004999999888241291
+              ],
+              "uv": [
+                12.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left_pages": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                -4.0,
+                -0.9900000095367432
+              ],
+              "size": [
+                5.0,
+                8.0,
+                1.0
+              ],
+              "uv": [
+                0.0,
+                10.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right_pages": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                -4.0,
+                -0.009999999776482582
+              ],
+              "size": [
+                5.0,
+                8.0,
+                1.0
+              ],
+              "uv": [
+                12.0,
+                10.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "flip_page1": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                -4.0,
+                0.0
+              ],
+              "size": [
+                5.0,
+                8.0,
+                0.004999999888241291
+              ],
+              "uv": [
+                24.0,
+                10.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "flip_page2": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                -4.0,
+                0.0
+              ],
+              "size": [
+                5.0,
+                8.0,
+                0.004999999888241291
+              ],
+              "uv": [
+                24.0,
+                10.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      32.0
+    ],
+    "source": "net/minecraft/client/model/object/book/BookModel.createBodyLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "boat": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "bottom": {
+          "pivot": [
+            0.0,
+            3.0,
+            1.0
+          ],
+          "rotation": [
+            1.5707963705062866,
+            0.0,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -14.0,
+                -9.0,
+                -3.0
+              ],
+              "size": [
+                28.0,
+                16.0,
+                3.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "back": {
+          "pivot": [
+            -15.0,
+            4.0,
+            4.0
+          ],
+          "rotation": [
+            0.0,
+            4.71238899230957,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -13.0,
+                -7.0,
+                -1.0
+              ],
+              "size": [
+                18.0,
+                6.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                19.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "front": {
+          "pivot": [
+            15.0,
+            4.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            1.5707963705062866,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -8.0,
+                -7.0,
+                -1.0
+              ],
+              "size": [
+                16.0,
+                6.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                27.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right": {
+          "pivot": [
+            0.0,
+            4.0,
+            -9.0
+          ],
+          "rotation": [
+            0.0,
+            3.1415927410125732,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -14.0,
+                -7.0,
+                -1.0
+              ],
+              "size": [
+                28.0,
+                6.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                35.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left": {
+          "pivot": [
+            0.0,
+            4.0,
+            9.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -14.0,
+                -7.0,
+                -1.0
+              ],
+              "size": [
+                28.0,
+                6.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                43.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left_paddle": {
+          "pivot": [
+            3.0,
+            -5.0,
+            9.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.19634954631328583
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                0.0,
+                -5.0
+              ],
+              "size": [
+                2.0,
+                2.0,
+                18.0
+              ],
+              "uv": [
+                62.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                -1.0010000467300415,
+                -3.0,
+                8.0
+              ],
+              "size": [
+                1.0,
+                6.0,
+                7.0
+              ],
+              "uv": [
+                62.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right_paddle": {
+          "pivot": [
+            3.0,
+            -5.0,
+            -9.0
+          ],
+          "rotation": [
+            0.0,
+            3.1415927410125732,
+            0.19634954631328583
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                0.0,
+                -5.0
+              ],
+              "size": [
+                2.0,
+                2.0,
+                18.0
+              ],
+              "uv": [
+                62.0,
+                20.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                0.0010000000474974513,
+                -3.0,
+                8.0
+              ],
+              "size": [
+                1.0,
+                6.0,
+                7.0
+              ],
+              "uv": [
+                62.0,
+                20.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      128.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/object/boat/BoatModel.createBoatModel()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "chest_boat": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "bottom": {
+          "pivot": [
+            0.0,
+            3.0,
+            1.0
+          ],
+          "rotation": [
+            1.5707963705062866,
+            0.0,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -14.0,
+                -9.0,
+                -3.0
+              ],
+              "size": [
+                28.0,
+                16.0,
+                3.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "back": {
+          "pivot": [
+            -15.0,
+            4.0,
+            4.0
+          ],
+          "rotation": [
+            0.0,
+            4.71238899230957,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -13.0,
+                -7.0,
+                -1.0
+              ],
+              "size": [
+                18.0,
+                6.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                19.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "front": {
+          "pivot": [
+            15.0,
+            4.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            1.5707963705062866,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -8.0,
+                -7.0,
+                -1.0
+              ],
+              "size": [
+                16.0,
+                6.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                27.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right": {
+          "pivot": [
+            0.0,
+            4.0,
+            -9.0
+          ],
+          "rotation": [
+            0.0,
+            3.1415927410125732,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -14.0,
+                -7.0,
+                -1.0
+              ],
+              "size": [
+                28.0,
+                6.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                35.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left": {
+          "pivot": [
+            0.0,
+            4.0,
+            9.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -14.0,
+                -7.0,
+                -1.0
+              ],
+              "size": [
+                28.0,
+                6.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                43.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left_paddle": {
+          "pivot": [
+            3.0,
+            -5.0,
+            9.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.19634954631328583
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                0.0,
+                -5.0
+              ],
+              "size": [
+                2.0,
+                2.0,
+                18.0
+              ],
+              "uv": [
+                62.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                -1.0010000467300415,
+                -3.0,
+                8.0
+              ],
+              "size": [
+                1.0,
+                6.0,
+                7.0
+              ],
+              "uv": [
+                62.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right_paddle": {
+          "pivot": [
+            3.0,
+            -5.0,
+            -9.0
+          ],
+          "rotation": [
+            0.0,
+            3.1415927410125732,
+            0.19634954631328583
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                0.0,
+                -5.0
+              ],
+              "size": [
+                2.0,
+                2.0,
+                18.0
+              ],
+              "uv": [
+                62.0,
+                20.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                0.0010000000474974513,
+                -3.0,
+                8.0
+              ],
+              "size": [
+                1.0,
+                6.0,
+                7.0
+              ],
+              "uv": [
+                62.0,
+                20.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "chest_bottom": {
+          "pivot": [
+            -2.0,
+            -5.0,
+            -6.0
+          ],
+          "rotation": [
+            0.0,
+            -1.5707963705062866,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                12.0,
+                8.0,
+                12.0
+              ],
+              "uv": [
+                0.0,
+                76.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "chest_lid": {
+          "pivot": [
+            -2.0,
+            -9.0,
+            -6.0
+          ],
+          "rotation": [
+            0.0,
+            -1.5707963705062866,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                12.0,
+                4.0,
+                12.0
+              ],
+              "uv": [
+                0.0,
+                59.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "chest_lock": {
+          "pivot": [
+            -1.0,
+            -6.0,
+            -1.0
+          ],
+          "rotation": [
+            0.0,
+            -1.5707963705062866,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                2.0,
+                4.0,
+                1.0
+              ],
+              "uv": [
+                0.0,
+                59.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      128.0,
+      128.0
+    ],
+    "source": "net/minecraft/client/model/object/boat/BoatModel.createChestBoatModel()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "raft": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "bottom": {
+          "pivot": [
+            0.0,
+            -2.0999999046325684,
+            1.0
+          ],
+          "rotation": [
+            1.5707999467849731,
+            0.0,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -14.0,
+                -11.0,
+                -4.0
+              ],
+              "size": [
+                28.0,
+                20.0,
+                4.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                -14.0,
+                -9.0,
+                -8.0
+              ],
+              "size": [
+                28.0,
+                16.0,
+                4.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left_paddle": {
+          "pivot": [
+            3.0,
+            -4.0,
+            9.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.19634954631328583
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                0.0,
+                -5.0
+              ],
+              "size": [
+                2.0,
+                2.0,
+                18.0
+              ],
+              "uv": [
+                0.0,
+                24.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                -1.0010000467300415,
+                -3.0,
+                8.0
+              ],
+              "size": [
+                1.0,
+                6.0,
+                7.0
+              ],
+              "uv": [
+                0.0,
+                24.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right_paddle": {
+          "pivot": [
+            3.0,
+            -4.0,
+            -9.0
+          ],
+          "rotation": [
+            0.0,
+            3.1415927410125732,
+            0.19634954631328583
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                0.0,
+                -5.0
+              ],
+              "size": [
+                2.0,
+                2.0,
+                18.0
+              ],
+              "uv": [
+                40.0,
+                24.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                0.0010000000474974513,
+                -3.0,
+                8.0
+              ],
+              "size": [
+                1.0,
+                6.0,
+                7.0
+              ],
+              "uv": [
+                40.0,
+                24.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      128.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/object/boat/RaftModel.createRaftModel()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "chest_raft": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "bottom": {
+          "pivot": [
+            0.0,
+            -2.0999999046325684,
+            1.0
+          ],
+          "rotation": [
+            1.5707999467849731,
+            0.0,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -14.0,
+                -11.0,
+                -4.0
+              ],
+              "size": [
+                28.0,
+                20.0,
+                4.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                -14.0,
+                -9.0,
+                -8.0
+              ],
+              "size": [
+                28.0,
+                16.0,
+                4.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left_paddle": {
+          "pivot": [
+            3.0,
+            -4.0,
+            9.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.19634954631328583
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                0.0,
+                -5.0
+              ],
+              "size": [
+                2.0,
+                2.0,
+                18.0
+              ],
+              "uv": [
+                0.0,
+                24.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                -1.0010000467300415,
+                -3.0,
+                8.0
+              ],
+              "size": [
+                1.0,
+                6.0,
+                7.0
+              ],
+              "uv": [
+                0.0,
+                24.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right_paddle": {
+          "pivot": [
+            3.0,
+            -4.0,
+            -9.0
+          ],
+          "rotation": [
+            0.0,
+            3.1415927410125732,
+            0.19634954631328583
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                0.0,
+                -5.0
+              ],
+              "size": [
+                2.0,
+                2.0,
+                18.0
+              ],
+              "uv": [
+                40.0,
+                24.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                0.0010000000474974513,
+                -3.0,
+                8.0
+              ],
+              "size": [
+                1.0,
+                6.0,
+                7.0
+              ],
+              "uv": [
+                40.0,
+                24.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "chest_bottom": {
+          "pivot": [
+            -2.0,
+            -10.100000381469727,
+            -6.0
+          ],
+          "rotation": [
+            0.0,
+            -1.5707963705062866,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                12.0,
+                8.0,
+                12.0
+              ],
+              "uv": [
+                0.0,
+                76.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "chest_lid": {
+          "pivot": [
+            -2.0,
+            -14.100000381469727,
+            -6.0
+          ],
+          "rotation": [
+            0.0,
+            -1.5707963705062866,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                12.0,
+                4.0,
+                12.0
+              ],
+              "uv": [
+                0.0,
+                59.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "chest_lock": {
+          "pivot": [
+            -1.0,
+            -11.100000381469727,
+            -1.0
+          ],
+          "rotation": [
+            0.0,
+            -1.5707963705062866,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                2.0,
+                4.0,
+                1.0
+              ],
+              "uv": [
+                0.0,
+                59.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      128.0,
+      128.0
+    ],
+    "source": "net/minecraft/client/model/object/boat/RaftModel.createChestRaftModel()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "chest": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "bottom": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                1.0,
+                0.0,
+                1.0
+              ],
+              "size": [
+                14.0,
+                10.0,
+                14.0
+              ],
+              "uv": [
+                0.0,
+                19.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "lid": {
+          "pivot": [
+            0.0,
+            9.0,
+            1.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                14.0,
+                5.0,
+                14.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "lock": {
+          "pivot": [
+            0.0,
+            9.0,
+            1.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                7.0,
+                -2.0,
+                14.0
+              ],
+              "size": [
+                2.0,
+                4.0,
+                1.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/object/chest/ChestModel.createSingleBodyLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "chest_left": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "bottom": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "size": [
+                15.0,
+                10.0,
+                14.0
+              ],
+              "uv": [
+                0.0,
+                19.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": [
+                "DOWN",
+                "UP",
+                "NORTH",
+                "EAST",
+                "SOUTH"
+              ]
+            }
+          ],
+          "children": {}
+        },
+        "lid": {
+          "pivot": [
+            0.0,
+            9.0,
+            1.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                15.0,
+                5.0,
+                14.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": [
+                "DOWN",
+                "UP",
+                "NORTH",
+                "EAST",
+                "SOUTH"
+              ]
+            }
+          ],
+          "children": {}
+        },
+        "lock": {
+          "pivot": [
+            0.0,
+            9.0,
+            1.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                -2.0,
+                14.0
+              ],
+              "size": [
+                1.0,
+                4.0,
+                1.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": [
+                "DOWN",
+                "UP",
+                "NORTH",
+                "EAST",
+                "SOUTH"
+              ]
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/object/chest/ChestModel.createDoubleBodyLeftLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "chest_right": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "bottom": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                1.0,
+                0.0,
+                1.0
+              ],
+              "size": [
+                15.0,
+                10.0,
+                14.0
+              ],
+              "uv": [
+                0.0,
+                19.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": [
+                "DOWN",
+                "UP",
+                "WEST",
+                "NORTH",
+                "SOUTH"
+              ]
+            }
+          ],
+          "children": {}
+        },
+        "lid": {
+          "pivot": [
+            0.0,
+            9.0,
+            1.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                15.0,
+                5.0,
+                14.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": [
+                "DOWN",
+                "UP",
+                "WEST",
+                "NORTH",
+                "SOUTH"
+              ]
+            }
+          ],
+          "children": {}
+        },
+        "lock": {
+          "pivot": [
+            0.0,
+            9.0,
+            1.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                15.0,
+                -2.0,
+                14.0
+              ],
+              "size": [
+                1.0,
+                4.0,
+                1.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": [
+                "DOWN",
+                "UP",
+                "WEST",
+                "NORTH",
+                "SOUTH"
+              ]
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/object/chest/ChestModel.createDoubleBodyRightLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "shulker": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "lid": {
+          "pivot": [
+            0.0,
+            24.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -8.0,
+                -16.0,
+                -8.0
+              ],
+              "size": [
+                16.0,
+                12.0,
+                16.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "base": {
+          "pivot": [
+            0.0,
+            24.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -8.0,
+                -8.0,
+                -8.0
+              ],
+              "size": [
+                16.0,
+                8.0,
+                16.0
+              ],
+              "uv": [
+                0.0,
+                28.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/monster/shulker/ShulkerModel.createBoxLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "skull": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "head": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -4.0,
+                -8.0,
+                -4.0
+              ],
+              "size": [
+                8.0,
+                8.0,
+                8.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      32.0
+    ],
+    "source": "net/minecraft/client/model/object/skull/SkullModel.createMobHeadLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "humanoid_head": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "head": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -4.0,
+                -8.0,
+                -4.0
+              ],
+              "size": [
+                8.0,
+                8.0,
+                8.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {
+            "hat": {
+              "pivot": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "cubes": [
+                {
+                  "from": [
+                    -4.0,
+                    -8.0,
+                    -4.0
+                  ],
+                  "size": [
+                    8.0,
+                    8.0,
+                    8.0
+                  ],
+                  "uv": [
+                    32.0,
+                    0.0
+                  ],
+                  "mirror": false,
+                  "grow": 0.25,
+                  "faces": null
+                }
+              ],
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/object/skull/SkullModel.createHumanoidHeadLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "piglin_head": {
+    "class": "net/minecraft/client/model/geom/builders/MeshDefinition",
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "head": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -5.0,
+                -8.0,
+                -4.0
+              ],
+              "size": [
+                10.0,
+                8.0,
+                8.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                -2.0,
+                -4.0,
+                -5.0
+              ],
+              "size": [
+                4.0,
+                4.0,
+                1.0
+              ],
+              "uv": [
+                31.0,
+                1.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                2.0,
+                -2.0,
+                -5.0
+              ],
+              "size": [
+                1.0,
+                2.0,
+                1.0
+              ],
+              "uv": [
+                2.0,
+                4.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            },
+            {
+              "from": [
+                -3.0,
+                -2.0,
+                -5.0
+              ],
+              "size": [
+                1.0,
+                2.0,
+                1.0
+              ],
+              "uv": [
+                2.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {
+            "left_ear": {
+              "pivot": [
+                4.5,
+                -6.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                -0.5235987901687622
+              ],
+              "cubes": [
+                {
+                  "from": [
+                    0.0,
+                    0.0,
+                    -2.0
+                  ],
+                  "size": [
+                    1.0,
+                    5.0,
+                    4.0
+                  ],
+                  "uv": [
+                    51.0,
+                    6.0
+                  ],
+                  "mirror": false,
+                  "grow": 0,
+                  "faces": null
+                }
+              ],
+              "children": {}
+            },
+            "right_ear": {
+              "pivot": [
+                -4.5,
+                -6.0,
+                0.0
+              ],
+              "rotation": [
+                0.0,
+                0.0,
+                0.5235987901687622
+              ],
+              "cubes": [
+                {
+                  "from": [
+                    -1.0,
+                    0.0,
+                    -2.0
+                  ],
+                  "size": [
+                    1.0,
+                    5.0,
+                    4.0
+                  ],
+                  "uv": [
+                    39.0,
+                    6.0
+                  ],
+                  "mirror": false,
+                  "grow": 0,
+                  "faces": null
+                }
+              ],
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    "atlas": [
+      64,
+      64
+    ],
+    "source": "net/minecraft/client/model/object/skull/PiglinHeadModel.createHeadModel()Lnet/minecraft/client/model/geom/builders/MeshDefinition;"
+  },
+  "banner": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "pole": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                -42.0,
+                -1.0
+              ],
+              "size": [
+                2.0,
+                42.0,
+                2.0
+              ],
+              "uv": [
+                44.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "bar": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -10.0,
+                -44.0,
+                -1.0
+              ],
+              "size": [
+                20.0,
+                2.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                42.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/object/banner/BannerModel.createBodyLayer(Z)Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "wall_banner": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "bar": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -10.0,
+                -20.5,
+                9.5
+              ],
+              "size": [
+                20.0,
+                2.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                42.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/object/banner/BannerModel.createBodyLayer(Z)Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "flag": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "flag": {
+          "pivot": [
+            0.0,
+            -44.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -10.0,
+                0.0,
+                -2.0
+              ],
+              "size": [
+                20.0,
+                40.0,
+                1.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/object/banner/BannerFlagModel.createFlagLayer(Z)Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "conduit_shell": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "shell": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -3.0,
+                -3.0,
+                -3.0
+              ],
+              "size": [
+                6.0,
+                6.0,
+                6.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      32.0,
+      16.0
+    ],
+    "source": "net/minecraft/client/renderer/blockentity/ConduitRenderer.createShellLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "conduit_cage": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "shell": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -4.0,
+                -4.0,
+                -4.0
+              ],
+              "size": [
+                8.0,
+                8.0,
+                8.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      32.0,
+      16.0
+    ],
+    "source": "net/minecraft/client/renderer/blockentity/ConduitRenderer.createCageLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "pot_base": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "neck": {
+          "pivot": [
+            0.0,
+            37.0,
+            16.0
+          ],
+          "rotation": [
+            3.1415927410125732,
+            0.0,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                4.0,
+                17.0,
+                4.0
+              ],
+              "size": [
+                8.0,
+                3.0,
+                8.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": -0.10000000149011612,
+              "faces": null
+            },
+            {
+              "from": [
+                5.0,
+                20.0,
+                5.0
+              ],
+              "size": [
+                6.0,
+                1.0,
+                6.0
+              ],
+              "uv": [
+                0.0,
+                5.0
+              ],
+              "mirror": false,
+              "grow": 0.20000000298023224,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "top": {
+          "pivot": [
+            1.0,
+            16.0,
+            1.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                14.0,
+                0.0,
+                14.0
+              ],
+              "uv": [
+                -14.0,
+                13.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "bottom": {
+          "pivot": [
+            1.0,
+            0.0,
+            1.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                14.0,
+                0.0,
+                14.0
+              ],
+              "uv": [
+                -14.0,
+                13.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      32.0,
+      32.0
+    ],
+    "source": "net/minecraft/client/renderer/blockentity/DecoratedPotRenderer.createBaseLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "pot_sides": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "back": {
+          "pivot": [
+            15.0,
+            16.0,
+            1.0
+          ],
+          "rotation": [
+            0.0,
+            0.0,
+            3.1415927410125732
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                14.0,
+                16.0,
+                0.0
+              ],
+              "uv": [
+                1.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": [
+                "NORTH"
+              ]
+            }
+          ],
+          "children": {}
+        },
+        "left": {
+          "pivot": [
+            1.0,
+            16.0,
+            1.0
+          ],
+          "rotation": [
+            0.0,
+            -1.5707963705062866,
+            3.1415927410125732
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                14.0,
+                16.0,
+                0.0
+              ],
+              "uv": [
+                1.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": [
+                "NORTH"
+              ]
+            }
+          ],
+          "children": {}
+        },
+        "right": {
+          "pivot": [
+            15.0,
+            16.0,
+            15.0
+          ],
+          "rotation": [
+            0.0,
+            1.5707963705062866,
+            3.1415927410125732
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                14.0,
+                16.0,
+                0.0
+              ],
+              "uv": [
+                1.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": [
+                "NORTH"
+              ]
+            }
+          ],
+          "children": {}
+        },
+        "front": {
+          "pivot": [
+            1.0,
+            16.0,
+            15.0
+          ],
+          "rotation": [
+            3.1415927410125732,
+            0.0,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "size": [
+                14.0,
+                16.0,
+                0.0
+              ],
+              "uv": [
+                1.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": [
+                "NORTH"
+              ]
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      16.0,
+      16.0
+    ],
+    "source": "net/minecraft/client/renderer/blockentity/DecoratedPotRenderer.createSidesLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "crystal": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "outer_glass": {
+          "pivot": [
+            0.0,
+            24.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -4.0,
+                -4.0,
+                -4.0
+              ],
+              "size": [
+                8.0,
+                8.0,
+                8.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {
+            "inner_glass": {
+              "pivot": [
+                0,
+                0,
+                0
+              ],
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "cubes": [
+                {
+                  "from": [
+                    -4.0,
+                    -4.0,
+                    -4.0
+                  ],
+                  "size": [
+                    8.0,
+                    8.0,
+                    8.0
+                  ],
+                  "uv": [
+                    0.0,
+                    0.0
+                  ],
+                  "mirror": false,
+                  "grow": 0,
+                  "faces": null
+                }
+              ],
+              "children": {
+                "cube": {
+                  "pivot": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "rotation": [
+                    0,
+                    0,
+                    0
+                  ],
+                  "cubes": [
+                    {
+                      "from": [
+                        -4.0,
+                        -4.0,
+                        -4.0
+                      ],
+                      "size": [
+                        8.0,
+                        8.0,
+                        8.0
+                      ],
+                      "uv": [
+                        32.0,
+                        0.0
+                      ],
+                      "mirror": false,
+                      "grow": 0,
+                      "faces": null
+                    }
+                  ],
+                  "children": {},
+                  "scale": [
+                    0.765625
+                  ]
+                }
+              },
+              "scale": [
+                0.875
+              ]
+            }
+          }
+        },
+        "base": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -6.0,
+                0.0,
+                -6.0
+              ],
+              "size": [
+                12.0,
+                4.0,
+                12.0
+              ],
+              "uv": [
+                0.0,
+                16.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      32.0
+    ],
+    "source": "net/minecraft/client/model/object/crystal/EndCrystalModel.createBodyLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "cart": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "bottom": {
+          "pivot": [
+            0.0,
+            4.0,
+            0.0
+          ],
+          "rotation": [
+            1.5707963705062866,
+            0.0,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -10.0,
+                -8.0,
+                -1.0
+              ],
+              "size": [
+                20.0,
+                16.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                10.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "front": {
+          "pivot": [
+            -9.0,
+            4.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            4.71238899230957,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -8.0,
+                -9.0,
+                -1.0
+              ],
+              "size": [
+                16.0,
+                8.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "back": {
+          "pivot": [
+            9.0,
+            4.0,
+            0.0
+          ],
+          "rotation": [
+            0.0,
+            1.5707963705062866,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -8.0,
+                -9.0,
+                -1.0
+              ],
+              "size": [
+                16.0,
+                8.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left": {
+          "pivot": [
+            0.0,
+            4.0,
+            -7.0
+          ],
+          "rotation": [
+            0.0,
+            3.1415927410125732,
+            0.0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -8.0,
+                -9.0,
+                -1.0
+              ],
+              "size": [
+                16.0,
+                8.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right": {
+          "pivot": [
+            0.0,
+            4.0,
+            7.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -8.0,
+                -9.0,
+                -1.0
+              ],
+              "size": [
+                16.0,
+                8.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      32.0
+    ],
+    "source": "net/minecraft/client/model/object/cart/MinecartModel.createBodyLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "copper_golem": {
+    "root": {
+      "pivot": [
+        0,
+        24,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "body": {
+          "pivot": [
+            0.0,
+            -5.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -4.0,
+                -6.0,
+                -3.0
+              ],
+              "size": [
+                8.0,
+                6.0,
+                6.0
+              ],
+              "uv": [
+                0.0,
+                15.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {
+            "head": {
+              "pivot": [
+                0.0,
+                -6.0,
+                0.0
+              ],
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "cubes": [
+                {
+                  "from": [
+                    -4.0,
+                    -5.0,
+                    -5.0
+                  ],
+                  "size": [
+                    8.0,
+                    5.0,
+                    10.0
+                  ],
+                  "uv": [
+                    0.0,
+                    0.0
+                  ],
+                  "mirror": false,
+                  "grow": 0.014999999664723873,
+                  "faces": null
+                },
+                {
+                  "from": [
+                    -1.0,
+                    -2.0,
+                    -6.0
+                  ],
+                  "size": [
+                    2.0,
+                    3.0,
+                    2.0
+                  ],
+                  "uv": [
+                    56.0,
+                    0.0
+                  ],
+                  "mirror": false,
+                  "grow": 0,
+                  "faces": null
+                },
+                {
+                  "from": [
+                    -1.0,
+                    -9.0,
+                    -1.0
+                  ],
+                  "size": [
+                    2.0,
+                    4.0,
+                    2.0
+                  ],
+                  "uv": [
+                    37.0,
+                    8.0
+                  ],
+                  "mirror": false,
+                  "grow": -0.014999999664723873,
+                  "faces": null
+                },
+                {
+                  "from": [
+                    -2.0,
+                    -13.0,
+                    -2.0
+                  ],
+                  "size": [
+                    4.0,
+                    4.0,
+                    4.0
+                  ],
+                  "uv": [
+                    37.0,
+                    0.0
+                  ],
+                  "mirror": false,
+                  "grow": -0.014999999664723873,
+                  "faces": null
+                }
+              ],
+              "children": {}
+            },
+            "right_arm": {
+              "pivot": [
+                -4.0,
+                -6.0,
+                0.0
+              ],
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "cubes": [
+                {
+                  "from": [
+                    -3.0,
+                    -1.0,
+                    -2.0
+                  ],
+                  "size": [
+                    3.0,
+                    10.0,
+                    4.0
+                  ],
+                  "uv": [
+                    36.0,
+                    16.0
+                  ],
+                  "mirror": false,
+                  "grow": 0,
+                  "faces": null
+                }
+              ],
+              "children": {}
+            },
+            "left_arm": {
+              "pivot": [
+                4.0,
+                -6.0,
+                0.0
+              ],
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "cubes": [
+                {
+                  "from": [
+                    0.0,
+                    -1.0,
+                    -2.0
+                  ],
+                  "size": [
+                    3.0,
+                    10.0,
+                    4.0
+                  ],
+                  "uv": [
+                    50.0,
+                    16.0
+                  ],
+                  "mirror": false,
+                  "grow": 0,
+                  "faces": null
+                }
+              ],
+              "children": {}
+            }
+          }
+        },
+        "right_leg": {
+          "pivot": [
+            0.0,
+            -5.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -4.0,
+                0.0,
+                -2.0
+              ],
+              "size": [
+                4.0,
+                5.0,
+                4.0
+              ],
+              "uv": [
+                0.0,
+                27.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left_leg": {
+          "pivot": [
+            0.0,
+            -5.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                0.0,
+                -2.0
+              ],
+              "size": [
+                4.0,
+                5.0,
+                4.0
+              ],
+              "uv": [
+                16.0,
+                27.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/animal/golem/CopperGolemModel.createBodyLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  },
+  "armor_stand": {
+    "root": {
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "cubes": [],
+      "children": {
+        "head": {
+          "pivot": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                -7.0,
+                -1.0
+              ],
+              "size": [
+                2.0,
+                7.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "body": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -6.0,
+                0.0,
+                -1.5
+              ],
+              "size": [
+                12.0,
+                3.0,
+                3.0
+              ],
+              "uv": [
+                0.0,
+                26.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right_arm": {
+          "pivot": [
+            -5.0,
+            2.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -2.0,
+                -2.0,
+                -1.0
+              ],
+              "size": [
+                2.0,
+                12.0,
+                2.0
+              ],
+              "uv": [
+                24.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left_arm": {
+          "pivot": [
+            5.0,
+            2.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                0.0,
+                -2.0,
+                -1.0
+              ],
+              "size": [
+                2.0,
+                12.0,
+                2.0
+              ],
+              "uv": [
+                32.0,
+                16.0
+              ],
+              "mirror": true,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right_leg": {
+          "pivot": [
+            -1.899999976158142,
+            12.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                0.0,
+                -1.0
+              ],
+              "size": [
+                2.0,
+                11.0,
+                2.0
+              ],
+              "uv": [
+                8.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left_leg": {
+          "pivot": [
+            1.899999976158142,
+            12.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -1.0,
+                0.0,
+                -1.0
+              ],
+              "size": [
+                2.0,
+                11.0,
+                2.0
+              ],
+              "uv": [
+                40.0,
+                16.0
+              ],
+              "mirror": true,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "right_body_stick": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -3.0,
+                3.0,
+                -1.0
+              ],
+              "size": [
+                2.0,
+                7.0,
+                2.0
+              ],
+              "uv": [
+                16.0,
+                0.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "left_body_stick": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                1.0,
+                3.0,
+                -1.0
+              ],
+              "size": [
+                2.0,
+                7.0,
+                2.0
+              ],
+              "uv": [
+                48.0,
+                16.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "shoulder_stick": {
+          "pivot": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -4.0,
+                10.0,
+                -1.0
+              ],
+              "size": [
+                8.0,
+                2.0,
+                2.0
+              ],
+              "uv": [
+                0.0,
+                48.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        },
+        "base_plate": {
+          "pivot": [
+            0.0,
+            12.0,
+            0.0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "cubes": [
+            {
+              "from": [
+                -6.0,
+                11.0,
+                -6.0
+              ],
+              "size": [
+                12.0,
+                1.0,
+                12.0
+              ],
+              "uv": [
+                0.0,
+                32.0
+              ],
+              "mirror": false,
+              "grow": 0,
+              "faces": null
+            }
+          ],
+          "children": {}
+        }
+      }
+    },
+    "atlas": [
+      64.0,
+      64.0
+    ],
+    "source": "net/minecraft/client/model/object/armorstand/ArmorStandModel.createBodyLayer()Lnet/minecraft/client/model/geom/builders/LayerDefinition;"
+  }
+}

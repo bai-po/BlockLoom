@@ -1,0 +1,120 @@
+{
+  "repository": "https://github.com/bai-po/oxal-mc-studio",
+  "ref": "codex/oxal-source-20261029",
+  "commit": "74ab71a1ff64b6fb13fe1642aa9d68e651a8712f",
+  "source_path": "oxal_mc_studio/models/oxal_sky.blend",
+  "version": "0.18.71",
+  "sha256": "46ee5da3d1297b82993a294d16437816e6c468198e41d69ffead4e32c2858b31",
+  "notes": "Packed sky asset copied from the immutable local.31 Git object. The modified source working tree was not used.",
+  "celestial_helper_contract_algorithm": "native-sky-helper-v1",
+  "celestial_helper_contracts": {
+    "sun_mesh": [
+      "1acea2bef4abe443120210411f3b11fdfd691dfe3cc97c56fa296f4cfc535a1c",
+      "cf2029f4fab987c986d069a5a0c512239f34c06aac75a0a83b050e4e16b62638",
+      "cf5c53f287cb3149219c2bcbd7dd2f356e6eb5c34a09e4c86e5a4933a87c70ad"
+    ],
+    "moon_mesh": [
+      "02f6475e0ce70757b0b89f337d7bb0653d9e3373a625bb3fcd6590123ac7067b",
+      "0fe56f51ebfacd01555b292aecdd4c0153b21d7cdeebe4b0c12bd2f45267aa9c",
+      "3fc59b9f55a67275f3e3e270fe48756a1b8f7a6054e11afbdbcce649eb4c56fa"
+    ]
+  },
+  "cloud_render_method_check": {
+    "material": "Cloud.001",
+    "surface_render_method": "BLENDED",
+    "source_sha256": "46ee5da3d1297b82993a294d16437816e6c468198e41d69ffead4e32c2858b31",
+    "derived_sha256": "46ee5da3d1297b82993a294d16437816e6c468198e41d69ffead4e32c2858b31",
+    "binary_changed": false,
+    "code_revision": "Removed forced DITHERED override in the original tools/sky.py; the source material was already BLENDED."
+  },
+  "celestial193": {
+    "version": "1.0.193-local.1",
+    "zip": "OXAL_MC_Studio_v1.0.193-local.1.zip",
+    "zip_sha256": "31c3301cc23251b79746cce924d8ea82ee710dc44d6fe535dba7823956e1ae38",
+    "source_path": "oxal_mc_studio/models/oxal_sky.blend",
+    "source_sha256": "fa6cf206a82ac0268b9ad094f5109d104eb53a4ca63eba67039d28471ca33160",
+    "notes": "Images derive from the declared packed PNGs using lossless WebP with exact RGBA, including transparent RGB, and unchanged dimensions. PNG sRGB intent 0 / gAMA 0.45455 is represented by embedded standard sRGB ICC; runtime colorspace remains explicitly sRGB. The immutable local.31 base blend, World nodes, mappings and drivers remain unchanged.",
+    "images": [
+      {
+        "role": "sun",
+        "path": "celestial193/sun_3d.webp",
+        "sha256": "3f13467a595b06ece04f651e14fc7130d6ac8d6b441c2bd5db202b0499f50445",
+        "logical_key": "oxal_sky:celestial193/sun_3d",
+        "size": [
+          2048,
+          2048
+        ],
+        "image": "OXAL 3D太阳 · 2048",
+        "colorspace": "sRGB",
+        "alpha_mode": "STRAIGHT",
+        "legacy_packed_sha256": "9a7b31ebd555cec317c228dad34fb5fa9674b20bee2590d45dde037dd14e8f9b",
+        "source_png_path": "celestial193/sun_3d.png",
+        "source_png_sha256": "f7cca42f51913ba6cf964a42f45cbc7b5fc0f369967ee95b6374b92544afad4d",
+        "rgba_sha256": "fac86e9ee9244df143079521ea9f9df1c289b07a1e8d80b587f6f386c3b1a78e",
+        "icc_sha256": "ccd475234dce11b546e9c5bf550b91f4fe4584414a5b8789f154b3ee258efa37",
+        "source_png_srgb_intent": 0,
+        "source_png_gamma": 0.45455,
+        "source_png_dpi": [
+          95.9866,
+          95.9866
+        ]
+      },
+      {
+        "role": "moon",
+        "path": "celestial193/moon_phases_3d.webp",
+        "sha256": "1215c3642709ef18f391269528c448c73cc1d68dfab13c03a85d6d73e626c88f",
+        "logical_key": "oxal_sky:celestial193/moon_phases_3d",
+        "size": [
+          8192,
+          4092
+        ],
+        "image": "OXAL 3D月相 · 8192x4092",
+        "colorspace": "sRGB",
+        "alpha_mode": "STRAIGHT",
+        "legacy_packed_sha256": "734016e55eabebadca1f4f7b58d869fb59bdbaf44840fc403450f679d2366710",
+        "source_png_path": "celestial193/moon_phases_3d.png",
+        "source_png_sha256": "5b668fd90878700475a2e66cfb73368b062552786b2cb532cca5ef660c0a8c15",
+        "rgba_sha256": "04cff6260615d6fddc26f08c5fc5cb1aa5d2710d8cc5f594ee8461ec04000512",
+        "icc_sha256": "e4f8e47b34a91f0a27e3e8e0e1a94a0f98673470ad314ab01ec8b612269748e0",
+        "source_png_srgb_intent": 0,
+        "source_png_gamma": 0.45455,
+        "source_png_dpi": [
+          95.9866,
+          95.9866
+        ]
+      }
+    ]
+  },
+  "derived": [
+    {
+      "path": "celestial193/sun_3d.webp",
+      "sha256": "3f13467a595b06ece04f651e14fc7130d6ac8d6b441c2bd5db202b0499f50445",
+      "notes": "Lossless WebP of declared PNG; no pixel, alpha, transparent-RGB or dimension change. Explicit sRGB runtime interpretation and equivalent standard sRGB ICC retained.",
+      "source_png_path": "celestial193/sun_3d.png",
+      "source_png_sha256": "f7cca42f51913ba6cf964a42f45cbc7b5fc0f369967ee95b6374b92544afad4d",
+      "rgba_sha256": "fac86e9ee9244df143079521ea9f9df1c289b07a1e8d80b587f6f386c3b1a78e",
+      "icc_sha256": "ccd475234dce11b546e9c5bf550b91f4fe4584414a5b8789f154b3ee258efa37",
+      "source_png_srgb_intent": 0,
+      "source_png_gamma": 0.45455,
+      "source_png_dpi": [
+        95.9866,
+        95.9866
+      ]
+    },
+    {
+      "path": "celestial193/moon_phases_3d.webp",
+      "sha256": "1215c3642709ef18f391269528c448c73cc1d68dfab13c03a85d6d73e626c88f",
+      "notes": "Lossless WebP of declared PNG; no pixel, alpha, transparent-RGB or dimension change. Explicit sRGB runtime interpretation and equivalent standard sRGB ICC retained.",
+      "source_png_path": "celestial193/moon_phases_3d.png",
+      "source_png_sha256": "5b668fd90878700475a2e66cfb73368b062552786b2cb532cca5ef660c0a8c15",
+      "rgba_sha256": "04cff6260615d6fddc26f08c5fc5cb1aa5d2710d8cc5f594ee8461ec04000512",
+      "icc_sha256": "e4f8e47b34a91f0a27e3e8e0e1a94a0f98673470ad314ab01ec8b612269748e0",
+      "source_png_srgb_intent": 0,
+      "source_png_gamma": 0.45455,
+      "source_png_dpi": [
+        95.9866,
+        95.9866
+      ]
+    }
+  ]
+}

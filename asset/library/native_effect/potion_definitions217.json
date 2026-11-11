@@ -1,0 +1,823 @@
+{
+  "source": "Java 26.3 Potions.<clinit>, MobEffects.<clinit>, PotionContents",
+  "client_sha1": "e877b6a07acd633fb3bb475002175cec036e7b87",
+  "definitions": [
+    {
+      "key": "water",
+      "effects": [],
+      "color": 3694022,
+      "display": "Water Bottle",
+      "effect": "",
+      "level": 1,
+      "duration": 0,
+      "instant": false
+    },
+    {
+      "key": "mundane",
+      "effects": [],
+      "color": 3694022,
+      "display": "Mundane Potion",
+      "effect": "",
+      "level": 1,
+      "duration": 0,
+      "instant": false
+    },
+    {
+      "key": "thick",
+      "effects": [],
+      "color": 3694022,
+      "display": "Thick Potion",
+      "effect": "",
+      "level": 1,
+      "duration": 0,
+      "instant": false
+    },
+    {
+      "key": "awkward",
+      "effects": [],
+      "color": 3694022,
+      "display": "Awkward Potion",
+      "effect": "",
+      "level": 1,
+      "duration": 0,
+      "instant": false
+    },
+    {
+      "key": "night_vision",
+      "effects": [
+        {
+          "effect": "NIGHT_VISION",
+          "ticks": 3600,
+          "level": 1,
+          "color": 12779366,
+          "duration": 180.0
+        }
+      ],
+      "color": 12779366,
+      "display": "Potion of Night Vision",
+      "effect": "NIGHT_VISION",
+      "level": 1,
+      "duration": 180.0,
+      "instant": false
+    },
+    {
+      "key": "long_night_vision",
+      "effects": [
+        {
+          "effect": "NIGHT_VISION",
+          "ticks": 9600,
+          "level": 1,
+          "color": 12779366,
+          "duration": 480.0
+        }
+      ],
+      "color": 12779366,
+      "display": "Potion of Night Vision (extended)",
+      "effect": "NIGHT_VISION",
+      "level": 1,
+      "duration": 480.0,
+      "instant": false
+    },
+    {
+      "key": "invisibility",
+      "effects": [
+        {
+          "effect": "INVISIBILITY",
+          "ticks": 3600,
+          "level": 1,
+          "color": 16185078,
+          "duration": 180.0
+        }
+      ],
+      "color": 16185078,
+      "display": "Potion of Invisibility",
+      "effect": "INVISIBILITY",
+      "level": 1,
+      "duration": 180.0,
+      "instant": false
+    },
+    {
+      "key": "long_invisibility",
+      "effects": [
+        {
+          "effect": "INVISIBILITY",
+          "ticks": 9600,
+          "level": 1,
+          "color": 16185078,
+          "duration": 480.0
+        }
+      ],
+      "color": 16185078,
+      "display": "Potion of Invisibility (extended)",
+      "effect": "INVISIBILITY",
+      "level": 1,
+      "duration": 480.0,
+      "instant": false
+    },
+    {
+      "key": "leaping",
+      "effects": [
+        {
+          "effect": "JUMP_BOOST",
+          "ticks": 3600,
+          "level": 1,
+          "color": 16646020,
+          "duration": 180.0
+        }
+      ],
+      "color": 16646020,
+      "display": "Potion of Leaping",
+      "effect": "JUMP_BOOST",
+      "level": 1,
+      "duration": 180.0,
+      "instant": false
+    },
+    {
+      "key": "long_leaping",
+      "effects": [
+        {
+          "effect": "JUMP_BOOST",
+          "ticks": 9600,
+          "level": 1,
+          "color": 16646020,
+          "duration": 480.0
+        }
+      ],
+      "color": 16646020,
+      "display": "Potion of Leaping (extended)",
+      "effect": "JUMP_BOOST",
+      "level": 1,
+      "duration": 480.0,
+      "instant": false
+    },
+    {
+      "key": "strong_leaping",
+      "effects": [
+        {
+          "effect": "JUMP_BOOST",
+          "ticks": 1800,
+          "level": 2,
+          "color": 16646020,
+          "duration": 90.0
+        }
+      ],
+      "color": 16646020,
+      "display": "Potion of Leaping (strong)",
+      "effect": "JUMP_BOOST",
+      "level": 2,
+      "duration": 90.0,
+      "instant": false
+    },
+    {
+      "key": "fire_resistance",
+      "effects": [
+        {
+          "effect": "FIRE_RESISTANCE",
+          "ticks": 3600,
+          "level": 1,
+          "color": 16750848,
+          "duration": 180.0
+        }
+      ],
+      "color": 16750848,
+      "display": "Potion of Fire Resistance",
+      "effect": "FIRE_RESISTANCE",
+      "level": 1,
+      "duration": 180.0,
+      "instant": false
+    },
+    {
+      "key": "long_fire_resistance",
+      "effects": [
+        {
+          "effect": "FIRE_RESISTANCE",
+          "ticks": 9600,
+          "level": 1,
+          "color": 16750848,
+          "duration": 480.0
+        }
+      ],
+      "color": 16750848,
+      "display": "Potion of Fire Resistance (extended)",
+      "effect": "FIRE_RESISTANCE",
+      "level": 1,
+      "duration": 480.0,
+      "instant": false
+    },
+    {
+      "key": "swiftness",
+      "effects": [
+        {
+          "effect": "SPEED",
+          "ticks": 3600,
+          "level": 1,
+          "color": 3402751,
+          "duration": 180.0
+        }
+      ],
+      "color": 3402751,
+      "display": "Potion of Swiftness",
+      "effect": "SPEED",
+      "level": 1,
+      "duration": 180.0,
+      "instant": false
+    },
+    {
+      "key": "long_swiftness",
+      "effects": [
+        {
+          "effect": "SPEED",
+          "ticks": 9600,
+          "level": 1,
+          "color": 3402751,
+          "duration": 480.0
+        }
+      ],
+      "color": 3402751,
+      "display": "Potion of Swiftness (extended)",
+      "effect": "SPEED",
+      "level": 1,
+      "duration": 480.0,
+      "instant": false
+    },
+    {
+      "key": "strong_swiftness",
+      "effects": [
+        {
+          "effect": "SPEED",
+          "ticks": 1800,
+          "level": 2,
+          "color": 3402751,
+          "duration": 90.0
+        }
+      ],
+      "color": 3402751,
+      "display": "Potion of Swiftness (strong)",
+      "effect": "SPEED",
+      "level": 2,
+      "duration": 90.0,
+      "instant": false
+    },
+    {
+      "key": "slowness",
+      "effects": [
+        {
+          "effect": "SLOWNESS",
+          "ticks": 1800,
+          "level": 1,
+          "color": 9154528,
+          "duration": 90.0
+        }
+      ],
+      "color": 9154528,
+      "display": "Potion of Slowness",
+      "effect": "SLOWNESS",
+      "level": 1,
+      "duration": 90.0,
+      "instant": false
+    },
+    {
+      "key": "long_slowness",
+      "effects": [
+        {
+          "effect": "SLOWNESS",
+          "ticks": 4800,
+          "level": 1,
+          "color": 9154528,
+          "duration": 240.0
+        }
+      ],
+      "color": 9154528,
+      "display": "Potion of Slowness (extended)",
+      "effect": "SLOWNESS",
+      "level": 1,
+      "duration": 240.0,
+      "instant": false
+    },
+    {
+      "key": "strong_slowness",
+      "effects": [
+        {
+          "effect": "SLOWNESS",
+          "ticks": 400,
+          "level": 4,
+          "color": 9154528,
+          "duration": 20.0
+        }
+      ],
+      "color": 9154528,
+      "display": "Potion of Slowness (strong)",
+      "effect": "SLOWNESS",
+      "level": 4,
+      "duration": 20.0,
+      "instant": false
+    },
+    {
+      "key": "turtle_master",
+      "effects": [
+        {
+          "effect": "SLOWNESS",
+          "ticks": 400,
+          "level": 4,
+          "color": 9154528,
+          "duration": 20.0
+        },
+        {
+          "effect": "RESISTANCE",
+          "ticks": 400,
+          "level": 3,
+          "color": 9520880,
+          "duration": 20.0
+        }
+      ],
+      "color": 9274086,
+      "display": "Potion of the Turtle Master",
+      "effect": "SLOWNESS",
+      "level": 4,
+      "duration": 20.0,
+      "instant": false
+    },
+    {
+      "key": "long_turtle_master",
+      "effects": [
+        {
+          "effect": "SLOWNESS",
+          "ticks": 800,
+          "level": 4,
+          "color": 9154528,
+          "duration": 40.0
+        },
+        {
+          "effect": "RESISTANCE",
+          "ticks": 800,
+          "level": 3,
+          "color": 9520880,
+          "duration": 40.0
+        }
+      ],
+      "color": 9274086,
+      "display": "Potion of the Turtle Master (extended)",
+      "effect": "SLOWNESS",
+      "level": 4,
+      "duration": 40.0,
+      "instant": false
+    },
+    {
+      "key": "strong_turtle_master",
+      "effects": [
+        {
+          "effect": "SLOWNESS",
+          "ticks": 400,
+          "level": 6,
+          "color": 9154528,
+          "duration": 20.0
+        },
+        {
+          "effect": "RESISTANCE",
+          "ticks": 400,
+          "level": 4,
+          "color": 9520880,
+          "duration": 20.0
+        }
+      ],
+      "color": 9274854,
+      "display": "Potion of the Turtle Master (strong)",
+      "effect": "SLOWNESS",
+      "level": 6,
+      "duration": 20.0,
+      "instant": false
+    },
+    {
+      "key": "water_breathing",
+      "effects": [
+        {
+          "effect": "WATER_BREATHING",
+          "ticks": 3600,
+          "level": 1,
+          "color": 10017472,
+          "duration": 180.0
+        }
+      ],
+      "color": 10017472,
+      "display": "Potion of Water Breathing",
+      "effect": "WATER_BREATHING",
+      "level": 1,
+      "duration": 180.0,
+      "instant": false
+    },
+    {
+      "key": "long_water_breathing",
+      "effects": [
+        {
+          "effect": "WATER_BREATHING",
+          "ticks": 9600,
+          "level": 1,
+          "color": 10017472,
+          "duration": 480.0
+        }
+      ],
+      "color": 10017472,
+      "display": "Potion of Water Breathing (extended)",
+      "effect": "WATER_BREATHING",
+      "level": 1,
+      "duration": 480.0,
+      "instant": false
+    },
+    {
+      "key": "healing",
+      "effects": [
+        {
+          "effect": "INSTANT_HEALTH",
+          "ticks": 1,
+          "level": 1,
+          "color": 16262179,
+          "duration": 0.05
+        }
+      ],
+      "color": 16262179,
+      "display": "Potion of Healing",
+      "effect": "INSTANT_HEALTH",
+      "level": 1,
+      "duration": 0.05,
+      "instant": true
+    },
+    {
+      "key": "strong_healing",
+      "effects": [
+        {
+          "effect": "INSTANT_HEALTH",
+          "ticks": 1,
+          "level": 2,
+          "color": 16262179,
+          "duration": 0.05
+        }
+      ],
+      "color": 16262179,
+      "display": "Potion of Healing (strong)",
+      "effect": "INSTANT_HEALTH",
+      "level": 2,
+      "duration": 0.05,
+      "instant": true
+    },
+    {
+      "key": "harming",
+      "effects": [
+        {
+          "effect": "INSTANT_DAMAGE",
+          "ticks": 1,
+          "level": 1,
+          "color": 11101546,
+          "duration": 0.05
+        }
+      ],
+      "color": 11101546,
+      "display": "Potion of Harming",
+      "effect": "INSTANT_DAMAGE",
+      "level": 1,
+      "duration": 0.05,
+      "instant": true
+    },
+    {
+      "key": "strong_harming",
+      "effects": [
+        {
+          "effect": "INSTANT_DAMAGE",
+          "ticks": 1,
+          "level": 2,
+          "color": 11101546,
+          "duration": 0.05
+        }
+      ],
+      "color": 11101546,
+      "display": "Potion of Harming (strong)",
+      "effect": "INSTANT_DAMAGE",
+      "level": 2,
+      "duration": 0.05,
+      "instant": true
+    },
+    {
+      "key": "poison",
+      "effects": [
+        {
+          "effect": "POISON",
+          "ticks": 900,
+          "level": 1,
+          "color": 8889187,
+          "duration": 45.0
+        }
+      ],
+      "color": 8889187,
+      "display": "Potion of Poison",
+      "effect": "POISON",
+      "level": 1,
+      "duration": 45.0,
+      "instant": false
+    },
+    {
+      "key": "long_poison",
+      "effects": [
+        {
+          "effect": "POISON",
+          "ticks": 1800,
+          "level": 1,
+          "color": 8889187,
+          "duration": 90.0
+        }
+      ],
+      "color": 8889187,
+      "display": "Potion of Poison (extended)",
+      "effect": "POISON",
+      "level": 1,
+      "duration": 90.0,
+      "instant": false
+    },
+    {
+      "key": "strong_poison",
+      "effects": [
+        {
+          "effect": "POISON",
+          "ticks": 432,
+          "level": 2,
+          "color": 8889187,
+          "duration": 21.6
+        }
+      ],
+      "color": 8889187,
+      "display": "Potion of Poison (strong)",
+      "effect": "POISON",
+      "level": 2,
+      "duration": 21.6,
+      "instant": false
+    },
+    {
+      "key": "regeneration",
+      "effects": [
+        {
+          "effect": "REGEN",
+          "ticks": 900,
+          "level": 1,
+          "color": 13458603,
+          "duration": 45.0
+        }
+      ],
+      "color": 13458603,
+      "display": "Potion of Regeneration",
+      "effect": "REGEN",
+      "level": 1,
+      "duration": 45.0,
+      "instant": false
+    },
+    {
+      "key": "long_regeneration",
+      "effects": [
+        {
+          "effect": "REGEN",
+          "ticks": 1800,
+          "level": 1,
+          "color": 13458603,
+          "duration": 90.0
+        }
+      ],
+      "color": 13458603,
+      "display": "Potion of Regeneration (extended)",
+      "effect": "REGEN",
+      "level": 1,
+      "duration": 90.0,
+      "instant": false
+    },
+    {
+      "key": "strong_regeneration",
+      "effects": [
+        {
+          "effect": "REGEN",
+          "ticks": 450,
+          "level": 2,
+          "color": 13458603,
+          "duration": 22.5
+        }
+      ],
+      "color": 13458603,
+      "display": "Potion of Regeneration (strong)",
+      "effect": "REGEN",
+      "level": 2,
+      "duration": 22.5,
+      "instant": false
+    },
+    {
+      "key": "strength",
+      "effects": [
+        {
+          "effect": "STRENGTH",
+          "ticks": 3600,
+          "level": 1,
+          "color": 16762624,
+          "duration": 180.0
+        }
+      ],
+      "color": 16762624,
+      "display": "Potion of Strength",
+      "effect": "STRENGTH",
+      "level": 1,
+      "duration": 180.0,
+      "instant": false
+    },
+    {
+      "key": "long_strength",
+      "effects": [
+        {
+          "effect": "STRENGTH",
+          "ticks": 9600,
+          "level": 1,
+          "color": 16762624,
+          "duration": 480.0
+        }
+      ],
+      "color": 16762624,
+      "display": "Potion of Strength (extended)",
+      "effect": "STRENGTH",
+      "level": 1,
+      "duration": 480.0,
+      "instant": false
+    },
+    {
+      "key": "strong_strength",
+      "effects": [
+        {
+          "effect": "STRENGTH",
+          "ticks": 1800,
+          "level": 2,
+          "color": 16762624,
+          "duration": 90.0
+        }
+      ],
+      "color": 16762624,
+      "display": "Potion of Strength (strong)",
+      "effect": "STRENGTH",
+      "level": 2,
+      "duration": 90.0,
+      "instant": false
+    },
+    {
+      "key": "weakness",
+      "effects": [
+        {
+          "effect": "WEAKNESS",
+          "ticks": 1800,
+          "level": 1,
+          "color": 4738376,
+          "duration": 90.0
+        }
+      ],
+      "color": 4738376,
+      "display": "Potion of Weakness",
+      "effect": "WEAKNESS",
+      "level": 1,
+      "duration": 90.0,
+      "instant": false
+    },
+    {
+      "key": "long_weakness",
+      "effects": [
+        {
+          "effect": "WEAKNESS",
+          "ticks": 4800,
+          "level": 1,
+          "color": 4738376,
+          "duration": 240.0
+        }
+      ],
+      "color": 4738376,
+      "display": "Potion of Weakness (extended)",
+      "effect": "WEAKNESS",
+      "level": 1,
+      "duration": 240.0,
+      "instant": false
+    },
+    {
+      "key": "luck",
+      "effects": [
+        {
+          "effect": "LUCK",
+          "ticks": 6000,
+          "level": 1,
+          "color": 5882118,
+          "duration": 300.0
+        }
+      ],
+      "color": 5882118,
+      "display": "Potion of Luck",
+      "effect": "LUCK",
+      "level": 1,
+      "duration": 300.0,
+      "instant": false
+    },
+    {
+      "key": "slow_falling",
+      "effects": [
+        {
+          "effect": "SLOW_FALLING",
+          "ticks": 1800,
+          "level": 1,
+          "color": 15978425,
+          "duration": 90.0
+        }
+      ],
+      "color": 15978425,
+      "display": "Potion of Slow Falling",
+      "effect": "SLOW_FALLING",
+      "level": 1,
+      "duration": 90.0,
+      "instant": false
+    },
+    {
+      "key": "long_slow_falling",
+      "effects": [
+        {
+          "effect": "SLOW_FALLING",
+          "ticks": 4800,
+          "level": 1,
+          "color": 15978425,
+          "duration": 240.0
+        }
+      ],
+      "color": 15978425,
+      "display": "Potion of Slow Falling (extended)",
+      "effect": "SLOW_FALLING",
+      "level": 1,
+      "duration": 240.0,
+      "instant": false
+    },
+    {
+      "key": "wind_charged",
+      "effects": [
+        {
+          "effect": "WIND_CHARGED",
+          "ticks": 3600,
+          "level": 1,
+          "color": 12438015,
+          "duration": 180.0
+        }
+      ],
+      "color": 12438015,
+      "display": "Potion of Wind Charging",
+      "effect": "WIND_CHARGED",
+      "level": 1,
+      "duration": 180.0,
+      "instant": false
+    },
+    {
+      "key": "weaving",
+      "effects": [
+        {
+          "effect": "WEAVING",
+          "ticks": 3600,
+          "level": 1,
+          "color": 7891290,
+          "duration": 180.0
+        }
+      ],
+      "color": 7891290,
+      "display": "Potion of Weaving",
+      "effect": "WEAVING",
+      "level": 1,
+      "duration": 180.0,
+      "instant": false
+    },
+    {
+      "key": "oozing",
+      "effects": [
+        {
+          "effect": "OOZING",
+          "ticks": 3600,
+          "level": 1,
+          "color": 10092451,
+          "duration": 180.0
+        }
+      ],
+      "color": 10092451,
+      "display": "Potion of Oozing",
+      "effect": "OOZING",
+      "level": 1,
+      "duration": 180.0,
+      "instant": false
+    },
+    {
+      "key": "infested",
+      "effects": [
+        {
+          "effect": "INFESTED",
+          "ticks": 3600,
+          "level": 1,
+          "color": 9214860,
+          "duration": 180.0
+        }
+      ],
+      "color": 9214860,
+      "display": "Potion of Infestation",
+      "effect": "INFESTED",
+      "level": 1,
+      "duration": 180.0,
+      "instant": false
+    }
+  ]
+}

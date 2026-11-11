@@ -1,0 +1,38 @@
+# Local environments and Python caches
+.venv/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+.uv-cache/
+
+# Local IDE paths and Blender development sessions
+/.vscode/
+/.dev/
+
+# Retired duplicate declarations: the shared unified descriptor is maintained.
+/asset/human/LAYER_RESOLUTION_2_4_2.json
+/asset/human/LAYER_RESOLUTION_2_4_3.json
+/asset/human/LAYER_RESOLUTION_2_4_4.json
+/asset/human/LAYER_RESOLUTION_2_4_5.json
+/asset/human/LAYER_RESOLUTION_2_4_6.json
+/asset/human/LAYER_RESOLUTION_2_4_7.json
+
+# Local-only test files and directories at any depth
+# Place _test before the file extension or at the end of the directory name.
+*_test
+*_test.*
+
+# Generated checks and build output
+.coverage
+.coverage.*
+/htmlcov/
+/coverage.xml
+/build/
+/dist/
+*.egg-info/
+*.log
+
+# Blender automatic backups (keep actual .blend resources)
+*.blend[0-9]*

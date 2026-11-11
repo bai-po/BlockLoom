@@ -1,0 +1,21 @@
+{
+  "ice_ball": {
+    "model": "item",
+    "billboard": true,
+    "display_context": "ground",
+    "source_version": "26.4-snapshot-5",
+    "impact": {
+      "kind": "item",
+      "item": "ice_ball",
+      "count": 8,
+      "gravity": 1,
+      "friction": 0.98,
+      "lifetime_numerator": 4,
+      "lifetime_random": 0.9,
+      "lifetime_minimum": 0.1,
+      "velocity_scale": 0.1,
+      "quad_size_multiplier": 1
+    },
+    "source": "Java 26.4-snapshot-5 EntityRenderers ICE_BALL -> ThrownItemRenderer GROUND scale1; ThrowableBallProjectile event3 8 ITEM; BreakingItemParticle velocity*.1 gravity1 quad/2; SingleQuadParticle base quad*.2; Particle lifetime/friction"
+  }
+}

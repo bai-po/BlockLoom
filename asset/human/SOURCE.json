@@ -1,0 +1,1545 @@
+{
+  "repository": "https://github.com/bai-po/oxal-mc-studio",
+  "source_path": "白珀-人模V2.4.7.blend",
+  "sha256": "e547f08db33be39fa9db47914ef907dcf393fdad73cc783a4b1ee5a4a66f4a7e",
+  "derived_schema": 2,
+  "derived": [
+    {
+      "path": "oxal_baipo_mc_body_2_4_7.blend",
+      "sha256": "c5f37d8b0a31947a85bbd309e8606b3c617f85747144913c9de3b0503b0a7a08"
+    },
+    {
+      "path": "legacy/oxal_baipo_mc_body_2_4_6.blend",
+      "sha256": "1c02002e0ff0bd09df218a4469f5620cd951c75d200b695b7204ff01af5aff68"
+    },
+    {
+      "path": "legacy/oxal_baipo_mc_body_2_4_5.blend",
+      "sha256": "6f71d8f626e836fc6a2c4cc6078b1339657516f02da16d472ea17ee28c2eef15"
+    },
+    {
+      "path": "oxal_armor_parts_2_4_2.blend",
+      "sha256": "0adc9c0de6967e367fe3178839bee0873ad0aa825d89f9bd089fc671e9a2d00b"
+    }
+  ],
+  "armor_bindings": "Per-instance versioned native Armature; original source object names, parenting, transforms, mesh weights and binding retained.",
+  "armor_bindings_file": "ARMOR_2_4_2.json",
+  "armor_bindings_sha256": "85f72abdcf79b8fec8cce974d898f2f91aef98c2bff3b96dffd370f26b834519",
+  "layer_resolution": {
+    "file": "LAYER_RESOLUTION_UNIFIED.json",
+    "sha256": "29644159ac57be1171e771839da222061a993bef802a87be3db4379b4ed4ed08",
+    "source_grid": 128,
+    "supported_skin_sizes": [
+      64,
+      128
+    ],
+    "derivation": "Each coarse 64 skin cell uses the four immutable 128 source faces' outer vertices, authored UV corners and exact original corner weights. Runtime source topology is retained; native geometry selects 64 cells or bypasses to the 128 grid.",
+    "model_versions": [
+      "2.4.2",
+      "2.4.3",
+      "2.4.4",
+      "2.4.5",
+      "2.4.6",
+      "2.4.7"
+    ],
+    "deduplication": "One byte-identical objects table serves model versions 2.4.2 through 2.4.7; original descriptor Git paths and hashes are retained in its sources list. The distinct 2.4.0 declaration remains under legacy/."
+  },
+  "legacy_provenance": {
+    "repository": "https://github.com/bai-po/oxal-mc-studio",
+    "commit": "74ab71a1ff64b6fb13fe1642aa9d68e651a8712f",
+    "ref": "codex/oxal-source-20261029",
+    "source_path": "oxal_mc_studio/models/oxal_baipo_mc_model.blend",
+    "sha256": "6b727592d2228d2122ee4c20f239f83b6cb11f3605c1c2e0307c236cec27288e"
+  },
+  "model_version": "2.4.7",
+  "current_source": {
+    "path": "白珀-人模V2.4.7.blend",
+    "sha256": "e547f08db33be39fa9db47914ef907dcf393fdad73cc783a4b1ee5a4a66f4a7e",
+    "kind": "complete native standalone project; 85 objects, 97 bones, 141 original head Keys, packed textures and native controllers",
+    "derived_from": {
+      "path": "白珀-人模V2.4.6.blend",
+      "sha256": "fd3fe86c37b3d7916486500e8c28b49569a9c567b7ce2ccf6e93838eb93fe7f1",
+      "kind": "complete native standalone project; 85 objects, 97 bones and original controls retained",
+      "derived_from": {
+        "path": "白珀-人模V2.4.5.blend",
+        "sha256": "6207d464c90ea336f81b9a8237f4b8eea017ebbd152502a1880e3d231452df9f",
+        "kind": "complete native standalone project; all 85 objects, 97 bones, original controls and collections retained",
+        "derived_from": {
+          "path": "白珀-人模V2.4.4-眉毛薄间距修订.blend",
+          "sha256": "46d67ee365d002a29133762974b47cd4f8447a6a332f586d46510bdaeb4b6fbe"
+        }
+      }
+    }
+  },
+  "versions": {
+    "2.4.0": {
+      "body": {
+        "path": "legacy/oxal_baipo_mc_body.blend",
+        "sha256": "55dad0bd113023da9ca74b7e0ecf9bd8968e4cea4e929c090cea3516b88e7231"
+      },
+      "armor": {
+        "path": "legacy/oxal_armor_parts.blend",
+        "sha256": "1f70c5e9809a69ed32d89a8aa3886735804b4c74b56a1e97bc434b77ece15256"
+      },
+      "armor_bindings": {
+        "path": "legacy/ARMOR.json",
+        "sha256": "b0e456ca754a04807a263f668de936a6589b41e7587f249336a0686a0d9bca81"
+      },
+      "layer_resolution": {
+        "path": "legacy/LAYER_RESOLUTION.json",
+        "sha256": "c001d46f8e4a85388ab073cf3cf60f435547905ae56141ea012dd827cfd314dc"
+      }
+    },
+    "2.4.2": {
+      "body": {
+        "path": "legacy/oxal_baipo_mc_body_2_4_2.blend",
+        "sha256": "60db7cc353a90d32dea3dff9177882e4dc7056bfce2aaa8f8289f1d060377503"
+      },
+      "armor": {
+        "path": "oxal_armor_parts_2_4_2.blend",
+        "sha256": "0adc9c0de6967e367fe3178839bee0873ad0aa825d89f9bd089fc671e9a2d00b"
+      },
+      "armor_bindings": {
+        "path": "ARMOR_2_4_2.json",
+        "sha256": "85f72abdcf79b8fec8cce974d898f2f91aef98c2bff3b96dffd370f26b834519"
+      },
+      "layer_resolution": {
+        "path": "LAYER_RESOLUTION_UNIFIED.json",
+        "sha256": "29644159ac57be1171e771839da222061a993bef802a87be3db4379b4ed4ed08"
+      },
+      "back": {
+        "path": "BACK_2_4_2.json",
+        "sha256": "d9078060bd0366ab1c3152e38976697622d0e9df34255ed740a1e2a66a0497dd"
+      }
+    },
+    "2.4.3": {
+      "body": {
+        "path": "legacy/oxal_baipo_mc_body_2_4_3.blend",
+        "sha256": "3414dcd1698f5c075328d39564cb843d15bd9d9184b2f54b7b868e935be72e28"
+      },
+      "armor": {
+        "path": "oxal_armor_parts_2_4_2.blend",
+        "sha256": "0adc9c0de6967e367fe3178839bee0873ad0aa825d89f9bd089fc671e9a2d00b"
+      },
+      "armor_bindings": {
+        "path": "ARMOR_2_4_2.json",
+        "sha256": "85f72abdcf79b8fec8cce974d898f2f91aef98c2bff3b96dffd370f26b834519"
+      },
+      "layer_resolution": {
+        "path": "LAYER_RESOLUTION_UNIFIED.json",
+        "sha256": "29644159ac57be1171e771839da222061a993bef802a87be3db4379b4ed4ed08"
+      },
+      "back": {
+        "path": "BACK_2_4_2.json",
+        "sha256": "d9078060bd0366ab1c3152e38976697622d0e9df34255ed740a1e2a66a0497dd"
+      },
+      "compatible_templates": "Armor/back are byte-identical 2.4.2 resources; rest bones and binding are unchanged.",
+      "source": {
+        "path": "白珀-人模V2.4.3.blend",
+        "sha256": "1f36dc8bf0bdf553e3e7f4deebb07e9a3b80a7e8d45c2703f732f9b20b51f30b",
+        "revision": "2.4.3_HD128_head",
+        "kind": "complete standalone native source; original 64 UV and Keys retained, actual-image native HD UV selection"
+      },
+      "eye_depth": {
+        "schema": 1,
+        "model_version": "2.4.3",
+        "body": "legacy/oxal_baipo_mc_body_2_4_3.blend",
+        "original_body_sha256": "f78a6cad8bf63abb603bb8d1c501a0c8daf7daa15c45a52e9f7c224034a80f76",
+        "derived_body_sha256": "fcbb6e267ca8b8f9472f0bba9a74de5c80ca2f60a61511f57b7d94cd3bc9c4e5",
+        "head_source": "头部 · 八型单网格",
+        "depth": 0.00015,
+        "activation": "Native left/right eyelid control, smoothstep during closing 0.9 to 1.0 only.",
+        "derivation": "Only the second coplanar lid covers of types 1/3/4/5/6 receive a point-mask native GN offset before Armature. Original Mesh topology, 141 Keys, UV, skin sampler, eyes, brows and head selection remain unchanged."
+      }
+    },
+    "2.4.4": {
+      "body": {
+        "path": "legacy/oxal_baipo_mc_body_2_4_4.blend",
+        "sha256": "1308f164c6218ef28fedff25c779ec57da01907cb4f53c087308b95057433764"
+      },
+      "armor": {
+        "path": "oxal_armor_parts_2_4_2.blend",
+        "sha256": "0adc9c0de6967e367fe3178839bee0873ad0aa825d89f9bd089fc671e9a2d00b"
+      },
+      "armor_bindings": {
+        "path": "ARMOR_2_4_2.json",
+        "sha256": "85f72abdcf79b8fec8cce974d898f2f91aef98c2bff3b96dffd370f26b834519"
+      },
+      "layer_resolution": {
+        "path": "LAYER_RESOLUTION_UNIFIED.json",
+        "sha256": "29644159ac57be1171e771839da222061a993bef802a87be3db4379b4ed4ed08"
+      },
+      "back": {
+        "path": "BACK_2_4_2.json",
+        "sha256": "d9078060bd0366ab1c3152e38976697622d0e9df34255ed740a1e2a66a0497dd"
+      },
+      "compatible_templates": "Armor/back remain byte-identical 2.4.2 resources; layer-resolution metadata is the 2.4.4 declaration of the unchanged 2.4.3 geometry contract.",
+      "source": {
+        "path": "白珀-人模V2.4.4-眉毛薄间距修订.blend",
+        "sha256": "46d67ee365d002a29133762974b47cd4f8447a6a332f586d46510bdaeb4b6fbe",
+        "kind": "complete native standalone project; all 85 objects, 97 bones, original controls and collections retained",
+        "derived_from": {
+          "path": "白珀-人模V2.4.3.blend",
+          "sha256": "1f36dc8bf0bdf553e3e7f4deebb07e9a3b80a7e8d45c2703f732f9b20b51f30b"
+        }
+      },
+      "brow_depth": {
+        "schema": 1,
+        "head_source": "头部 · 八型单网格",
+        "head_mesh_sha256": "34f2c662e5e8f97b5117a21d53c23972f951eb815888ce52744192bb0f1550ad",
+        "offset_local": [
+          0.0003,
+          0,
+          0
+        ],
+        "outward_axis": "+X in authored head coordinates",
+        "face_count": 28,
+        "vertex_count": 84,
+        "shape_keys": 141,
+        "key_relative_delta_max_error": 0,
+        "roles": [
+          {
+            "type": 0,
+            "faces": [
+              740,
+              741,
+              746,
+              747
+            ],
+            "vertices": [
+              860,
+              861,
+              862,
+              863,
+              864,
+              865,
+              878,
+              879,
+              880,
+              881,
+              882,
+              883
+            ]
+          },
+          {
+            "type": 1,
+            "faces": [
+              986,
+              987,
+              994,
+              995
+            ],
+            "vertices": [
+              1127,
+              1128,
+              1129,
+              1130,
+              1131,
+              1132,
+              1151,
+              1152,
+              1153,
+              1154,
+              1155,
+              1156
+            ]
+          },
+          {
+            "type": 2,
+            "faces": [
+              1250,
+              1251,
+              1258,
+              1259
+            ],
+            "vertices": [
+              1414,
+              1415,
+              1416,
+              1417,
+              1418,
+              1419,
+              1438,
+              1439,
+              1440,
+              1441,
+              1442,
+              1443
+            ]
+          },
+          {
+            "type": 3,
+            "faces": [
+              1503,
+              1504,
+              1510,
+              1511
+            ],
+            "vertices": [
+              1689,
+              1690,
+              1691,
+              1692,
+              1693,
+              1694,
+              1711,
+              1712,
+              1713,
+              1714,
+              1715,
+              1716
+            ]
+          },
+          {
+            "type": 4,
+            "faces": [
+              1766,
+              1767,
+              1773,
+              1774
+            ],
+            "vertices": [
+              1944,
+              1945,
+              1946,
+              1947,
+              1948,
+              1949,
+              1966,
+              1967,
+              1968,
+              1969,
+              1970,
+              1971
+            ]
+          },
+          {
+            "type": 5,
+            "faces": [
+              2032,
+              2033,
+              2039,
+              2040
+            ],
+            "vertices": [
+              2211,
+              2212,
+              2213,
+              2214,
+              2215,
+              2216,
+              2233,
+              2234,
+              2235,
+              2236,
+              2237,
+              2238
+            ]
+          },
+          {
+            "type": 6,
+            "faces": [
+              2291,
+              2292,
+              2298,
+              2299
+            ],
+            "vertices": [
+              2462,
+              2463,
+              2464,
+              2465,
+              2466,
+              2467,
+              2484,
+              2485,
+              2486,
+              2487,
+              2488,
+              2489
+            ]
+          }
+        ],
+        "derivation": "Identical displacement of the exact authored brow vertices in Mesh basis and all 141 Keys. No head split, removed branch, extra geometry, shader or callback. Type 7 and all eye parts remain unchanged.",
+        "previous_offset_local": [
+          0.003,
+          0,
+          0
+        ]
+      },
+      "eye_depth": {
+        "schema": 1,
+        "inherited_from_model": "2.4.3",
+        "inherited_body_sha256": "fcbb6e267ca8b8f9472f0bba9a74de5c80ca2f60a61511f57b7d94cd3bc9c4e5",
+        "derivation": "Native smooth closing offset of the second coplanar lid covers; inherited without changing original driver paths, UV or branch selection."
+      }
+    },
+    "2.4.5": {
+      "body": {
+        "path": "legacy/oxal_baipo_mc_body_2_4_5.blend",
+        "sha256": "6f71d8f626e836fc6a2c4cc6078b1339657516f02da16d472ea17ee28c2eef15"
+      },
+      "armor": {
+        "path": "oxal_armor_parts_2_4_2.blend",
+        "sha256": "0adc9c0de6967e367fe3178839bee0873ad0aa825d89f9bd089fc671e9a2d00b"
+      },
+      "armor_bindings": {
+        "path": "ARMOR_2_4_2.json",
+        "sha256": "85f72abdcf79b8fec8cce974d898f2f91aef98c2bff3b96dffd370f26b834519"
+      },
+      "layer_resolution": {
+        "path": "LAYER_RESOLUTION_UNIFIED.json",
+        "sha256": "29644159ac57be1171e771839da222061a993bef802a87be3db4379b4ed4ed08"
+      },
+      "back": {
+        "path": "BACK_2_4_2.json",
+        "sha256": "d9078060bd0366ab1c3152e38976697622d0e9df34255ed740a1e2a66a0497dd"
+      },
+      "compatible_templates": "Armor/back remain byte-identical 2.4.2 resources; 64/128 layer geometry and 0.0003 brow spacing retained from 2.4.4.",
+      "source": {
+        "path": "白珀-人模V2.4.5.blend",
+        "sha256": "6207d464c90ea336f81b9a8237f4b8eea017ebbd152502a1880e3d231452df9f",
+        "kind": "complete native standalone project; all 85 objects, 97 bones, original controls and collections retained",
+        "derived_from": {
+          "path": "白珀-人模V2.4.4-眉毛薄间距修订.blend",
+          "sha256": "46d67ee365d002a29133762974b47cd4f8447a6a332f586d46510bdaeb4b6fbe"
+        }
+      },
+      "brow_depth": {
+        "schema": 1,
+        "head_source": "头部 · 八型单网格",
+        "head_mesh_sha256": "34f2c662e5e8f97b5117a21d53c23972f951eb815888ce52744192bb0f1550ad",
+        "offset_local": [
+          0.0003,
+          0,
+          0
+        ],
+        "outward_axis": "+X in authored head coordinates",
+        "face_count": 28,
+        "vertex_count": 84,
+        "shape_keys": 141,
+        "key_relative_delta_max_error": 0,
+        "roles": [
+          {
+            "type": 0,
+            "faces": [
+              740,
+              741,
+              746,
+              747
+            ],
+            "vertices": [
+              860,
+              861,
+              862,
+              863,
+              864,
+              865,
+              878,
+              879,
+              880,
+              881,
+              882,
+              883
+            ]
+          },
+          {
+            "type": 1,
+            "faces": [
+              986,
+              987,
+              994,
+              995
+            ],
+            "vertices": [
+              1127,
+              1128,
+              1129,
+              1130,
+              1131,
+              1132,
+              1151,
+              1152,
+              1153,
+              1154,
+              1155,
+              1156
+            ]
+          },
+          {
+            "type": 2,
+            "faces": [
+              1250,
+              1251,
+              1258,
+              1259
+            ],
+            "vertices": [
+              1414,
+              1415,
+              1416,
+              1417,
+              1418,
+              1419,
+              1438,
+              1439,
+              1440,
+              1441,
+              1442,
+              1443
+            ]
+          },
+          {
+            "type": 3,
+            "faces": [
+              1503,
+              1504,
+              1510,
+              1511
+            ],
+            "vertices": [
+              1689,
+              1690,
+              1691,
+              1692,
+              1693,
+              1694,
+              1711,
+              1712,
+              1713,
+              1714,
+              1715,
+              1716
+            ]
+          },
+          {
+            "type": 4,
+            "faces": [
+              1766,
+              1767,
+              1773,
+              1774
+            ],
+            "vertices": [
+              1944,
+              1945,
+              1946,
+              1947,
+              1948,
+              1949,
+              1966,
+              1967,
+              1968,
+              1969,
+              1970,
+              1971
+            ]
+          },
+          {
+            "type": 5,
+            "faces": [
+              2032,
+              2033,
+              2039,
+              2040
+            ],
+            "vertices": [
+              2211,
+              2212,
+              2213,
+              2214,
+              2215,
+              2216,
+              2233,
+              2234,
+              2235,
+              2236,
+              2237,
+              2238
+            ]
+          },
+          {
+            "type": 6,
+            "faces": [
+              2291,
+              2292,
+              2298,
+              2299
+            ],
+            "vertices": [
+              2462,
+              2463,
+              2464,
+              2465,
+              2466,
+              2467,
+              2484,
+              2485,
+              2486,
+              2487,
+              2488,
+              2489
+            ]
+          }
+        ],
+        "derivation": "Identical displacement of the exact authored brow vertices in Mesh basis and all 141 Keys. No head split, removed branch, extra geometry, shader or callback. Type 7 and all eye parts remain unchanged.",
+        "previous_offset_local": [
+          0.003,
+          0,
+          0
+        ]
+      },
+      "eye_depth": {
+        "schema": 1,
+        "inherited_from_model": "2.4.3",
+        "inherited_body_sha256": "fcbb6e267ca8b8f9472f0bba9a74de5c80ca2f60a61511f57b7d94cd3bc9c4e5",
+        "derivation": "Native smooth closing offset of the second coplanar lid covers; inherited without changing original driver paths, UV or branch selection."
+      }
+    },
+    "2.4.6": {
+      "body": {
+        "path": "legacy/oxal_baipo_mc_body_2_4_6.blend",
+        "sha256": "1c02002e0ff0bd09df218a4469f5620cd951c75d200b695b7204ff01af5aff68"
+      },
+      "armor": {
+        "path": "oxal_armor_parts_2_4_2.blend",
+        "sha256": "0adc9c0de6967e367fe3178839bee0873ad0aa825d89f9bd089fc671e9a2d00b"
+      },
+      "armor_bindings": {
+        "path": "ARMOR_2_4_2.json",
+        "sha256": "85f72abdcf79b8fec8cce974d898f2f91aef98c2bff3b96dffd370f26b834519"
+      },
+      "layer_resolution": {
+        "path": "LAYER_RESOLUTION_UNIFIED.json",
+        "sha256": "29644159ac57be1171e771839da222061a993bef802a87be3db4379b4ed4ed08"
+      },
+      "back": {
+        "path": "BACK_2_4_2.json",
+        "sha256": "d9078060bd0366ab1c3152e38976697622d0e9df34255ed740a1e2a66a0497dd"
+      },
+      "compatible_templates": "Armor/back and layer geometry are unchanged 2.4.2-compatible templates; shared-head UV is the 2.4.6 derivative.",
+      "source": {
+        "path": "白珀-人模V2.4.6.blend",
+        "sha256": "fd3fe86c37b3d7916486500e8c28b49569a9c567b7ce2ccf6e93838eb93fe7f1"
+      },
+      "brow_depth": {
+        "schema": 1,
+        "head_source": "头部 · 八型单网格",
+        "head_mesh_sha256": "34f2c662e5e8f97b5117a21d53c23972f951eb815888ce52744192bb0f1550ad",
+        "offset_local": [
+          0.0003,
+          0,
+          0
+        ],
+        "outward_axis": "+X in authored head coordinates",
+        "face_count": 28,
+        "vertex_count": 84,
+        "shape_keys": 141,
+        "key_relative_delta_max_error": 0,
+        "roles": [
+          {
+            "type": 0,
+            "faces": [
+              740,
+              741,
+              746,
+              747
+            ],
+            "vertices": [
+              860,
+              861,
+              862,
+              863,
+              864,
+              865,
+              878,
+              879,
+              880,
+              881,
+              882,
+              883
+            ]
+          },
+          {
+            "type": 1,
+            "faces": [
+              986,
+              987,
+              994,
+              995
+            ],
+            "vertices": [
+              1127,
+              1128,
+              1129,
+              1130,
+              1131,
+              1132,
+              1151,
+              1152,
+              1153,
+              1154,
+              1155,
+              1156
+            ]
+          },
+          {
+            "type": 2,
+            "faces": [
+              1250,
+              1251,
+              1258,
+              1259
+            ],
+            "vertices": [
+              1414,
+              1415,
+              1416,
+              1417,
+              1418,
+              1419,
+              1438,
+              1439,
+              1440,
+              1441,
+              1442,
+              1443
+            ]
+          },
+          {
+            "type": 3,
+            "faces": [
+              1503,
+              1504,
+              1510,
+              1511
+            ],
+            "vertices": [
+              1689,
+              1690,
+              1691,
+              1692,
+              1693,
+              1694,
+              1711,
+              1712,
+              1713,
+              1714,
+              1715,
+              1716
+            ]
+          },
+          {
+            "type": 4,
+            "faces": [
+              1766,
+              1767,
+              1773,
+              1774
+            ],
+            "vertices": [
+              1944,
+              1945,
+              1946,
+              1947,
+              1948,
+              1949,
+              1966,
+              1967,
+              1968,
+              1969,
+              1970,
+              1971
+            ]
+          },
+          {
+            "type": 5,
+            "faces": [
+              2032,
+              2033,
+              2039,
+              2040
+            ],
+            "vertices": [
+              2211,
+              2212,
+              2213,
+              2214,
+              2215,
+              2216,
+              2233,
+              2234,
+              2235,
+              2236,
+              2237,
+              2238
+            ]
+          },
+          {
+            "type": 6,
+            "faces": [
+              2291,
+              2292,
+              2298,
+              2299
+            ],
+            "vertices": [
+              2462,
+              2463,
+              2464,
+              2465,
+              2466,
+              2467,
+              2484,
+              2485,
+              2486,
+              2487,
+              2488,
+              2489
+            ]
+          }
+        ],
+        "derivation": "Identical displacement of the exact authored brow vertices in Mesh basis and all 141 Keys. No head split, removed branch, extra geometry, shader or callback. Type 7 and all eye parts remain unchanged.",
+        "previous_offset_local": [
+          0.003,
+          0,
+          0
+        ]
+      },
+      "eye_depth": {
+        "schema": 1,
+        "inherited_from_model": "2.4.3",
+        "inherited_body_sha256": "fcbb6e267ca8b8f9472f0bba9a74de5c80ca2f60a61511f57b7d94cd3bc9c4e5",
+        "derivation": "Native smooth closing offset of the second coplanar lid covers; inherited without changing original driver paths, UV or branch selection."
+      },
+      "head_uv": {
+        "schema": 1,
+        "source_body": {
+          "path": "legacy/oxal_baipo_mc_body_2_4_5.blend",
+          "sha256": "2001c60e0b838bd8d8250e00cce56f65bc15e4f69479d80d8aeb08a3833d93fb"
+        },
+        "immutable_multi_head": {
+          "path": "legacy/oxal_baipo_mc_body.blend",
+          "sha256": "4c941ef3d08ab77c55d29328bf3d38d83059b04a7f7ab9964d5f86f25341ba62"
+        },
+        "method64": "Only 28 long upper covers: V follows the matching head forehead row range at rest, with original U and 1/8 texel boundary inset; all other source UVs unchanged.",
+        "method128": "Moving front eyelid, eyeball and brow islands use the selected source UV with its texel inset expanded. Static HD shell remains unchanged.",
+        "upper_covers": [
+          {
+            "type": 0,
+            "faces": [
+              736,
+              737,
+              750,
+              751
+            ]
+          },
+          {
+            "type": 1,
+            "faces": [
+              990,
+              991,
+              998,
+              999
+            ]
+          },
+          {
+            "type": 2,
+            "faces": [
+              1254,
+              1255,
+              1262,
+              1263
+            ]
+          },
+          {
+            "type": 3,
+            "faces": [
+              1507,
+              1508,
+              1514,
+              1515
+            ]
+          },
+          {
+            "type": 4,
+            "faces": [
+              1770,
+              1771,
+              1777,
+              1778
+            ]
+          },
+          {
+            "type": 5,
+            "faces": [
+              2036,
+              2037,
+              2043,
+              2044
+            ]
+          },
+          {
+            "type": 6,
+            "faces": [
+              2295,
+              2296,
+              2302,
+              2303
+            ]
+          },
+          {
+            "type": 7,
+            "faces": []
+          }
+        ],
+        "hd_island_faces": [
+          {
+            "type": 0,
+            "faces": [
+              736,
+              737,
+              738,
+              739,
+              740,
+              741,
+              742,
+              743,
+              744,
+              745,
+              746,
+              747,
+              748,
+              749,
+              750,
+              751,
+              921,
+              922,
+              923,
+              924,
+              925,
+              926,
+              927,
+              928,
+              929,
+              930,
+              931,
+              932,
+              933,
+              934,
+              935,
+              936,
+              937,
+              938,
+              939,
+              940,
+              941,
+              942,
+              943,
+              944,
+              945,
+              946,
+              947
+            ]
+          },
+          {
+            "type": 1,
+            "faces": [
+              984,
+              985,
+              986,
+              987,
+              988,
+              989,
+              990,
+              991,
+              992,
+              993,
+              994,
+              995,
+              996,
+              997,
+              998,
+              999,
+              1177,
+              1178,
+              1179,
+              1180,
+              1181,
+              1182,
+              1183,
+              1184,
+              1185,
+              1186,
+              1187,
+              1188,
+              1189,
+              1190,
+              1191,
+              1192,
+              1193,
+              1194,
+              1195,
+              1196,
+              1197,
+              1198,
+              1199,
+              1200,
+              1201,
+              1202,
+              1203,
+              1204,
+              1205,
+              1206,
+              1207,
+              1208
+            ]
+          },
+          {
+            "type": 2,
+            "faces": [
+              1248,
+              1249,
+              1250,
+              1251,
+              1252,
+              1253,
+              1254,
+              1255,
+              1256,
+              1257,
+              1258,
+              1259,
+              1260,
+              1261,
+              1262,
+              1263,
+              1441,
+              1442,
+              1443,
+              1444,
+              1445,
+              1446,
+              1447,
+              1448,
+              1449,
+              1450,
+              1451,
+              1452,
+              1453,
+              1454,
+              1455,
+              1456,
+              1457,
+              1458,
+              1459,
+              1460,
+              1461,
+              1462
+            ]
+          },
+          {
+            "type": 3,
+            "faces": [
+              1502,
+              1503,
+              1504,
+              1505,
+              1506,
+              1507,
+              1508,
+              1509,
+              1510,
+              1511,
+              1512,
+              1513,
+              1514,
+              1515
+            ]
+          },
+          {
+            "type": 4,
+            "faces": [
+              1765,
+              1766,
+              1767,
+              1768,
+              1769,
+              1770,
+              1771,
+              1772,
+              1773,
+              1774,
+              1775,
+              1776,
+              1777,
+              1778
+            ]
+          },
+          {
+            "type": 5,
+            "faces": [
+              2031,
+              2032,
+              2033,
+              2034,
+              2035,
+              2036,
+              2037,
+              2038,
+              2039,
+              2040,
+              2041,
+              2042,
+              2043,
+              2044
+            ]
+          },
+          {
+            "type": 6,
+            "faces": [
+              2290,
+              2291,
+              2292,
+              2293,
+              2294,
+              2295,
+              2296,
+              2297,
+              2298,
+              2299,
+              2300,
+              2301,
+              2302,
+              2303
+            ]
+          },
+          {
+            "type": 7,
+            "faces": []
+          }
+        ],
+        "preserved": [
+          "mesh vertices/edges/polygons",
+          "all 141 Key coordinates and relative relations",
+          "weights",
+          "drivers",
+          "material/image single input",
+          "GN topology and controls",
+          "independent mouth",
+          "armor/back templates"
+        ]
+      }
+    },
+    "2.4.7": {
+      "body": {
+        "path": "oxal_baipo_mc_body_2_4_7.blend",
+        "sha256": "c5f37d8b0a31947a85bbd309e8606b3c617f85747144913c9de3b0503b0a7a08"
+      },
+      "armor": {
+        "path": "oxal_armor_parts_2_4_2.blend",
+        "sha256": "0adc9c0de6967e367fe3178839bee0873ad0aa825d89f9bd089fc671e9a2d00b"
+      },
+      "armor_bindings": {
+        "path": "ARMOR_2_4_2.json",
+        "sha256": "85f72abdcf79b8fec8cce974d898f2f91aef98c2bff3b96dffd370f26b834519"
+      },
+      "layer_resolution": {
+        "path": "LAYER_RESOLUTION_UNIFIED.json",
+        "sha256": "29644159ac57be1171e771839da222061a993bef802a87be3db4379b4ed4ed08"
+      },
+      "back": {
+        "path": "BACK_2_4_2.json",
+        "sha256": "d9078060bd0366ab1c3152e38976697622d0e9df34255ed740a1e2a66a0497dd"
+      },
+      "compatible_templates": "Armor/back and second-layer topology remain the existing 2.4.2-compatible templates; layer contract is independently recorded for the 2.4.7 body.",
+      "source": {
+        "path": "白珀-人模V2.4.7.blend",
+        "sha256": "e547f08db33be39fa9db47914ef907dcf393fdad73cc783a4b1ee5a4a66f4a7e"
+      },
+      "brow_depth": {
+        "schema": 1,
+        "head_source": "头部 · 八型单网格",
+        "head_mesh_sha256": "34f2c662e5e8f97b5117a21d53c23972f951eb815888ce52744192bb0f1550ad",
+        "offset_local": [
+          0.0003,
+          0,
+          0
+        ],
+        "outward_axis": "+X in authored head coordinates",
+        "face_count": 28,
+        "vertex_count": 84,
+        "shape_keys": 141,
+        "key_relative_delta_max_error": 0,
+        "roles": [
+          {
+            "type": 0,
+            "faces": [
+              740,
+              741,
+              746,
+              747
+            ],
+            "vertices": [
+              860,
+              861,
+              862,
+              863,
+              864,
+              865,
+              878,
+              879,
+              880,
+              881,
+              882,
+              883
+            ]
+          },
+          {
+            "type": 1,
+            "faces": [
+              986,
+              987,
+              994,
+              995
+            ],
+            "vertices": [
+              1127,
+              1128,
+              1129,
+              1130,
+              1131,
+              1132,
+              1151,
+              1152,
+              1153,
+              1154,
+              1155,
+              1156
+            ]
+          },
+          {
+            "type": 2,
+            "faces": [
+              1250,
+              1251,
+              1258,
+              1259
+            ],
+            "vertices": [
+              1414,
+              1415,
+              1416,
+              1417,
+              1418,
+              1419,
+              1438,
+              1439,
+              1440,
+              1441,
+              1442,
+              1443
+            ]
+          },
+          {
+            "type": 3,
+            "faces": [
+              1503,
+              1504,
+              1510,
+              1511
+            ],
+            "vertices": [
+              1689,
+              1690,
+              1691,
+              1692,
+              1693,
+              1694,
+              1711,
+              1712,
+              1713,
+              1714,
+              1715,
+              1716
+            ]
+          },
+          {
+            "type": 4,
+            "faces": [
+              1766,
+              1767,
+              1773,
+              1774
+            ],
+            "vertices": [
+              1944,
+              1945,
+              1946,
+              1947,
+              1948,
+              1949,
+              1966,
+              1967,
+              1968,
+              1969,
+              1970,
+              1971
+            ]
+          },
+          {
+            "type": 5,
+            "faces": [
+              2032,
+              2033,
+              2039,
+              2040
+            ],
+            "vertices": [
+              2211,
+              2212,
+              2213,
+              2214,
+              2215,
+              2216,
+              2233,
+              2234,
+              2235,
+              2236,
+              2237,
+              2238
+            ]
+          },
+          {
+            "type": 6,
+            "faces": [
+              2291,
+              2292,
+              2298,
+              2299
+            ],
+            "vertices": [
+              2462,
+              2463,
+              2464,
+              2465,
+              2466,
+              2467,
+              2484,
+              2485,
+              2486,
+              2487,
+              2488,
+              2489
+            ]
+          }
+        ],
+        "derivation": "Identical displacement of the exact authored brow vertices in Mesh basis and all 141 Keys. No head split, removed branch, extra geometry, shader or callback. Type 7 and all eye parts remain unchanged.",
+        "previous_offset_local": [
+          0.003,
+          0,
+          0
+        ]
+      },
+      "eye_depth": {
+        "schema": 1,
+        "inherited_from_model": "2.4.3",
+        "inherited_body_sha256": "fcbb6e267ca8b8f9472f0bba9a74de5c80ca2f60a61511f57b7d94cd3bc9c4e5",
+        "derivation": "Native smooth closing offset of the second coplanar lid covers; inherited without changing original driver paths, UV or branch selection."
+      },
+      "head_uv": {
+        "schema": 2,
+        "source_body": {
+          "path": "legacy/oxal_baipo_mc_body_2_4_6.blend",
+          "sha256": "3937e0dce93e6f2172df658e59520f527d610b3996e646353f6abc20e81f9eee"
+        },
+        "immutable_multi_head": {
+          "path": "legacy/oxal_baipo_mc_body.blend",
+          "sha256": "4c941ef3d08ab77c55d29328bf3d38d83059b04a7f7ab9964d5f86f25341ba62"
+        },
+        "attribute_families": [
+          "Human247_LidCover_",
+          "Human247_StaticBrow_"
+        ],
+        "native_cover_faces": 28,
+        "static_faces_by_variant": {
+          "0": 9,
+          "1": 9,
+          "2": 8,
+          "3": 21,
+          "4": 21,
+          "5": 21,
+          "6": 14,
+          "7": 0
+        },
+        "method": "The original moving short upper rims keep their authored UV and closed lines. Long covers sample the corresponding original lower-lid skin inside the original brow footprint; static brow-background copies use the same reference. A native position field handles T6 covers exposed in front of the background. Original PNG pixels are unchanged.",
+        "sampling": "Independent native 64/128 vector fields selected from the actual skin Image width; original face topology, weights, 141 Keys, all 97 bones and skin sampler identity are preserved.",
+        "marker": "Human247_EyelidUV_Schema"
+      }
+    }
+  },
+  "source_kind": "offline derivative of authored complete standalone native model",
+  "head_hd": {
+    "schema": 1,
+    "marker": "oxal_human_head_hd_uv_schema",
+    "image_input": "Image",
+    "width_switch": ">64.5",
+    "normalized_layout": "Minecraft normalized head tile retained; the original 2.4.3 64 branch is preserved by legacy profiles. Current 2.4.6 upper-cover and moving-island UV overrides are declared in versions.2.4.6.head_uv.",
+    "geometry": "one head Mesh and 141 original Keys; no head topology or control replacement",
+    "qa_skin_sources": [
+      {
+        "title": "HD Aesthetic girl",
+        "author": "HeroGREEN",
+        "page": "https://mcskins.top/skin/hdaestheticgirl",
+        "download": "https://mcskins.top/assets/images/skin/hdaestheticgirl.png",
+        "pixels": [
+          128,
+          128
+        ],
+        "sha256": "9f99aea34dfd17e7eead4acb27eca136e6063329561f679d93ef215dc8d678a6",
+        "used_for": "local compatibility QA only; unmodified source PNG"
+      },
+      {
+        "title": "Jessy Wessy",
+        "author": "MochizukiKuna",
+        "page": "https://mcskins.top/skin/jessywessy",
+        "download": "https://mcskins.top/assets/images/skin/jessywessy.png",
+        "pixels": [
+          128,
+          128
+        ],
+        "sha256": "9f4924f362426236cd0829a2faa2e0ff9923a3209c9eecafa6147a1e6eb62a04",
+        "used_for": "local compatibility QA only; unmodified source PNG"
+      }
+    ],
+    "introduced_model_version": "2.4.3"
+  },
+  "eye_depth": {
+    "schema": 1,
+    "inherited_from_model": "2.4.3",
+    "inherited_body_sha256": "fcbb6e267ca8b8f9472f0bba9a74de5c80ca2f60a61511f57b7d94cd3bc9c4e5",
+    "derivation": "Native smooth closing offset of the second coplanar lid covers; inherited without changing original driver paths, UV or branch selection.",
+    "model_version": "2.4.4",
+    "body": "legacy/oxal_baipo_mc_body_2_4_4.blend",
+    "derived_body_sha256": "1b00edb239c8a45fab4a7acafe89745796536ed7069b5ef89d4f7d353d22b06b"
+  },
+  "brow_depth": {
+    "schema": 1,
+    "model_version": "2.4.5",
+    "body": "legacy/oxal_baipo_mc_body_2_4_5.blend",
+    "details": "versions.2.4.5.brow_depth",
+    "offset_local": [
+      0.0003,
+      0,
+      0
+    ]
+  },
+  "head_uv": {
+    "schema": 2,
+    "model_version": "2.4.7",
+    "details": "versions.2.4.7.head_uv"
+  },
+  "lossless_containers": {
+    "manifest": "../CONTAINERS.json",
+    "source_git_commit": "154b734c534803b2b4c6fcf0ac4cd2920baf1db3",
+    "historical_derivation_hashes": "Authoring history retains original Git-container hashes. Current versions/derived entries identify the repacked runtime containers; decoded payloads remain identical."
+  },
+  "legacy_compat_parts": {
+    "path": "oxal_compat_parts.blend",
+    "sha256": "14bff08d83f156c771775db886e08d8ad5640d73b2d8447f6e574ba6f4211d95",
+    "declaration": "COMPAT_PARTS.json",
+    "declaration_sha256": "e728d76ebfb3d4021eec8e29f57b3ffb18293af283cc6ca476bdd95940a793b1",
+    "sources": {
+      "2.3.1": {
+        "path": "白珀-人模V2.3.1.blend",
+        "sha256": "110db4b386897289dcba883a362fc0719f0fb6453d0c15ed3d536e9b85240ef7"
+      },
+      "2.3.2": {
+        "path": "白珀-人模V2.3.2.blend",
+        "sha256": "9d91325913cda16f804ecf171eb8ba1cf233220d06f567ab4bd399b7ca10c23e"
+      },
+      "2.3.3": {
+        "path": "白珀-人模V2.3.3.blend",
+        "sha256": "7a9e2e5b23d95f9aa51ea3ca3a2e0b6e13f4401a83de9ab90bdf2d0c9e559c2c"
+      },
+      "2.3.4": {
+        "path": "白珀-人模V2.3.4.blend",
+        "sha256": "9aeb98203e3ed957ce207ee99d46dedff77f70e53e2ae36fb518bc1cb30f9b1a"
+      },
+      "2.3.5": {
+        "path": "白珀-人模V2.3.5.blend",
+        "sha256": "21855df7dc755baaaca72eb8f37764eb2dd4711fc53da808f27551615963dc2e"
+      },
+      "2.3.7": {
+        "path": "白珀-人模V2.3.7.blend",
+        "sha256": "7fc13b7a13514cfefbb542b562e67aca1a795330b848df6855539e50f32cf1a4"
+      },
+      "2.3.8": {
+        "path": "白珀-人模V2.3.8.blend",
+        "sha256": "5644becfae92f36b1a267598a9b4af6212938a9509b2f77692fd7401cde7d42c"
+      },
+      "2.4.0": {
+        "path": "白珀-人模V2.4.0.blend",
+        "sha256": "1824db2be37100bafd95c35652fea59a3101563ead4797cb016e58b1b4dfbfca"
+      },
+      "2.4.1": {
+        "path": "白珀-人模V2.4.1.blend",
+        "sha256": "b6b35b371d25aeba5e7b79f1e9ce6f8fd910b0c332a1b312726b5d5bc47d68b4"
+      },
+      "2.4.2": {
+        "path": "白珀-人模V2.4.2.blend",
+        "sha256": "646718e2e637fc17c24e666df95b1f2016d6266d79708b9c62dd57ab052c9dad"
+      },
+      "2.4.3": {
+        "path": "白珀-人模V2.4.3.blend",
+        "sha256": "1f36dc8bf0bdf553e3e7f4deebb07e9a3b80a7e8d45c2703f732f9b20b51f30b"
+      },
+      "2.4.4": {
+        "path": "白珀-人模V2.4.4.blend",
+        "sha256": "a31c326318021ab68bdd32648afe4fe94f3a7c2ebdd25cab058a4653a4bbfe90"
+      },
+      "2.4.5": {
+        "path": "白珀-人模V2.4.5.blend",
+        "sha256": "6207d464c90ea336f81b9a8237f4b8eea017ebbd152502a1880e3d231452df9f"
+      },
+      "2.4.7": {
+        "path": "白珀-人模V2.4.7.blend",
+        "sha256": "e547f08db33be39fa9db47914ef907dcf393fdad73cc783a4b1ee5a4a66f4a7e"
+      }
+    },
+    "derivation": "Offline copied native Mesh/Lattice parts. Parent, modifier Object/Armature and native driver targets are detached and explicitly rebound by role. No Armature, scene, old Python callback or extra source rig is bundled.",
+    "exact_mesh_deduplication": {
+      "input_sha256": "de6cc71c5d00e334816d3bbe79442c143403ed2659741d685f158e061f4f936b",
+      "mesh_before": 298,
+      "mesh_after": 133,
+      "mesh_merged": 165,
+      "object_count_verified": 298,
+      "native_fingerprint_sha256": "fb03812a8247e35e0ba5b1ffc56594c7317aaba92c141e9de6ed6574c7783f50",
+      "comparison": "Full stored geometry, topology, vertex weights and group order, UV, attributes, custom normals, material references, shape-key blocks and relative relationships, drivers and per-role native bindings. Datablock display names are not runtime contracts; object roles and shape-key names remain unchanged.",
+      "isolation": "Two independent native AppendTransaction reads of the same ARM_WIDE group produce distinct Mesh and Key IDs; changing vertex and Basis coordinates in one does not alter the other.",
+      "compression": {
+        "format": "seekable Zstandard",
+        "level": 19,
+        "block_bytes": 8388608,
+        "decoded_payload_sha256": "eeda3dcbbf00b96dfaa8b247b46386114ae45fd7a0c0b9e4c2688751317ffb6f",
+        "decoded_payload_bytes": 37851215,
+        "runtime_container_bytes": 1417933,
+        "first_and_last_frames_preserved": true
+      }
+    }
+  },
+  "legacy_compat_names": {
+    "path": "oxal_compat_names.blend",
+    "sha256": "41041cc4dccdf0ed2e6e245a9c13fca592470b7b5d6449dd62bd0c565d784187",
+    "declaration": "COMPAT_NAMES.json",
+    "declaration_sha256": "367b544c01be289d0db83dc24dfabb4b93a3145573721074e70aeabccd9d42f8",
+    "source": {
+      "archive": "OXAL_MC_Studio_v1.0.196-local.31_未验证修订.zip",
+      "archive_sha256": "3ebe22dac73c97fe398ed8cc0f1b8f6be9df7538440d9ac3d261cff35395e3c0",
+      "member": "oxal_mc_studio/models/oxal_baipo_mc_model.blend",
+      "sha256": "6b727592d2228d2122ee4c20f239f83b6cb11f3605c1c2e0307c236cec27288e"
+    },
+    "derivation": "One native FONT/Curve and its original Active Camera geometry nodes and packed Minecraft fonts from the immutable declared 196 resource. Source rig references are detached, and only the selected target rig/head is rebound during an explicit name-enable transaction. No source rig, scene or Python callback is bundled.",
+    "compatibility": "The original template head rest matrix matches all 14 version-specific head matrices in COMPAT_PARTS.json within 0.00002; runtime also verifies the target head rest matrix and parent. Names missing from an old project are created only on explicit enable; existing precisely bound native names remain in place.",
+    "transforms": "Child Of basis and inverse are mapped together from source rig to target rig; target world translation, rotation and scale do not apply twice."
+  }
+}

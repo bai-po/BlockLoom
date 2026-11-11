@@ -1,0 +1,23 @@
+{
+  "asset": "oxal-symbol.webp",
+  "sha256": "72afea3aade322b64612b8944005c23cc089788d3707679c760a4b6119980fed",
+  "source_archive": "OXAL_MC_Studio_v1.0.196-local.31_未验证修订.zip",
+  "source_member": "oxal_mc_studio/assets/brand/oxal-symbol.png",
+  "original_source": "OXAL-LOGO-20261022-R1/v1.0.0-local.8/oxal-symbol-transparent-r1.png",
+  "authorization": "User requested reuse of the OXAL symbol in the native add-on information page. Original OXAL brand authorization is retained.",
+  "original_authorization": "User selected the finalized shared OXAL mark; supervisor assigned integration on 2026-10-22.",
+  "modifications": "Lossless WebP (method 6, exact=True). Original dimensions, sRGB interpretation and every RGBA byte including RGB under transparent pixels preserved. Original source member, PNG digest and brand authorization retained above.",
+  "source_png_sha256": "cdcdf101d22305849eb9d70dae64cb50b01f5cc194e5bdb0ac9a82577b3caf76",
+  "rgba_sha256": "f1f2003d052319fd3fa15d4922cdbaf8d6ce4427ef4bf39b4c7150e5e2b4aacd",
+  "size": [
+    1254,
+    1254
+  ],
+  "colorspace": "sRGB",
+  "alpha_mode": "STRAIGHT",
+  "source_png_caBX": {
+    "bytes": 21881,
+    "sha256": "114c96b8e03a73211737ed63808dd94403c332c2fe0f6b78715de0a4beb994c7",
+    "location": "Original declared PNG member in source_archive; retained in original source/history, not copied into WebP as an invalid new C2PA claim."
+  }
+}

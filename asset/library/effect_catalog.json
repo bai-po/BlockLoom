@@ -1,0 +1,6 @@
+{
+  "entries": [
+    {"identifier": "oxal:lightning", "label": "雷电效果", "categories": ["tools_and_utilities"]},
+    {"identifier": "oxal:riptide", "label": "激流双层旋壳（独立粒子）", "categories": ["tools_and_utilities"]}
+  ]
+}

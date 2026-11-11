@@ -1,0 +1,42 @@
+{
+  "definitions": [
+    {
+      "key": "freezing",
+      "effects": [
+        {
+          "effect": "FREEZING",
+          "ticks": 900,
+          "level": 1,
+          "color": 10415854,
+          "duration": 45.0
+        }
+      ],
+      "color": 10415854,
+      "display": "冰冻药水",
+      "effect": "FREEZING",
+      "level": 1,
+      "duration": 45.0,
+      "instant": false,
+      "source_version": "26.4-snapshot-5"
+    },
+    {
+      "key": "long_freezing",
+      "effects": [
+        {
+          "effect": "FREEZING",
+          "ticks": 1800,
+          "level": 1,
+          "color": 10415854,
+          "duration": 90.0
+        }
+      ],
+      "color": 10415854,
+      "display": "冰冻药水",
+      "effect": "FREEZING",
+      "level": 1,
+      "duration": 90.0,
+      "instant": false,
+      "source_version": "26.4-snapshot-5"
+    }
+  ]
+}

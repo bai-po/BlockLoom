@@ -1,0 +1,16 @@
+{
+    "include": [
+        "__init__.py",
+        "core",
+        "util",
+        "module",
+        "operation",
+        "ui",
+        "business"
+    ],
+    "venvPath": ".",
+    "venv": ".venv",
+    "pythonVersion": "3.11",
+    "reportInvalidTypeForm": "none",
+    "reportMissingModuleSource": "none"
+}

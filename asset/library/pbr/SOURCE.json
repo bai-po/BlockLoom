@@ -1,0 +1,19 @@
+{
+  "asset_id": "oxal.library.crafter_pbr",
+  "version": 1,
+  "policy": "REUSE_DATABLOCK",
+  "scope": "asset transaction",
+  "source_archive": "Crafter-0.9.8-20261028.zip",
+  "archive_sha256": "ff1694bccd363d693aa586d5c39aa1bc8ff3a9f10cc77d2b7731593a9a1ca713",
+  "source_entry": "addons/Crafter/defaults/append.blend",
+  "source_entry_sha256": "12750df502759eb023c4bca886198aa7814c78f56051721d9589cd1355912c67",
+  "derived_file": "crafter_pbr.blend",
+  "derived_sha256": "15032432b0304ef46b892593c19d8de519aec188dfda97fcdbae82ecee801f6e",
+  "entries": [
+    "C-lab_PBR_1.3",
+    "C-old_PBR"
+  ],
+  "derivation": "Only requested authored parser node groups and their native dependencies; identity metadata added. No Crafter Python business code, objects, handlers or material settings imported.",
+  "attribution": "Crafter 0.9.8, user-provided archive",
+  "license_notice": "No separate license document was included in the supplied archive."
+}

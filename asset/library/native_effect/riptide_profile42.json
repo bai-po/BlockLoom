@@ -1,0 +1,68 @@
+{
+  "source": "Java26.4-snapshot-5 official client dabe2b9759859995565e7d01c4a96d05043718ee; SpinAttackEffectModel and SpinAttackEffectLayer byte-identical to prior extraction",
+  "texture": "textures/entity/trident/trident_riptide.png",
+  "atlas": [
+    64,
+    64
+  ],
+  "boxes": [
+    {
+      "origin": [
+        -8,
+        -9.6,
+        -8
+      ],
+      "size": [
+        16,
+        32,
+        16
+      ],
+      "uv": [
+        0,
+        0
+      ],
+      "scale": 0.75,
+      "degrees_per_tick": -50
+    },
+    {
+      "origin": [
+        -8,
+        0,
+        -8
+      ],
+      "size": [
+        16,
+        32,
+        16
+      ],
+      "uv": [
+        0,
+        0
+      ],
+      "scale": 1.5,
+      "degrees_per_tick": -55
+    }
+  ],
+  "hand_animation": {
+    "charge_degrees": -35,
+    "spin_degrees_per_tick": -75,
+    "finish_seconds": 0.3
+  },
+  "adaptation": "First-person native fixed auto-spin use pose; no extra shell or continuous hand spin. Two original third-person spin shells form one independent effect-library asset.",
+  "first_person": {
+    "method": "FirstPersonHandsAndItemsRenderer.submitArmWithItem pc1313..1376",
+    "auto_spin_translation": [
+      -0.4,
+      0.8,
+      0.3
+    ],
+    "auto_spin_y_degrees": 65,
+    "auto_spin_z_degrees": -85,
+    "finish_seconds": 0.3,
+    "recovery_source": "OXAL editable transition; not an official Minecraft duration",
+    "minimum_charge_ticks": 10,
+    "auto_spin_ticks": 20,
+    "timing_source": "Official Java26.4-snapshot-5 TridentItem.releaseUsing: timeHeld>=10 then Player.startAutoSpinAttack(20,...). FirstPersonHandsAndItemsRenderer prioritizes active TRIDENT use over auto-spin.",
+    "default_operation": "Explicit CHARGE then RELEASE; ready hold stays charging; short release cancels. Native fixed auto-spin is finite; optional recovery is authored, not an official game duration."
+  }
+}

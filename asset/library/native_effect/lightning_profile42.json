@@ -1,0 +1,19 @@
+{
+  "source": "Java26.3 e877b6a07acd633fb3bb475002175cec036e7b87 LightningBoltRenderer.submit/lambda$submit$0/quad; LightningBolt.life/flashes/tick",
+  "segments": 8,
+  "segment_height": 16,
+  "layers": 4,
+  "branches": 3,
+  "branch_segments": 3,
+  "main_jitter_bound": 11,
+  "branch_jitter_bound": 31,
+  "width_base": 0.1,
+  "width_layer": 0.2,
+  "width_taper": 0.1,
+  "rgba": [0.45, 0.45, 0.5, 0.3],
+  "initial_life": 2,
+  "reflash_life": 1,
+  "flash_random_bound": 3,
+  "delay_random_bound": 10,
+  "ticks_per_second": 20
+}

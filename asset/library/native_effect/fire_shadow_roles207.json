@@ -1,0 +1,130 @@
+{
+  "version": "26.4-snapshot-5",
+  "families": {
+    "fire": {
+      "modelsWithFireRole": [
+        {
+          "model": "minecraft:block/fire_floor0",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/fire_0.png"
+        },
+        {
+          "model": "minecraft:block/fire_floor1",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/fire_1.png"
+        },
+        {
+          "model": "minecraft:block/fire_side0",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/fire_0.png"
+        },
+        {
+          "model": "minecraft:block/fire_side1",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/fire_1.png"
+        },
+        {
+          "model": "minecraft:block/fire_side_alt0",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/fire_0.png"
+        },
+        {
+          "model": "minecraft:block/fire_side_alt1",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/fire_1.png"
+        },
+        {
+          "model": "minecraft:block/fire_up0",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/fire_0.png"
+        },
+        {
+          "model": "minecraft:block/fire_up1",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/fire_1.png"
+        },
+        {
+          "model": "minecraft:block/fire_up_alt0",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/fire_0.png"
+        },
+        {
+          "model": "minecraft:block/fire_up_alt1",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/fire_1.png"
+        }
+      ],
+      "resources": [
+        "assets/minecraft/textures/block/fire_0.png",
+        "assets/minecraft/textures/block/fire_1.png"
+      ]
+    },
+    "soul_fire": {
+      "modelsWithFireRole": [
+        {
+          "model": "minecraft:block/soul_fire_floor0",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/soul_fire_0.png"
+        },
+        {
+          "model": "minecraft:block/soul_fire_floor1",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/soul_fire_1.png"
+        },
+        {
+          "model": "minecraft:block/soul_fire_side0",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/soul_fire_0.png"
+        },
+        {
+          "model": "minecraft:block/soul_fire_side1",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/soul_fire_1.png"
+        },
+        {
+          "model": "minecraft:block/soul_fire_side_alt0",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/soul_fire_0.png"
+        },
+        {
+          "model": "minecraft:block/soul_fire_side_alt1",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/soul_fire_1.png"
+        }
+      ],
+      "resources": [
+        "assets/minecraft/textures/block/soul_fire_0.png",
+        "assets/minecraft/textures/block/soul_fire_1.png"
+      ]
+    },
+    "campfire": {
+      "modelsWithFireRole": [
+        {
+          "model": "minecraft:block/campfire",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/campfire_fire.png"
+        }
+      ],
+      "resources": [
+        "assets/minecraft/textures/block/campfire_fire.png"
+      ]
+    },
+    "soul_campfire": {
+      "modelsWithFireRole": [
+        {
+          "model": "minecraft:block/soul_campfire",
+          "symbol": "fire",
+          "resource": "assets/minecraft/textures/block/soul_campfire_fire.png"
+        }
+      ],
+      "resources": [
+        "assets/minecraft/textures/block/soul_campfire_fire.png"
+      ]
+    }
+  },
+  "provenance": {
+    "auditSha256": "9276c6385cfbb2516ffd4c6e4326157acfff70abffd1b0214fb0792f7c800d98",
+    "clientJarSha1": "dabe2b9759859995565e7d01c4a96d05043718ee",
+    "role": "blockstate model references -> inherited texture symbols -> fire"
+  }
+}

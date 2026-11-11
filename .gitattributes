@@ -1,0 +1,2 @@
+# Keep authored resources and their recorded SHA-256 byte-identical on checkout.
+asset/** -text

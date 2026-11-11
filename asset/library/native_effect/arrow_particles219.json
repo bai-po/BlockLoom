@@ -1,0 +1,28 @@
+{
+  "source": "Java26.4 Snapshot5 Arrow.makeParticle / AbstractArrow.tick / SpellParticle current source; exact official entity_effect sprites. Blender profile values retain the explicitly editable native approximation.",
+  "native_approximation": "Blender Newton dynamics and uniform lifetime randomness differ from Java's tick recurrence. Artist may edit native settings. No trajectory sampling or baked particle positions. Critical trail is a native Blender approximation, not a claim of exact 26.4 CritParticle.getQuadSize parity.",
+  "profiles": {
+    "trail": {
+      "rate": 80.0,
+      "lifetime": 0.5,
+      "random_life": 0.6,
+      "size": 0.065,
+      "texture": "critical_hit",
+      "gravity": 0.8,
+      "random_velocity": 0.12,
+      "damping": 0.3
+    },
+    "potion": {
+      "rate": 40.0,
+      "lifetime": 2.0,
+      "random_life": 0.8,
+      "size": 0.075,
+      "texture": "effect_7",
+      "gravity": -0.04,
+      "random_velocity": 0.06,
+      "damping": 0.04,
+      "particle_type": "entity_effect",
+      "sprite_definition": "assets/minecraft/particles/entity_effect.json"
+    }
+  }
+}

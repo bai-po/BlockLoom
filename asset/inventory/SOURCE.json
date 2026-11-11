@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/bai-po/oxal-mc-studio",
+  "commit": "74ab71a1ff64b6fb13fe1642aa9d68e651a8712f",
+  "ref": "codex/oxal-source-20261029",
+  "source_path": "oxal_mc_studio/models/oxal_inventory.blend",
+  "sha256": "eac813d9003cc65fcd6e2f3e1fc7b497fbfdf06164db7bf0963607fb04ba8f51",
+  "derived_schema": 2,
+  "derived_metadata": "DERIVED.json",
+  "derived_metadata_sha256": "06bd1b3b3d98d734274130bdb326d875a0660d16ab2d48f7fe0e779f0b768bc3"
+}

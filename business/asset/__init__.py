@@ -1,0 +1,1 @@
+"""Asset business implementation."""

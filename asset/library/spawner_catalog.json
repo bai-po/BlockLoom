@@ -1,0 +1,374 @@
+{
+  "source": "spawner_models.json model keys + minecraft zh_cn labels",
+  "source_sha256": "4204322288a4ce60eddc54c945b22f8cc85f65f84cec67928ca3018ba239a408",
+  "entries": [
+    {
+      "key": "pig",
+      "display": "猪"
+    },
+    {
+      "key": "none",
+      "display": "无"
+    },
+    {
+      "key": "allay",
+      "display": "悦灵"
+    },
+    {
+      "key": "armadillo",
+      "display": "犰狳"
+    },
+    {
+      "key": "axolotl",
+      "display": "美西螈"
+    },
+    {
+      "key": "bat",
+      "display": "蝙蝠"
+    },
+    {
+      "key": "bee",
+      "display": "蜜蜂"
+    },
+    {
+      "key": "blaze",
+      "display": "烈焰人"
+    },
+    {
+      "key": "bogged",
+      "display": "沼骸"
+    },
+    {
+      "key": "breeze",
+      "display": "旋风人"
+    },
+    {
+      "key": "camel",
+      "display": "骆驼"
+    },
+    {
+      "key": "camel_husk",
+      "display": "骆驼尸壳"
+    },
+    {
+      "key": "cat",
+      "display": "猫"
+    },
+    {
+      "key": "cave_spider",
+      "display": "洞穴蜘蛛"
+    },
+    {
+      "key": "chicken",
+      "display": "鸡"
+    },
+    {
+      "key": "cod",
+      "display": "鳕鱼"
+    },
+    {
+      "key": "copper_golem",
+      "display": "铜傀儡"
+    },
+    {
+      "key": "cow",
+      "display": "牛"
+    },
+    {
+      "key": "creaking",
+      "display": "嘎枝"
+    },
+    {
+      "key": "creeper",
+      "display": "苦力怕"
+    },
+    {
+      "key": "dolphin",
+      "display": "海豚"
+    },
+    {
+      "key": "donkey",
+      "display": "驴"
+    },
+    {
+      "key": "drowned",
+      "display": "溺尸"
+    },
+    {
+      "key": "elder_guardian",
+      "display": "远古守卫者"
+    },
+    {
+      "key": "ender_dragon",
+      "display": "末影龙"
+    },
+    {
+      "key": "enderman",
+      "display": "末影人"
+    },
+    {
+      "key": "endermite",
+      "display": "末影螨"
+    },
+    {
+      "key": "evoker",
+      "display": "唤魔者"
+    },
+    {
+      "key": "fox",
+      "display": "狐狸"
+    },
+    {
+      "key": "frog",
+      "display": "青蛙"
+    },
+    {
+      "key": "frostbite",
+      "display": "冻尸"
+    },
+    {
+      "key": "ghast",
+      "display": "恶魂"
+    },
+    {
+      "key": "giant",
+      "display": "巨人"
+    },
+    {
+      "key": "glow_squid",
+      "display": "发光鱿鱼"
+    },
+    {
+      "key": "goat",
+      "display": "山羊"
+    },
+    {
+      "key": "guardian",
+      "display": "守卫者"
+    },
+    {
+      "key": "happy_ghast",
+      "display": "快乐恶魂"
+    },
+    {
+      "key": "hoglin",
+      "display": "疣猪兽"
+    },
+    {
+      "key": "horse",
+      "display": "马"
+    },
+    {
+      "key": "husk",
+      "display": "尸壳"
+    },
+    {
+      "key": "illusioner",
+      "display": "幻术师"
+    },
+    {
+      "key": "iron_golem",
+      "display": "铁傀儡"
+    },
+    {
+      "key": "llama",
+      "display": "羊驼"
+    },
+    {
+      "key": "magma_cube",
+      "display": "岩浆怪"
+    },
+    {
+      "key": "mooshroom",
+      "display": "哞菇"
+    },
+    {
+      "key": "mule",
+      "display": "骡"
+    },
+    {
+      "key": "nautilus",
+      "display": "鹦鹉螺"
+    },
+    {
+      "key": "ocelot",
+      "display": "豹猫"
+    },
+    {
+      "key": "panda",
+      "display": "熊猫"
+    },
+    {
+      "key": "parched",
+      "display": "焦骸"
+    },
+    {
+      "key": "parrot",
+      "display": "鹦鹉"
+    },
+    {
+      "key": "phantom",
+      "display": "幻翼"
+    },
+    {
+      "key": "piglin",
+      "display": "猪灵"
+    },
+    {
+      "key": "piglin_brute",
+      "display": "猪灵蛮兵"
+    },
+    {
+      "key": "pillager",
+      "display": "掠夺者"
+    },
+    {
+      "key": "polar_bear",
+      "display": "北极熊"
+    },
+    {
+      "key": "pufferfish",
+      "display": "河豚"
+    },
+    {
+      "key": "rabbit",
+      "display": "兔子"
+    },
+    {
+      "key": "ravager",
+      "display": "劫掠兽"
+    },
+    {
+      "key": "salmon",
+      "display": "鲑鱼"
+    },
+    {
+      "key": "sheep",
+      "display": "绵羊"
+    },
+    {
+      "key": "shulker",
+      "display": "潜影贝"
+    },
+    {
+      "key": "silverfish",
+      "display": "蠹虫"
+    },
+    {
+      "key": "skeleton",
+      "display": "骷髅"
+    },
+    {
+      "key": "skeleton_horse",
+      "display": "骷髅马"
+    },
+    {
+      "key": "slime",
+      "display": "史莱姆"
+    },
+    {
+      "key": "sniffer",
+      "display": "嗅探兽"
+    },
+    {
+      "key": "snow_golem",
+      "display": "雪傀儡"
+    },
+    {
+      "key": "spider",
+      "display": "蜘蛛"
+    },
+    {
+      "key": "squid",
+      "display": "鱿鱼"
+    },
+    {
+      "key": "stray",
+      "display": "流浪者"
+    },
+    {
+      "key": "strider",
+      "display": "炽足兽"
+    },
+    {
+      "key": "sulfur_cube",
+      "display": "硫方怪"
+    },
+    {
+      "key": "tadpole",
+      "display": "蝌蚪"
+    },
+    {
+      "key": "trader_llama",
+      "display": "行商羊驼"
+    },
+    {
+      "key": "tropical_fish",
+      "display": "热带鱼"
+    },
+    {
+      "key": "turtle",
+      "display": "海龟"
+    },
+    {
+      "key": "vex",
+      "display": "恼鬼"
+    },
+    {
+      "key": "villager",
+      "display": "村民"
+    },
+    {
+      "key": "vindicator",
+      "display": "卫道士"
+    },
+    {
+      "key": "wandering_trader",
+      "display": "流浪商人"
+    },
+    {
+      "key": "warden",
+      "display": "监守者"
+    },
+    {
+      "key": "witch",
+      "display": "女巫"
+    },
+    {
+      "key": "wither",
+      "display": "凋灵"
+    },
+    {
+      "key": "wither_skeleton",
+      "display": "凋灵骷髅"
+    },
+    {
+      "key": "wolf",
+      "display": "狼"
+    },
+    {
+      "key": "zoglin",
+      "display": "僵尸疣猪兽"
+    },
+    {
+      "key": "zombie",
+      "display": "僵尸"
+    },
+    {
+      "key": "zombie_horse",
+      "display": "僵尸马"
+    },
+    {
+      "key": "zombie_nautilus",
+      "display": "僵尸鹦鹉螺"
+    },
+    {
+      "key": "zombie_villager",
+      "display": "僵尸村民"
+    },
+    {
+      "key": "zombified_piglin",
+      "display": "僵尸猪灵"
+    }
+  ]
+}

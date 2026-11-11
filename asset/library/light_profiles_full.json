@@ -1,0 +1,3573 @@
+{
+  "client_sha1": "dabe2b9759859995565e7d01c4a96d05043718ee",
+  "registryBlocks": 1294,
+  "registryStates": 36193,
+  "source": "Real official client bootstrap; complete registered block states; compact table exhaustively checked",
+  "profiles": {
+    "amethyst_cluster": {
+      "max": 5,
+      "default": 5,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 5
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "beacon": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "black_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "black_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "blast_furnace": {
+      "max": 13,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 13
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "blue_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "blue_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "brewing_stand": {
+      "max": 1,
+      "default": 1,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 1
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "brown_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "brown_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "brown_mushroom": {
+      "max": 1,
+      "default": 1,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 1
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "calibrated_sculk_sensor": {
+      "max": 1,
+      "default": 1,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 1
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "campfire": {
+      "max": 15,
+      "default": 15,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "cave_vines": {
+      "max": 14,
+      "default": 0,
+      "keys": [
+        "berries"
+      ],
+      "states": [
+        {
+          "state": {
+            "berries": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "berries": "true"
+          },
+          "level": 14
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "cave_vines_plant": {
+      "max": 14,
+      "default": 0,
+      "keys": [
+        "berries"
+      ],
+      "states": [
+        {
+          "state": {
+            "berries": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "berries": "true"
+          },
+          "level": 14
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "conduit": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "copper_bulb": {
+      "max": 15,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "copper_lantern": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "copper_torch": {
+      "max": 14,
+      "default": 14,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 14
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "copper_wall_torch": {
+      "max": 14,
+      "default": 14,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 14
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "crying_obsidian": {
+      "max": 10,
+      "default": 10,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 10
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "cyan_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "cyan_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "deepslate_redstone_ore": {
+      "max": 9,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 9
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "dragon_egg": {
+      "max": 1,
+      "default": 1,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 1
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "enchanting_table": {
+      "max": 7,
+      "default": 7,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 7
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "end_gateway": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "end_portal": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "end_portal_frame": {
+      "max": 1,
+      "default": 1,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 1
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "end_rod": {
+      "max": 14,
+      "default": 14,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 14
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "ender_chest": {
+      "max": 7,
+      "default": 7,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 7
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "exposed_copper_bulb": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "exposed_copper_lantern": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "fire": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "firefly_bush": {
+      "max": 2,
+      "default": 2,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 2
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "furnace": {
+      "max": 13,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 13
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "glow_lichen": {
+      "max": 7,
+      "default": 0,
+      "keys": [
+        "down",
+        "east",
+        "north",
+        "south",
+        "up",
+        "west"
+      ],
+      "states": [
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "false",
+            "south": "true",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "false",
+            "south": "true",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "true",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "true",
+            "south": "false",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "true",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "true",
+            "south": "true",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "true",
+            "south": "true",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "false",
+            "north": "true",
+            "south": "true",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "false",
+            "south": "true",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "false",
+            "south": "true",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "true",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "true",
+            "south": "false",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "true",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "true",
+            "south": "true",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "true",
+            "south": "true",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "false",
+            "east": "true",
+            "north": "true",
+            "south": "true",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "false",
+            "south": "true",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "false",
+            "south": "true",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "true",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "true",
+            "south": "false",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "true",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "true",
+            "south": "true",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "true",
+            "south": "true",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "false",
+            "north": "true",
+            "south": "true",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "false",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "false",
+            "south": "false",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "false",
+            "south": "true",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "false",
+            "south": "true",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "false",
+            "south": "true",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "true",
+            "south": "false",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "true",
+            "south": "false",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "true",
+            "south": "false",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "true",
+            "south": "true",
+            "up": "false",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "true",
+            "south": "true",
+            "up": "false",
+            "west": "true"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "true",
+            "south": "true",
+            "up": "true",
+            "west": "false"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "down": "true",
+            "east": "true",
+            "north": "true",
+            "south": "true",
+            "up": "true",
+            "west": "true"
+          },
+          "level": 7
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "glowstone": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "gray_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "gray_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "green_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "green_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "ice_crystal": {
+      "max": 4,
+      "default": 4,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 4
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "jack_o_lantern": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "lantern": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "large_amethyst_bud": {
+      "max": 4,
+      "default": 4,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 4
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "lava": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "lava_cauldron": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "light": {
+      "max": 15,
+      "default": 15,
+      "keys": [
+        "level"
+      ],
+      "states": [
+        {
+          "state": {
+            "level": "0"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "level": "1"
+          },
+          "level": 1
+        },
+        {
+          "state": {
+            "level": "10"
+          },
+          "level": 10
+        },
+        {
+          "state": {
+            "level": "11"
+          },
+          "level": 11
+        },
+        {
+          "state": {
+            "level": "12"
+          },
+          "level": 12
+        },
+        {
+          "state": {
+            "level": "13"
+          },
+          "level": 13
+        },
+        {
+          "state": {
+            "level": "14"
+          },
+          "level": 14
+        },
+        {
+          "state": {
+            "level": "15"
+          },
+          "level": 15
+        },
+        {
+          "state": {
+            "level": "2"
+          },
+          "level": 2
+        },
+        {
+          "state": {
+            "level": "3"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "level": "4"
+          },
+          "level": 4
+        },
+        {
+          "state": {
+            "level": "5"
+          },
+          "level": 5
+        },
+        {
+          "state": {
+            "level": "6"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "level": "7"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "level": "8"
+          },
+          "level": 8
+        },
+        {
+          "state": {
+            "level": "9"
+          },
+          "level": 9
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "light_blue_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "light_blue_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "light_gray_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "light_gray_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "lime_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "lime_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "magenta_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "magenta_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "magma_block": {
+      "max": 3,
+      "default": 3,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "medium_amethyst_bud": {
+      "max": 2,
+      "default": 2,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 2
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "nether_portal": {
+      "max": 11,
+      "default": 11,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 11
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "ochre_froglight": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "orange_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "orange_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "oxidized_copper_bulb": {
+      "max": 4,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 4
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "oxidized_copper_lantern": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "pearlescent_froglight": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "pink_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "pink_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "purple_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "purple_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "red_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "red_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "redstone_lamp": {
+      "max": 15,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "redstone_ore": {
+      "max": 9,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 9
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "redstone_torch": {
+      "max": 7,
+      "default": 7,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 7
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "redstone_wall_torch": {
+      "max": 7,
+      "default": 7,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 7
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "respawn_anchor": {
+      "max": 15,
+      "default": 0,
+      "keys": [
+        "charges"
+      ],
+      "states": [
+        {
+          "state": {
+            "charges": "0"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "charges": "1"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "charges": "2"
+          },
+          "level": 7
+        },
+        {
+          "state": {
+            "charges": "3"
+          },
+          "level": 11
+        },
+        {
+          "state": {
+            "charges": "4"
+          },
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "sculk_catalyst": {
+      "max": 6,
+      "default": 6,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 6
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "sculk_sensor": {
+      "max": 1,
+      "default": 1,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 1
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "sea_lantern": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "sea_pickle": {
+      "max": 15,
+      "default": 6,
+      "keys": [
+        "pickles",
+        "waterlogged"
+      ],
+      "states": [
+        {
+          "state": {
+            "pickles": "1",
+            "waterlogged": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "pickles": "1",
+            "waterlogged": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "pickles": "2",
+            "waterlogged": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "pickles": "2",
+            "waterlogged": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "pickles": "3",
+            "waterlogged": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "pickles": "3",
+            "waterlogged": "true"
+          },
+          "level": 12
+        },
+        {
+          "state": {
+            "pickles": "4",
+            "waterlogged": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "pickles": "4",
+            "waterlogged": "true"
+          },
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "shroomlight": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "small_amethyst_bud": {
+      "max": 1,
+      "default": 1,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 1
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "smoker": {
+      "max": 13,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 13
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "soul_campfire": {
+      "max": 10,
+      "default": 10,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 10
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "soul_fire": {
+      "max": 10,
+      "default": 10,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 10
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "soul_lantern": {
+      "max": 10,
+      "default": 10,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 10
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "soul_torch": {
+      "max": 10,
+      "default": 10,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 10
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "soul_wall_torch": {
+      "max": 10,
+      "default": 10,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 10
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "torch": {
+      "max": 14,
+      "default": 14,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 14
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "trial_spawner": {
+      "max": 8,
+      "default": 0,
+      "keys": [
+        "trial_spawner_state"
+      ],
+      "states": [
+        {
+          "state": {
+            "trial_spawner_state": "active"
+          },
+          "level": 8
+        },
+        {
+          "state": {
+            "trial_spawner_state": "cooldown"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "trial_spawner_state": "ejecting_reward"
+          },
+          "level": 8
+        },
+        {
+          "state": {
+            "trial_spawner_state": "inactive"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "trial_spawner_state": "waiting_for_players"
+          },
+          "level": 4
+        },
+        {
+          "state": {
+            "trial_spawner_state": "waiting_for_reward_ejection"
+          },
+          "level": 8
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "vault": {
+      "max": 12,
+      "default": 6,
+      "keys": [
+        "vault_state"
+      ],
+      "states": [
+        {
+          "state": {
+            "vault_state": "active"
+          },
+          "level": 12
+        },
+        {
+          "state": {
+            "vault_state": "ejecting"
+          },
+          "level": 12
+        },
+        {
+          "state": {
+            "vault_state": "inactive"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "vault_state": "unlocking"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "verdant_froglight": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "wall_torch": {
+      "max": 14,
+      "default": 14,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 14
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "waxed_copper_bulb": {
+      "max": 15,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "waxed_copper_lantern": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "waxed_exposed_copper_bulb": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "waxed_exposed_copper_lantern": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "waxed_oxidized_copper_bulb": {
+      "max": 4,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 4
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "waxed_oxidized_copper_lantern": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "waxed_weathered_copper_bulb": {
+      "max": 8,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 8
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "waxed_weathered_copper_lantern": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "weathered_copper_bulb": {
+      "max": 8,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 8
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "weathered_copper_lantern": {
+      "max": 15,
+      "default": 15,
+      "keys": [],
+      "states": [
+        {
+          "state": {},
+          "level": 15
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "white_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "white_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "yellow_candle": {
+      "max": 12,
+      "default": 0,
+      "keys": [
+        "candles",
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "candles": "1",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "1",
+            "lit": "true"
+          },
+          "level": 3
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "2",
+            "lit": "true"
+          },
+          "level": 6
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "3",
+            "lit": "true"
+          },
+          "level": 9
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "candles": "4",
+            "lit": "true"
+          },
+          "level": 12
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    },
+    "yellow_candle_cake": {
+      "max": 3,
+      "default": 0,
+      "keys": [
+        "lit"
+      ],
+      "states": [
+        {
+          "state": {
+            "lit": "false"
+          },
+          "level": 0
+        },
+        {
+          "state": {
+            "lit": "true"
+          },
+          "level": 3
+        }
+      ],
+      "source": "Java26.4 Snapshot5 BuiltInRegistries.BLOCK every BlockState.getLightEmission()"
+    }
+  }
+}

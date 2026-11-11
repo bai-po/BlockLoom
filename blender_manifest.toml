@@ -1,0 +1,31 @@
+schema_version = "1.0.0"
+id = "oxal_mc_studio"
+version = "0.1.40-beta"
+name = "BlockLoom"
+tagline = "Minecraft skies, characters and assets"
+maintainer = "OXAL Team"
+type = "add-on"
+blender_version_min = "4.5.0"
+blender_version_max = "5.3.0"
+license = ["SPDX:GPL-3.0-or-later"]
+
+[permissions]
+files = "Import/export skins, textures, assets and sky presets"
+
+[build]
+paths_exclude_pattern = [
+    ".*",
+    "__pycache__/",
+    "*.py[cod]",
+    "*.blend[0-9]*",
+    "/*.zip",
+    "*_test",
+    "*_test.*",
+    "*_test/",
+    "/pyproject.toml",
+    "/uv.lock",
+    "/pyrightconfig.json",
+    "/AGENTS.md",
+    # Offline, pixel-identical WebP derivatives supply installed catalog icons.
+    "/asset/library/preview/*.png",
+]

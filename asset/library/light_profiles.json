@@ -1,0 +1,15 @@
+{
+  "ice_crystal": {
+    "min": 4,
+    "max": 4,
+    "default": 4,
+    "keys": [],
+    "states": [
+      {
+        "state": {},
+        "level": 4
+      }
+    ],
+    "source": "26.4-snapshot-5 Blocks.ICE_CRYSTAL lightLevel(state -> 4)"
+  }
+}

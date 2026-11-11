@@ -1,0 +1,102 @@
+{
+  "asset_id": "oxal.human.back",
+  "model_version": "2.4.2",
+  "asset_version": 2,
+  "policy": "NEW_INSTANCE",
+  "scope": "one precisely owned human",
+  "source": {
+    "path": ".dev/deliverables/2.4.2_3D二层修订/白珀-人模V2.4.2.blend",
+    "sha256": "646718e2e637fc17c24e666df95b1f2016d6266d79708b9c62dd57ab052c9dad"
+  },
+  "file": "oxal_back_parts_2_4_2.blend",
+  "sha256": "eb7a79763a3f96e777c9bb8e7858c19d0cf766d2b723cf59371cf1cb3c99c2e8",
+  "modes": {
+    "1": {
+      "collection": "OXAL_BACK_2_4_2_ELYTRA",
+      "rig": "OXAL 2.4.2 ELYTRA Rig",
+      "mesh": "New model",
+      "bones": [
+        "胸口",
+        "鞘翅开合·轨道",
+        "wing.L",
+        "up.L",
+        "down.L",
+        "bottom.L",
+        "wing.R",
+        "up.R",
+        "down.R",
+        "bottom.R",
+        "鞘翅展开"
+      ],
+      "objects": [
+        "OXAL 2.4.2 ELYTRA Rig",
+        "New model",
+        "WGT·鞘翅居中滑柄",
+        "WGT·鞘翅居中轨道"
+      ],
+      "drivers": {
+        "OXAL 2.4.2 ELYTRA Rig": 14,
+        "OXAL 2.4.2 ELYTRA Rig Data": 0,
+        "New model.001": 0,
+        "WGT·鞘翅居中滑柄.001": 0,
+        "WGT·鞘翅居中轨道.001": 0
+      }
+    },
+    "2": {
+      "collection": "OXAL_BACK_2_4_2_CAPE",
+      "rig": "OXAL 2.4.2 CAPE Rig",
+      "mesh": "披风·单段",
+      "bones": [
+        "胸口",
+        "披风·根",
+        "披风·单段",
+        "披风·单段中点",
+        "披风·单段目标",
+        "MCH·披风·单段中点·首尾跟随"
+      ],
+      "objects": [
+        "OXAL 2.4.2 CAPE Rig",
+        "披风·单段",
+        "披风·单段 · 原生平滑路径",
+        "披风 · 首尾跟随计算（内部）",
+        "WGT·披风旋转环",
+        "WGT·披风首尾点控"
+      ],
+      "drivers": {
+        "OXAL 2.4.2 CAPE Rig": 3,
+        "OXAL 2.4.2 CAPE Rig Data": 0,
+        "披风·单段.001": 0,
+        "披风·单段 · 原生平滑路径.001": 30,
+        "披风 · 首尾跟随计算（内部）.001": 45,
+        "WGT·披风旋转环.001": 0,
+        "WGT·披风首尾点控.001": 0
+      }
+    }
+  },
+  "native_playback": true,
+  "mode_switch_bones": [],
+  "cape_controls": [
+    "披风·根",
+    "披风·单段",
+    "披风·单段中点",
+    "披风·单段目标",
+    "MCH·披风·单段中点·首尾跟随"
+  ],
+  "mode_selection": "Explicit plugin Operator; only selected collection appended; full actual-ID accessory closure retired.",
+  "derivation": {
+    "input_minimal_source_sha256": "511f482968ce21ca61066dcd4411f18fbb338bf0f00d2156abe8bf3a4140d99c",
+    "change": "Replaced 15 private helper IDPropertyArray vectors with 45 independent scalar ID properties. Rebound every native per-axis driver target to its corresponding scalar RNA path; preserved driver expressions and public controls.",
+    "reason": "Blender 5.0.1 Undo/Redo could leave an individual vector-driver component stale despite valid drivers and current input values. Separate scalar channels avoid the shared-array dependency/writeback boundary without runtime callbacks.",
+    "unchanged": [
+      "Native control bones, hierarchy and authored rest transforms",
+      "Mesh geometry, UV coordinates, vertex weights and materials",
+      "Native driver expressions and equivalent per-axis inputs",
+      "Complete standalone, body and armor source resources"
+    ],
+    "native_cape_driver_counts": {
+      "rig": 3,
+      "curve_data": 30,
+      "helper": 45
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "blocks": {
+    "packed_ice_brick_wall": {
+      "values": {
+        "up": [
+          "false",
+          "true"
+        ],
+        "east": [
+          "none",
+          "low",
+          "tall"
+        ],
+        "north": [
+          "none",
+          "low",
+          "tall"
+        ],
+        "south": [
+          "none",
+          "low",
+          "tall"
+        ],
+        "west": [
+          "none",
+          "low",
+          "tall"
+        ],
+        "waterlogged": [
+          "false",
+          "true"
+        ]
+      },
+      "defaults": {
+        "up": "true",
+        "east": "none",
+        "north": "none",
+        "south": "none",
+        "west": "none",
+        "waterlogged": "false"
+      },
+      "source_class": "WallBlock",
+      "scope": "Only properties referenced by blockstate visual predicates are exposed; fluid rendering is not added"
+    }
+  },
+  "source_client_sha1": "dabe2b9759859995565e7d01c4a96d05043718ee",
+  "extraction": "CFR source-derived enum, property names, constructor defaults and Blocks.registerWall linkage; not native JVM invocation",
+  "source_sha256": {
+    "sources\\decompiled-wall\\net\\minecraft\\world\\level\\block\\WallBlock.java": "fca26d1b85c77980fe73fa27df311b04f7319e5e664a755727de33ca230e6b8f",
+    "sources\\decompiled-wall\\net\\minecraft\\world\\level\\block\\state\\properties\\WallSide.java": "5dc507c73cc8c6938f7fc2cdb26f66c2016ec7a4446586ac8f147b6b2032a5a3",
+    "sources\\decompiled-wall\\net\\minecraft\\world\\level\\block\\state\\properties\\BlockStateProperties.java": "299aaf087c05b2df0fa80ca0d7571d446bc7e2a7e068c717a7f8bef3751975a7",
+    "sources\\decompiled-blocks\\net\\minecraft\\world\\level\\block\\Blocks.java": "b2eb2ae4d3b33227edf01f8ab1518ed83718314313473c58eb9bc4548ca7ded1"
+  }
+}

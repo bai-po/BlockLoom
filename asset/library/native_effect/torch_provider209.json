@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "source": "local.31 torch_particles209 immutable provider parameters; new native implementation",
+  "source_archive_sha256": "3ebe22dac73c97fe398ed8cc0f1b8f6be9df7538440d9ac3d261cff35395e3c0",
+  "ticks_per_second": 20,
+  "display_samples": 667,
+  "display_radii": [
+    16,
+    32
+  ],
+  "seed": 195,
+  "history_ticks": 43,
+  "max_lifetime_ticks": 44,
+  "friction": 0.96,
+  "velocity_random_range": 0.4,
+  "velocity_magnitude_base": 0.15,
+  "velocity_magnitude_scale": 0.4,
+  "vertical_bias": 0.1,
+  "quad_base": 0.1,
+  "gravity_step": 0.04,
+  "smoke": {
+    "velocity_scale": 0.1,
+    "size_scale": 0.75,
+    "gray_scale": 0.3,
+    "gravity": -0.1,
+    "life_base": 8,
+    "life_random_scale": 0.8,
+    "life_random_offset": 0.2,
+    "growth": 32
+  },
+  "flame": {
+    "velocity_scale": 0.01,
+    "jitter": 0.05,
+    "life_base": 8,
+    "life_random_scale": 0.8,
+    "life_random_offset": 0.2,
+    "life_add": 4,
+    "shrink": 0.5
+  },
+  "upright_origin": [
+    0,
+    0,
+    0.7
+  ],
+  "wall_origins": {
+    "north": [
+      0,
+      -0.27,
+      0.92
+    ],
+    "south": [
+      0,
+      0.27,
+      0.92
+    ],
+    "east": [
+      -0.27,
+      0,
+      0.92
+    ],
+    "west": [
+      0.27,
+      0,
+      0.92
+    ]
+  },
+  "source_entry": "oxal_mc_studio/torch_particles209.py",
+  "source_sha256": "c0d2d65c4f34198f6f371f4bb98dc1f8cf9dc1f9d10eae157bb682ee2febf5c5"
+}
