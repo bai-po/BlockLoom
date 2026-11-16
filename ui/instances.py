@@ -195,8 +195,8 @@ def selection_properties(asset_id: str) -> dict[str, Any]:
                     return -1
             except ValueError:
                 return -1
-            position = bpy.data.objects.find(target.name)
-            return position if position >= 0 and bpy.data.objects[position] == target else -1
+            position = scene.objects.find(target.name)
+            return position if position >= 0 and scene.objects[position] == target else -1
         target = state.target
         if state.target_instance:
             scene = cast(Scene | None, bpy.context.scene)
@@ -214,9 +214,9 @@ def selection_properties(asset_id: str) -> dict[str, Any]:
     def set_index(state, value):
         scene = cast(Scene | None, bpy.context.scene)
         if asset_id == "oxal.human":
-            if scene is None or not 0 <= value < len(bpy.data.objects):
+            if scene is None or not 0 <= value < len(scene.objects):
                 return
-            target = bpy.data.objects[value]
+            target = scene.objects[value]
             entry = human_entries(bpy.context).get(target)
             if entry is None:
                 return
@@ -354,7 +354,7 @@ def draw(ui: common.UI, layout, feature: str, actions, *, caption: str = "", des
     listing.template_list(
         f"OXALMCSTUDIO_UL_{feature}_instances",
         feature,
-        bpy.data,
+        ui.context.scene if feature == "human" else bpy.data,
         "objects" if feature == "human" else "collections",
         ui.state,
         "index",

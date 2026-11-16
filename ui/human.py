@@ -236,6 +236,11 @@ def _skin_browser(ui, layout, owner=None):
         apply.enabled = owner is not None and state.library_kind == "skins" and bool(state.skin_library_filepath)
         _button(apply, "应用所选", "library_skin", "CHECKMARK", kind="skins")
         _file(actions, "入库 PNG", "library_add", "skins", "ADD")
+        remove = actions.column(align=True)
+        remove.enabled = (state.library_kind == "skins" and bool(state.skin_library_filepath)
+                          and state.skin_library_filepath not in {str(p) for _, p in builtin_skins()})
+        remove.operator_context = "INVOKE_DEFAULT"
+        _button(remove, "删除所选", "library_delete", "TRASH", kind="skins")
         _button(actions, "刷新", "skin_library_view", "FILE_REFRESH")
     else:
         current = (owner is not None and state.recent_scene_uid == str(ui.context.scene.session_uid)
@@ -465,6 +470,8 @@ def draw(layout: Any, context: Any) -> None:
         return
     if legacy is not None:
         _compat_draw(ui, box, legacy)
+        return
+    if root is None:
         return
     functions = ui.section(box, "functions_open", "TOOL_SETTINGS")
     if functions is not None:

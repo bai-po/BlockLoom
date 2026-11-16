@@ -1,6 +1,6 @@
 schema_version = "1.0.0"
 id = "oxal_mc_studio"
-version = "0.1.41-beta"
+version = "0.1.42-beta"
 name = "BlockLoom"
 tagline = "Minecraft skies, characters and assets"
 maintainer = "OXAL Team"

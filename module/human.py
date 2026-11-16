@@ -73,7 +73,7 @@ class HumanCommandEndpoint(CommandEndpoint[HumanResult]):
                 for manager in bpy.data.window_managers:
                     state = getattr(manager, "oxal_mc_studio_human_ui", None)
                     if state is not None:
-                        state.index = bpy.data.objects.find(active.name)
+                        state.index = cast(Scene, bpy.context.scene).objects.find(active.name)
         if isinstance(result, dict) and "migrated_instance_id" in result:
             from ..ui.instances import select_target
 

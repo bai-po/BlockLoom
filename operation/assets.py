@@ -44,7 +44,7 @@ def _snapshot(context: Context, action, destination="", *, part="", enabled=Fals
     state = cast(
         "OXALMCSTUDIO_PG_assets_ui", getattr(context.window_manager, STATE_PROPERTY)
     )
-    if action in {"COMP_GLOW", "COMP_OUTLINE", "COMP_EXCLUDE", "COMP_RESTORE", "COMP_CLEAR"}:
+    if action in {"COMP_GLOW", "COMP_OUTLINE", "COMP_REMOVE", "COMP_EXCLUDE", "COMP_RESTORE", "COMP_CLEAR"}:
         from ..business.outline.compositor import exclusion_targets
 
         targets = []

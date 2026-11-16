@@ -163,7 +163,9 @@ class UI:
     ) -> UILayout | None:
         box = layout.box()
         box.prop(self.state, name, text=self.schema[name][0], icon=icon, emboss=False)
-        return box if getattr(self.state, name) else None
+        # A caller may disable controls when the target has disappeared. Keep
+        # that state on the body so the fold header can still close the section.
+        return box.column() if getattr(self.state, name) else None
 
     def prop(
         self,

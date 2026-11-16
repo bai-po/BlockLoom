@@ -57,9 +57,10 @@ def draw(layout, context):
         box.label(text=status.message, icon="CHECKMARK" if status.succeeded else "INFO")
     box.label(text="通过姿态骨骼及原生自定义属性控制，可直接插帧", icon="BONE_DATA")
     box.template_list("OXALMCSTUDIO_UL_inventory_instances", "", bpy.data, "collections", state, "index", rows=2)
-    row = box.row(align=True)
-    row.operator("oxal_mc_studio.inventory_command", text="选择实例", icon="RESTRICT_SELECT_OFF").action = "select"
-    row.operator("oxal_mc_studio.inventory_command", text="移除实例", icon="TRASH").action = "remove"
+    if selected is not None:
+        row = box.row(align=True)
+        row.operator("oxal_mc_studio.inventory_command", text="选择实例", icon="RESTRICT_SELECT_OFF").action = "select"
+        row.operator("oxal_mc_studio.inventory_command", text="移除实例", icon="TRASH").action = "remove"
     if selected_first_person:
         box.operator("oxal_mc_studio.inventory_preview", text="预览第一人称", icon="CAMERA_DATA")
         row = box.row(align=True)

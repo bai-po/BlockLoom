@@ -649,7 +649,7 @@ class HumanTool:
         back_action = (action in {"back_control", "back_control_select"}
                        or action == "parameters" and isinstance(values, dict) and set(values) == {"back_mode"})
         selection_ui = action == "select" and options.get("selection_ui") is True
-        if bpy.context.mode == "POSE" and not back_action and not selection_ui and action not in {"library_list", "library_add"}:
+        if bpy.context.mode == "POSE" and not back_action and not selection_ui and action not in {"library_list", "library_add", "library_delete"}:
             raise ValueError("姿态模式仅支持背饰模式和控制；其它人模操作请切到物体模式")
         if "back_context" in options and not back_action:
             raise ValueError("背饰上下文不能用于其它人模操作")
@@ -657,6 +657,14 @@ class HumanTool:
             from .human_migrate import migrate
 
             return migrate(self, scene_uid, options)
+        if action == "library_delete":
+            folder = library_path("skins").resolve()
+            selected = Path(str(options.get("filepath", "")))
+            if (selected.is_symlink() or selected.parent.resolve() != folder
+                    or selected.suffix.lower() != ".png" or selected not in library_items("skins")):
+                raise ValueError("只能删除用户皮肤库中的 PNG 文件")
+            selected.unlink()
+            return self.edit(scene_uid, {"action": "library_list", "kind": "skins"})
         if action == "library_list":
             kind = str(options.get("kind", "skins"))
             defaults = {file: label for label, file in builtin_skins()} if kind == "skins" else {}

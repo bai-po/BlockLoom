@@ -191,6 +191,14 @@ class OXALMCSTUDIO_OT_human_command(Operator):
         return (context.scene is not None and mutation_allowed() and _legacy_or_object_mode(context)
                 and not human.commands.busy(context.scene.session_uid))
 
+    def invoke(self, context: Any, event: Any) -> "set[OperatorReturnItems]":
+        if self.action == "library_delete":
+            self.filepath = context.window_manager.oxal_mc_studio_human_ui.skin_library_filepath
+            return context.window_manager.invoke_confirm(
+                self, event, title="删除入库皮肤", message="确认删除所选皮肤文件？此操作无法撤销。",
+                confirm_text="删除皮肤", icon="WARNING")
+        return self.execute(context)
+
     def execute(self, context: Any) -> "set[OperatorReturnItems]":
         try:
             ensure_mutation_allowed()
@@ -281,7 +289,7 @@ class OXALMCSTUDIO_OT_human_command(Operator):
             options: dict[str, Any] = {"action": action, "kind": kind, "filepath": filepath}
             if action == "back_control":
                 options["value"] = float(self.value)
-            if action not in {"library_add", "library_list"}:
+            if action not in {"library_add", "library_list", "library_delete"}:
                 options["instance_id"] = _root(context)[INSTANCE]
             if action in {"bind", "unbind"}:
                 from ..business.human.viewport_character_state import wrist

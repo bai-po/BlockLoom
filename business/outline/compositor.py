@@ -161,6 +161,10 @@ def _install_outline_modes(new, link, mix, layer):
     if factor is None:
         raise ValueError("原描边缺少排除遮罩连接")
     if factor.node.get(MARK) == "outline_aa":
+        original = _source(factor.node.inputs[0])
+        if original is None:
+            raise ValueError("描边抗锯齿连接缺失")
+        _outline_width(new, link, original.node)
         return
     subtract = factor.node
     full = _source(subtract.inputs[0])
@@ -185,7 +189,18 @@ def _install_outline_modes(new, link, mix, layer):
     _antialias_outline(new, link, subtract, mix)
 
 
+def _outline_width(new, link, subtract):
+    source = _source(subtract.inputs[0])
+    if source is not None and source.node.get(MARK) != "outline_width":
+        width = new("CompositorNodeDilateErode", "描边扩展像素", -80, -400)
+        width[MARK] = "outline_width"
+        width.inputs["Size"].default_value = 0
+        link(source, width.inputs["Mask"])
+        link(width.outputs[0], subtract.inputs[0])
+
+
 def _antialias_outline(new, link, subtract, mix):
+    _outline_width(new, link, subtract)
     aa = new("CompositorNodeAntiAliasing", "轮廓抗锯齿", 70, -210)
     aa[MARK] = "outline_aa"
     aa.inputs["Threshold"].default_value = .1
@@ -193,10 +208,54 @@ def _antialias_outline(new, link, subtract, mix):
     link(aa.outputs[0], mix.inputs[0])
 
 
+def outline_width_socket(scene):
+    _, _, _, tree = _target_tree(scene, "mix")
+    node = next((n for n in tree.nodes if n.get(MARK) == "outline_width"), None) if tree else None
+    return node.inputs["Size"] if node else None
+
+
+def _remove_outline(tree, mix):
+    colors = _color_inputs(mix)
+    source = _source(colors[0])
+    if source is None:
+        raise ValueError("描边的原图连接缺失，未移除")
+    pending = [link.from_node for link in mix.inputs[0].links]
+    candidates = {mix}
+    finish = {n for n in tree.nodes if n.get(MARK) in {"outline_alpha", "outline_alpha_channel"}}
+    while pending:
+        node = pending.pop()
+        if node in candidates or node.type == "R_LAYERS" or node == source.node:
+            continue
+        candidates.add(node)
+        pending.extend(link.from_node for socket in node.inputs for link in socket.links)
+    candidates.update(finish)
+    for node in (mix, *(n for n in finish if n.get(MARK) == "outline_alpha")):
+        for output in node.outputs:
+            for edge in tuple(output.links):
+                if edge.to_node not in candidates:
+                    tree.links.new(source, edge.to_socket)
+    # Nodes also used by the user's graph keep their existing consumers.
+    retained = {n for n in candidates if n != mix and
+                any(edge.to_node not in candidates for socket in n.outputs for edge in socket.links)}
+    pending = list(retained)
+    while pending:
+        node = pending.pop()
+        for socket in node.inputs:
+            for edge in socket.links:
+                if edge.from_node in candidates and edge.from_node not in retained:
+                    retained.add(edge.from_node)
+                    pending.append(edge.from_node)
+    for node in candidates - retained:
+        tree.nodes.remove(node)
+    return {"message": "已移除合成器描边，恢复原图连接"}
+
+
 def outline_mode_socket(scene):
     if outline_color_socket(scene) is None:
         return None
     _, _, _, tree = _target_tree(scene, "mix")
+    if tree is None:
+        return None
     mode = next((n for n in tree.nodes if n.get(MARK) == "outline_mode"), None)
     return mode.inputs["Switch"] if mode else None
 
@@ -377,7 +436,7 @@ def apply(scene, options):
     if layer is None:
         raise ValueError("目标视图层已移除")
     action = options["action"]
-    if action not in {"COMP_GLOW", "COMP_OUTLINE", "COMP_EXCLUDE", "COMP_RESTORE", "COMP_CLEAR"}:
+    if action not in {"COMP_GLOW", "COMP_OUTLINE", "COMP_REMOVE", "COMP_EXCLUDE", "COMP_RESTORE", "COMP_CLEAR"}:
         raise ValueError("未知合成器操作")
     marker = "glow" if action == "COMP_GLOW" else "mix"
     effects, effect, grouped, original = _target_tree(scene, marker)
@@ -397,6 +456,10 @@ def apply(scene, options):
     existing = (
         next((n for n in tree.nodes if n.get(MARK) == marker), None) if tree else None
     )
+    if action == "COMP_REMOVE":
+        if tree is not None and existing is not None:
+            return _remove_outline(tree, existing)
+        return {"message": "当前没有合成器描边"}
     if action == "COMP_OUTLINE" and scene.render.engine == "BLENDER_WORKBENCH":
         raise ValueError("合成器描边需要深度与物体通道，请使用 Eevee 或 Cycles 渲染")
     mask = None
@@ -573,8 +636,10 @@ def apply(scene, options):
         link(subtract.outputs[0], mix.inputs[0])
         _install_outline_modes(new, link, mix, layer)
         separate = new("CompositorNodeSeparateColor", "原始透明度", -220, 200)
+        separate[MARK] = "outline_alpha_channel"
         link(source, separate.inputs[0])
         alpha = new("CompositorNodeSetAlpha", "保留透明背景", 440, 0)
+        alpha[MARK] = "outline_alpha"
         if alpha.inputs.get("Type"):
             alpha.inputs["Type"].default_value = "Replace Alpha"
         else:

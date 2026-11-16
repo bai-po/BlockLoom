@@ -422,10 +422,24 @@ def _section(layout, state, prop):
 
 
 def draw_compositor(layout, scene):
-    from ..business.outline.compositor import outline_color_socket, outline_mode_socket
+    from ..business.outline.compositor import (
+        outline_color_socket,
+        outline_mode_socket,
+        outline_width_socket,
+    )
 
     layout.label(text="在最终渲染（F12）中查看描边", icon="RENDER_STILL")
+    if scene.render.engine == "CYCLES":
+        layout.label(text="Cycles 不支持实时视口预览", icon="INFO")
+        layout.label(text="不影响 F12 最终渲染")
     _action(layout, "启用合成器描边", "COMP_OUTLINE", "NODE_COMPOSITING")
+    width = outline_width_socket(scene)
+    if width is not None:
+        row = layout.row()
+        row.enabled = not width.is_linked and mutation_allowed()
+        row.prop(width, "default_value", text="描边扩展（像素）")
+    if outline_color_socket(scene) is not None:
+        _action(layout, "移除描边", "COMP_REMOVE", "TRASH")
     mode = outline_mode_socket(scene)
     if mode is not None:
         row = layout.row()

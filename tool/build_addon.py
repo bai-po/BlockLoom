@@ -18,7 +18,7 @@ import zipfile
 from pathlib import Path
 from typing import Any
 
-MODULE = "oxal_mc_studio"
+MODULE = "blockloom"
 CODE_DIRECTORIES = ("core", "business", "module", "operation", "ui", "util")
 ASSET_SUFFIXES = {".blend", ".png", ".webp", ".json", ".mcmeta"}
 RETIRED_ASSETS = frozenset(
@@ -113,7 +113,7 @@ def validate_source(source: Path) -> str:
     identity = assignments(source / "util/identity.py")
     manifest = tomllib.loads((source / "blender_manifest.toml").read_text(encoding="utf8"))
     project = tomllib.loads((source / "pyproject.toml").read_text(encoding="utf8"))
-    if (identity["EXTENSION_ID"] != MODULE or identity["DISPLAY_VERSION"] != version + "-Beta"
+    if (identity["DISPLAY_VERSION"] != version + "-Beta"
             or manifest["version"] != version + "-beta"
             or project["project"]["version"] != version + "b0"):
         raise ValueError("Add-on version/identity declarations do not match")

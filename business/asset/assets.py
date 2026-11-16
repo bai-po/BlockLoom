@@ -1644,7 +1644,7 @@ def execute(scene_uid: int, options):
     action = options.get("action")
     from ..enchantment import enchantment_external
 
-    if action in {"COMP_GLOW", "COMP_OUTLINE", "COMP_EXCLUDE", "COMP_RESTORE", "COMP_CLEAR"}:
+    if action in {"COMP_GLOW", "COMP_OUTLINE", "COMP_REMOVE", "COMP_EXCLUDE", "COMP_RESTORE", "COMP_CLEAR"}:
         from ..outline import compositor
         return compositor.apply(scene, options)
     if action in {"CREATURE_BIND", "CREATURE_UNBIND", "CREATURE_STYLE", "CREATURE_REMOVE", "CREATURE_UPGRADE", "CREATURE_FACE_REPAIR"}:

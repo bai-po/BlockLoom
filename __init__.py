@@ -3,7 +3,7 @@
 bl_info = {
     "name": "BlockLoom",
     "author": "白珀、空树林",
-    "version": (0, 1, 41),
+    "version": (0, 1, 42),
     "blender": (4, 5, 0),
     "location": "View3D > Sidebar > BlockLoom",
     "description": "Minecraft 创作工具：人模、天空、物品栏、资产库与材质包",
