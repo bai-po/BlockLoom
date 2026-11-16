@@ -24,7 +24,7 @@ from .human_source import CURRENT, skin_materials, skin_nodes
 
 MANIFEST = Path(__file__).resolve().parents[2] / 'asset/human/LEGACY_MIGRATION.json'
 REPLACEMENT = 'oxal_mc_studio_legacy_replacement'
-_BETA_SOURCES = frozenset({'2.4.0', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6'})
+_BETA_SOURCES = frozenset({'2.4.0', '2.4.2', '2.4.3', '2.4.4', '2.4.5', '2.4.6', '2.4.7', '2.4.8'})
 
 
 def _manifest():
@@ -68,6 +68,8 @@ def _source(context):
     if len(candidates) != 1:
         raise ValueError('无法唯一识别旧人模主骨架，请直接选中主骨架')
     rig = candidates.pop()
+    if rig.get("oxal_humanoid_mob") or rig.get("blockloom_creature_version"):
+        raise ValueError("请从生物资产库升级此生物")
     if rig not in tuple(context.scene.objects):
         raise ValueError('旧人模不在当前场景')
     roots = [c for c in rig.users_collection if c in tuple(context.scene.collection.children_recursive)
@@ -117,6 +119,20 @@ def _source(context):
     return root, rig, profiles
 
 
+def _held_items(scene, root, rig):
+    from .human import BINDING
+
+    members = set(root.all_objects)
+    for obj in scene.objects:
+        if obj in members:
+            continue
+        for item in obj.constraints:
+            if isinstance(item, bpy.types.ChildOfConstraint) and item.name == BINDING and item.target == rig:
+                if obj.library or obj.override_library or tuple(obj.users_scene) != (scene,):
+                    raise ValueError("绑定物品不能在此场景独立升级：" + obj.name)
+                yield obj, item
+
+
 def _signature(root, rig, scene, layer):
     from array import array
 
@@ -145,7 +161,9 @@ def _signature(root, rig, scene, layer):
                hashlib.sha256(pixels.tobytes()).hexdigest(),
                [(c.session_uid, c.hide_viewport, c.hide_render) for c in (root, *root.children_recursive)],
                scene.frame_current, scene.frame_subframe, layer.name, layers,
-               [list(row) for row in rig.matrix_world], animation.fingerprint(rig)]
+               [list(row) for row in rig.matrix_world], animation.fingerprint(rig),
+               [(obj.session_uid, c.name, c.subtarget, [[c.inverse_matrix[i][j] for j in range(4)] for i in range(4)])
+                for obj, c in _held_items(scene, root, rig)]]
     return hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
 
 
@@ -249,7 +267,9 @@ def migrate(tool, scene_uid, options):
     choices=_style(root,source,context,options.get('style',{}))
     choices['creation_id']=options['creation_id']
     marker=root.get(REPLACEMENT)
+    transferred = []
     counts={}
+    skipped_paths = set()
     def prepare(tx,new_root,new_rig):
         nonlocal counts
         # Relocate all top-level native helpers with the main rig, keeping the
@@ -270,18 +290,32 @@ def migrate(tool, scene_uid, options):
         copied[OWNER]=new_root[INSTANCE]
         for material in skin_materials(new_root):
             for node in skin_nodes(material):node.image=copied
+        from .human_face_brow_mode import set_skin_layout
+
+        set_skin_layout(new_root, builtin=image == root.get("oxal_human_default_skin"), fresh=tx.owned)
         from .human_layer_resolution import prepare as prepare_resolution
         prepare_resolution(tx,new_root,tuple(new_root.all_objects),copied)
         new_root['oxal_human_current_skin']=copied
         new_root['oxal_human_skin_pixels']=int(copied.size[0])
         new_root['oxal_human_skin_label']=image.name
-        counts=animation.copy_animation(tx,source,new_rig)
+        counts=animation.copy_animation(tx,source,new_rig,skipped_paths=skipped_paths)
+        for obj, constraint in tuple(_held_items(scene, root, source)):
+            if constraint.subtarget not in new_rig.pose.bones:
+                raise ValueError("新版缺少物品绑定骨：" + constraint.subtarget)
+            inverse = constraint.inverse_matrix.copy()
+            transferred.append((constraint, inverse))
+            constraint.target = new_rig
+            constraint.inverse_matrix = inverse
         new_root['oxal_human_migration_source']=source
         new_root['oxal_human_migration_collection']=root
         root[REPLACEMENT] = new_root[INSTANCE]
         archive.apply(new_root)
 
     def rollback():
+        for constraint, inverse in reversed(transferred):
+            constraint.target = source
+            constraint.inverse_matrix = inverse
+        transferred.clear()
         archive.rollback()
         if marker is None:
             if REPLACEMENT in root:
@@ -294,5 +328,7 @@ def migrate(tool, scene_uid, options):
     except Exception:
         rollback()
         raise
+    details = "。保留在原动作中的通道：" + "、".join(sorted(skipped_paths)) if skipped_paths else ""
     return {'migrated_instance_id':result.instance_id,'source':source.name,'target_version':CURRENT,
-            'counts':counts,'message':f'已迁移到 {CURRENT}：复制 {counts["copied_curves"]} 条动画曲线，跳过 {counts["skipped_curves"]} 条不匹配通道；旧版未删除，已放入“旧人模”合集并从所有视图层排除'}
+            'counts':counts,'skipped_paths':sorted(skipped_paths),
+            'message':f'已迁移到 {CURRENT}，复制 {counts["copied_curves"]} 条动画曲线。旧实例已放入“旧人模”合集' + details}

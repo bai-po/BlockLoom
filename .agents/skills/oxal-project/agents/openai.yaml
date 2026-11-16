@@ -1,0 +1,4 @@
+interface:
+  display_name: "OXAL 项目通用规范"
+  short_description: "统一 OXAL 项目目录、Git 提交范围和 AI 交付方式，避免阶段报告堆积"
+  default_prompt: "使用 $oxal-project 约定完成当前 OXAL MC Studio 任务，保持目录整洁并在对话中简要交付结果。"

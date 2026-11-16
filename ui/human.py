@@ -20,7 +20,7 @@ from ..business.human.human_state import MATERIALS, PARAMETERS, PARTS, PATTERNS,
 from ..core.runtime import mutation_allowed
 from ..module import human as human_module
 from ..util.resources import INSTANCE
-from . import common, instances
+from . import character_wrist, common, instances
 
 STATE_PROPERTY = "oxal_mc_studio_human_ui"
 FIELDS = {
@@ -30,14 +30,13 @@ FIELDS = {
     "skins_open": ("皮肤", False), "binding_open": ("物品绑定", False),
     "arm_mode": ("胳膊", "SLIM"), "leg_mode": ("腿", "NORMAL"),
     "name_enabled": ("名字", "OFF"), "leg_fixed": ("腿部固定", "OFF"),
-    "foot_fixed": ("脚腕固定", "OFF"), "wrist": ("绑定目标", "L"),
+    "foot_fixed": ("脚腕固定", "OFF"),
     "armor_target": ("盔甲部位", "ALL"), "armor_material": ("材质", "5"),
     "armor_pattern": ("纹饰", "0"),
 }
 ENUMS = {
     "arm_mode": ("胳膊", (("SLIM", "3格", ""), ("WIDE", "4格", "")), "SLIM"),
     "leg_mode": ("腿", (("NORMAL", "常规弯曲", ""), ("OFFICIAL", "官方动画", "")), "NORMAL"),
-    "wrist": ("绑定目标", (("L", "左手", ""), ("R", "右手", ""), ("H", "头", "")), "L"),
     "armor_target": ("部位", (("ALL", "全部", ""), ("HEAD", "头盔", ""), ("CHEST", "胸甲", ""), ("LEGS", "护腿", ""), ("FEET", "靴子", "")), "ALL"),
     "armor_material": ("材质", tuple((str(i), label, "") for i, label in enumerate(MATERIALS)), "5"),
     "armor_pattern": ("纹饰", tuple((str(i), label, "") for i, label in enumerate(PATTERNS)), "0"),
@@ -158,6 +157,7 @@ OXALMCSTUDIO_PG_human_ui.__annotations__ = common.annotations(FIELDS, ENUMS, {
     "trim_color": ("纹饰颜色", (1.0, 0.65, 0.1, 1.0)),
 })
 OXALMCSTUDIO_PG_human_ui.__annotations__.update({
+    "wrist": character_wrist.property_for_character(),
     "library_rows": CollectionProperty(type=OXALMCSTUDIO_PG_human_file, options={"SKIP_SAVE"}),
     "library_index": IntProperty(default=0, options={"SKIP_SAVE"}),
     "library_kind": StringProperty(default="skins", options={"SKIP_SAVE"}),
@@ -341,6 +341,19 @@ LEGACY_MENUS = (OXALMCSTUDIO_MT_legacy_arm, OXALMCSTUDIO_MT_legacy_leg,
                 OXALMCSTUDIO_MT_legacy_foot_fixed)
 
 
+def draw_legacy_styles(layout: Any, target: Any, data: Any) -> None:
+    from ..business.human.human_compat_controls import can_edit
+
+    for menu in LEGACY_MENUS:
+        row = layout.row()
+        if menu.field in {"name_enabled", "leg_fixed", "foot_fixed"}:
+            row.enabled = can_edit(target, menu.field)
+        current = data[menu.field]
+        caption = next((label for value, label in menu.choices if value == current), "混合／未确定")
+        row.label(text=menu.bl_label)
+        row.menu(menu.__name__, text=caption)
+
+
 def _compat_draw(ui: common.UI, box: Any, target: Any) -> None:
     from ..business.human import human_compat
 
@@ -354,16 +367,9 @@ def _compat_draw(ui: common.UI, box: Any, target: Any) -> None:
     _button(functions, "人模功能", "legacy_functions", "TRIA_DOWN" if state.functions_open else "TRIA_RIGHT")
     if state.functions_open:
         functions.label(text="所选人模样式")
-        from ..business.human.human_compat_controls import can_edit, red_channel
+        from ..business.human.human_compat_controls import red_channel
 
-        for menu in LEGACY_MENUS:
-            row = functions.row()
-            if menu.field in {"name_enabled", "leg_fixed", "foot_fixed"}:
-                row.enabled = can_edit(target, menu.field)
-            current = data[menu.field]
-            caption = next((label for value, label in menu.choices if value == current), "混合／未确定")
-            row.label(text=menu.bl_label)
-            row.menu(menu.__name__, text=caption)
+        draw_legacy_styles(functions, target, data)
         channel = red_channel(target)
         if channel is not None:
             functions.prop(channel[0], channel[1], text="红温", slider=True)
@@ -578,7 +584,7 @@ def draw(layout: Any, context: Any) -> None:
                 _button(outline, "启用人模描边", "outline_prepare", "MOD_SOLIDIFY")
         back = ui.section(functions, "back_open", "OUTLINER_OB_ARMATURE")
         if back is not None and root:
-            current = model_version(root) in {"2.4.2", "2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7"}
+            current = model_version(root) in {"2.4.2", "2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7", "2.4.8", "2.4.9"}
             back.label(text="背饰模式（切换时增删专属部件）")
             row = back.row(align=True)
             for value, label in enumerate(("关闭", "鞘翅", "披风") if current else ("关闭", "鞘翅", "单段", "五段")):

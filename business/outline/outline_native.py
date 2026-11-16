@@ -179,7 +179,7 @@ def invalidate(transaction, obj, *, materials=()):
 def apply(transaction, root, obj, owner, *, enabled="outline_enabled", width="outline_width",
           color="outline_color", brightness=None, gate=None, role="human", rebuild=False,
           follow=None, suppression=None, source_attribute=None,
-          quality_normals=None, quality_follow_key=None, disable_when=None, pixel_surface=False):
+          quality_normals=None, quality_follow_key=None, disable_when=None, pixel_surface=False, armor_shell=None):
     from . import outline_solidify
 
     ensure_mutation_allowed()
@@ -191,7 +191,7 @@ def apply(transaction, root, obj, owner, *, enabled="outline_enabled", width="ou
                            rebuild=rebuild, follow=follow, suppression=suppression,
                            source_attribute=source_attribute, quality_normals=quality_normals,
                            quality_follow_key=quality_follow_key, disable_when=disable_when,
-                           pixel_surface=pixel_surface)
+                           pixel_surface=pixel_surface, armor_shell=armor_shell)
 
 
 def remove(transaction, root, obj, *, role="human"):

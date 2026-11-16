@@ -661,7 +661,11 @@ def rebuild(scene,root,options,*,repair=False):
             rigs.build_subrigs(transaction,scene,collection,staged,root[assets.IDENTIFIER])
             rigs.build(transaction,scene,collection,staged,root[assets.IDENTIFIER])
             if parameters["special"]:
-                assets.asset_authored.attachments(transaction,scene,collection,staged,root[assets.IDENTIFIER],assets._material_factory(transaction,scene,pack_digest=parameters["pack_digest"]))
+                assets.asset_authored.attachments(
+                    transaction, scene, collection, staged, root[assets.IDENTIFIER],
+                    assets._material_factory(transaction, scene, pack_digest=parameters["pack_digest"]),
+                    center_grip="oxal_mc_studio_raw_grip" in root,
+                )
         if root.get("oxal_mc_studio_native_book_schema"):
             from .asset_book import stage_target
             stage_target(transaction, scene, staged, root)

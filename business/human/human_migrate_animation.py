@@ -315,7 +315,7 @@ def fingerprint(source: Any) -> dict[str, Any]:
     return result
 
 
-def copy_animation(tx: Any, source: Any, target: Any) -> dict[str, int]:
+def copy_animation(tx: Any, source: Any, target: Any, *, skipped_paths=None) -> dict[str, int]:
     """Copy native Actions/Clip NLA and matching pose values only to new owned IDs."""
     validate(source, target)
     if target not in tx.owned:
@@ -373,6 +373,8 @@ def copy_animation(tx: Any, source: Any, target: Any) -> dict[str, int]:
                 if _allowed_path(curve, target):
                     counts["copied_curves"] += 1
                 else:
+                    if skipped_paths is not None:
+                        skipped_paths.add(original.name + " · " + curve.data_path)
                     curves.remove(curve)
                     counts["skipped_curves"] += 1
         counts["copied_actions"] += 1

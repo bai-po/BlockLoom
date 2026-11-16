@@ -24,15 +24,11 @@ def current(scene):
         return None
     if (not isinstance(collection, bpy.types.Collection) or collection.get(MARK) != 1
             or collection.get(SCENE) != scene or collection.library or collection.override_library
-            or scene.collection.children.get(collection.name) != collection):
+            or collection not in tuple(scene.collection.children_recursive)):
         raise ValueError("资产库组织合集引用或位置已变化，未接管其它合集")
     if any(collection in tuple(other.collection.children_recursive)
            for other in bpy.data.scenes if other != scene):
         raise ValueError("资产库组织合集被其它场景共享，未修改")
-    parents = [parent for parent in bpy.data.collections
-               if parent.children.get(collection.name) == collection]
-    if parents:
-        raise ValueError("资产库组织合集额外链接到其它合集，未修改")
     return collection
 
 
@@ -41,6 +37,14 @@ def publish(transaction, scene, collection):
     ensure_mutation_allowed()
     if collection not in transaction.ids:
         raise ValueError("资产库归类仅适用于本次明确创建的实例合集")
+    parent = library_parent(scene, transaction.on_rollback)
+    parent.children.link(collection)
+    transaction.on_rollback(lambda: parent.children.unlink(collection)
+                            if parent.children.get(collection.name) == collection else None)
+    return parent
+
+
+def library_parent(scene, on_rollback):
     parent = current(scene)
     if parent is None:
         parent = bpy.data.collections.new("资产库")
@@ -57,13 +61,24 @@ def publish(transaction, scene, collection):
                     del scene[REFERENCE]
             bpy.data.collections.remove(parent)
 
-        transaction.on_rollback(restore_created_parent)
+        on_rollback(restore_created_parent)
         scene.collection.children.link(parent)
         scene[REFERENCE] = parent
-    parent.children.link(collection)
-    transaction.on_rollback(lambda: parent.children.unlink(collection)
-                            if parent.children.get(collection.name) == collection else None)
     return parent
+
+
+def subgroup(parent, label, color, on_rollback):
+    matches = [c for c in parent.children if c.get("blockloom_library_group") == label]
+    if len(matches) > 1 or (matches and (matches[0].library or matches[0].users != 1)):
+        raise ValueError("生物分类合集被共享或重复：" + label)
+    if matches:
+        return matches[0]
+    collection = bpy.data.collections.new(label)
+    on_rollback(lambda: bpy.data.collections.remove(collection))
+    collection["blockloom_library_group"] = label
+    collection.color_tag = color
+    parent.children.link(collection)
+    return collection
 
 
 def _references(value, target):
@@ -74,6 +89,20 @@ def _references(value, target):
     if isinstance(value, Iterable) and not isinstance(value, (str, bytes)):
         return any(_references(part, target) for part in value)
     return False
+
+
+def creature_parent(scene, root):
+    library = current(scene)
+    if library:
+        for group in library.children:
+            if group.get("blockloom_library_group") != "生物" or group.users != 1:
+                continue
+            for folder in group.children:
+                if (folder.get("blockloom_library_group") and folder.users == 1
+                        and folder.children.get(root.name) == root
+                        and not any(_references(v, root) for v in folder.values())):
+                    return folder
+    return None
 
 
 def is_native_parent(scene, parent, child):

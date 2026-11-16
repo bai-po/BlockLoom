@@ -1,0 +1,4 @@
+interface:
+  display_name: "OXAL Bus 开发规范"
+  short_description: "维护 OXAL MC Studio 总线接口、模块接线、生命周期与 Blender 集成规范"
+  default_prompt: "使用 $oxal-bus 规范完成当前总线开发或模块接入任务，并验证对应行为。"

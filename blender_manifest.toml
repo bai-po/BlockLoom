@@ -1,12 +1,12 @@
 schema_version = "1.0.0"
 id = "oxal_mc_studio"
-version = "0.1.40-beta"
+version = "0.1.41-beta"
 name = "BlockLoom"
 tagline = "Minecraft skies, characters and assets"
 maintainer = "OXAL Team"
 type = "add-on"
 blender_version_min = "4.5.0"
-blender_version_max = "5.3.0"
+blender_version_max = "5.4.0"
 license = ["SPDX:GPL-3.0-or-later"]
 
 [permissions]

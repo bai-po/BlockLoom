@@ -32,7 +32,7 @@ COLLECTIONS = {1: "OXAL_BACK_2_4_2_ELYTRA", 2: "OXAL_BACK_2_4_2_CAPE"}
 def current(root):
     from .human_source import model_version
 
-    return model_version(root) in {"2.4.2", "2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7"}
+    return model_version(root) in {"2.4.2", "2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7", "2.4.8", "2.4.9"}
 
 
 def members(root):

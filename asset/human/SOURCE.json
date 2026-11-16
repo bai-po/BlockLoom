@@ -1,9 +1,17 @@
 {
   "repository": "https://github.com/bai-po/oxal-mc-studio",
-  "source_path": "白珀-人模V2.4.7.blend",
-  "sha256": "e547f08db33be39fa9db47914ef907dcf393fdad73cc783a4b1ee5a4a66f4a7e",
+  "source_path": "白珀-人模V2.4.9.blend",
+  "sha256": "8267b3f2f11ed69e3f710c071da777d069313a84aa18d9d3ad4596c3ae9ab48f",
   "derived_schema": 2,
   "derived": [
+    {
+      "path": "oxal_baipo_mc_body_2_4_9.blend",
+      "sha256": "d9000b158ac47e1642858e206456e3fd550b368d5167111caed6bbe37a797b60"
+    },
+    {
+      "path": "oxal_baipo_mc_body_2_4_8.blend",
+      "sha256": "449aa4a9c0956c03d755f35620bebb80878ad07ef5e118c15ca8234577d1f797"
+    },
     {
       "path": "oxal_baipo_mc_body_2_4_7.blend",
       "sha256": "c5f37d8b0a31947a85bbd309e8606b3c617f85747144913c9de3b0503b0a7a08"
@@ -39,7 +47,9 @@
       "2.4.4",
       "2.4.5",
       "2.4.6",
-      "2.4.7"
+      "2.4.7",
+      "2.4.8",
+      "2.4.9"
     ],
     "deduplication": "One byte-identical objects table serves model versions 2.4.2 through 2.4.7; original descriptor Git paths and hashes are retained in its sources list. The distinct 2.4.0 declaration remains under legacy/."
   },
@@ -50,24 +60,14 @@
     "source_path": "oxal_mc_studio/models/oxal_baipo_mc_model.blend",
     "sha256": "6b727592d2228d2122ee4c20f239f83b6cb11f3605c1c2e0307c236cec27288e"
   },
-  "model_version": "2.4.7",
+  "model_version": "2.4.9",
   "current_source": {
-    "path": "白珀-人模V2.4.7.blend",
-    "sha256": "e547f08db33be39fa9db47914ef907dcf393fdad73cc783a4b1ee5a4a66f4a7e",
-    "kind": "complete native standalone project; 85 objects, 97 bones, 141 original head Keys, packed textures and native controllers",
+    "path": "白珀-人模V2.4.9.blend",
+    "sha256": "8267b3f2f11ed69e3f710c071da777d069313a84aa18d9d3ad4596c3ae9ab48f",
+    "kind": "Complete native project with original controls and six new facial controls",
     "derived_from": {
-      "path": "白珀-人模V2.4.6.blend",
-      "sha256": "fd3fe86c37b3d7916486500e8c28b49569a9c567b7ce2ccf6e93838eb93fe7f1",
-      "kind": "complete native standalone project; 85 objects, 97 bones and original controls retained",
-      "derived_from": {
-        "path": "白珀-人模V2.4.5.blend",
-        "sha256": "6207d464c90ea336f81b9a8237f4b8eea017ebbd152502a1880e3d231452df9f",
-        "kind": "complete native standalone project; all 85 objects, 97 bones, original controls and collections retained",
-        "derived_from": {
-          "path": "白珀-人模V2.4.4-眉毛薄间距修订.blend",
-          "sha256": "46d67ee365d002a29133762974b47cd4f8447a6a332f586d46510bdaeb4b6fbe"
-        }
-      }
+      "path": "白珀-人模V2.4.8.blend",
+      "sha256": "eca292a69d5afad54a3171f271cae24153bd61064946ef1c4eea017853c497b1"
     }
   },
   "versions": {
@@ -1375,6 +1375,168 @@
         "sampling": "Independent native 64/128 vector fields selected from the actual skin Image width; original face topology, weights, 141 Keys, all 97 bones and skin sampler identity are preserved.",
         "marker": "Human247_EyelidUV_Schema"
       }
+    },
+    "2.4.8": {
+      "source": {
+        "path": "白珀-人模V2.4.8.blend",
+        "sha256": "eca292a69d5afad54a3171f271cae24153bd61064946ef1c4eea017853c497b1"
+      },
+      "body": {
+        "path": "oxal_baipo_mc_body_2_4_8.blend",
+        "sha256": "449aa4a9c0956c03d755f35620bebb80878ad07ef5e118c15ca8234577d1f797"
+      },
+      "source_version": "2.4.7",
+      "coordinate_system": "native armature local",
+      "controls": [
+        "L.眉毛",
+        "R.眉毛",
+        "L.下眼皮",
+        "R.下眼皮",
+        "L.眼睛表情切换",
+        "R.眼睛表情切换",
+        "眉纹切换·轨道",
+        "单眼皮肤",
+        "单眼皮肤·轨道",
+        "眼睛表情",
+        "眼睛表情·轨道",
+        "眉毛开关",
+        "眉毛开关·轨道"
+      ],
+      "head_translation": "Parented to 脖子 with the original rest transform and disconnected joint",
+      "expression": "Per-eye expression switches and a five-stop selector. The fifth stop shades the entire face. The separate brow switch hides ordinary brows and brings active pupil expressions in front of the native lids.",
+      "skin_resolutions": [
+        64,
+        128
+      ],
+      "armor": {
+        "path": "oxal_armor_parts_2_4_2.blend",
+        "sha256": "0adc9c0de6967e367fe3178839bee0873ad0aa825d89f9bd089fc671e9a2d00b"
+      },
+      "armor_bindings": {
+        "path": "ARMOR_2_4_2.json",
+        "sha256": "85f72abdcf79b8fec8cce974d898f2f91aef98c2bff3b96dffd370f26b834519"
+      },
+      "layer_resolution": {
+        "path": "LAYER_RESOLUTION_UNIFIED.json",
+        "sha256": "29644159ac57be1171e771839da222061a993bef802a87be3db4379b4ed4ed08"
+      },
+      "back": {
+        "path": "BACK_2_4_2.json",
+        "sha256": "d9078060bd0366ab1c3152e38976697622d0e9df34255ed740a1e2a66a0497dd"
+      },
+      "lid_uv_mask_schema": 1,
+      "face_controls_schema": 12,
+      "brow_rotation_limit_degrees": 30,
+      "expression_scale": 0.75,
+      "single_eye": "The selected raw-skin side has a bare illustrated eye window.",
+      "lid_seam": "The inner edges of the upper and lower lids meet the nasal skin under native blink.",
+      "mouth": "The native type switch selects independent discrete or linear mouth poses and materials.",
+      "eye_expressions": {
+        "modes": [
+          "关闭",
+          "闭眼",
+          "红心",
+          "蚊香眼",
+          "黑脸",
+          "闭眼·纯色眉纹"
+        ],
+        "switches": [
+          "L.眼睛表情切换",
+          "R.眼睛表情切换"
+        ],
+        "roll": [
+          "L.眼睛",
+          "R.眼睛"
+        ],
+        "spiral_material_angle": "Native keyframeable shader input in addition to per-eye bone roll.",
+        "sprites": {
+          "container": "b92355b32f566dd5ec209dcf6f25ddd239fdf967a70af42308ef9607aab3b194",
+          "full": "acb11da7611dc8239d4da2fe500cca2fe88a2c4facccf42fa7207c0e9dba4a16"
+        },
+        "scale": "The common eye control scales every expression along X and Z. Pupil and brow expressions also support per-eye scaling.",
+        "shadow": "Packed 16-bit grayscale texture face_shadow_mask.png, sampled from the deformed eyelid and face positions on the front of the base head. Independent of the eye switches and skin overlay."
+      }
+    },
+    "2.4.9": {
+      "source": {
+        "path": "白珀-人模V2.4.9.blend",
+        "sha256": "8267b3f2f11ed69e3f710c071da777d069313a84aa18d9d3ad4596c3ae9ab48f"
+      },
+      "body": {
+        "path": "oxal_baipo_mc_body_2_4_9.blend",
+        "sha256": "d9000b158ac47e1642858e206456e3fd550b368d5167111caed6bbe37a797b60"
+      },
+      "source_version": "2.4.8",
+      "coordinate_system": "native armature local",
+      "controls": [
+        "L.眉毛",
+        "R.眉毛",
+        "L.下眼皮",
+        "R.下眼皮",
+        "L.眼睛表情切换",
+        "R.眼睛表情切换",
+        "眉纹切换·轨道",
+        "单眼皮肤",
+        "单眼皮肤·轨道",
+        "眼睛表情",
+        "眼睛表情·轨道",
+        "眉毛开关",
+        "眉毛开关·轨道"
+      ],
+      "head_translation": "Parented to 脖子 with the original rest transform and disconnected joint",
+      "expression": "Per-eye expression switches and a five-stop selector. The fifth stop shades the entire face. The separate brow switch hides ordinary brows and brings active pupil expressions in front of the native lids.",
+      "skin_resolutions": [
+        64,
+        128
+      ],
+      "armor": {
+        "path": "oxal_armor_parts_2_4_2.blend",
+        "sha256": "0adc9c0de6967e367fe3178839bee0873ad0aa825d89f9bd089fc671e9a2d00b"
+      },
+      "armor_bindings": {
+        "path": "ARMOR_2_4_2.json",
+        "sha256": "85f72abdcf79b8fec8cce974d898f2f91aef98c2bff3b96dffd370f26b834519"
+      },
+      "layer_resolution": {
+        "path": "LAYER_RESOLUTION_UNIFIED.json",
+        "sha256": "29644159ac57be1171e771839da222061a993bef802a87be3db4379b4ed4ed08"
+      },
+      "back": {
+        "path": "BACK_2_4_2.json",
+        "sha256": "d9078060bd0366ab1c3152e38976697622d0e9df34255ed740a1e2a66a0497dd"
+      },
+      "lid_uv_mask_schema": 1,
+      "face_controls_schema": 12,
+      "brow_rotation_limit_degrees": 30,
+      "expression_scale": 0.75,
+      "single_eye": "The selected raw-skin side has a bare illustrated eye window.",
+      "lid_seam": "The inner edges of the upper and lower lids meet the nasal skin under native blink.",
+      "mouth": "The native type switch selects independent discrete or linear mouth poses and materials.",
+      "eye_expressions": {
+        "modes": [
+          "关闭",
+          "闭眼",
+          "红心",
+          "蚊香眼",
+          "黑脸",
+          "闭眼·纯色眉纹"
+        ],
+        "switches": [
+          "L.眼睛表情切换",
+          "R.眼睛表情切换"
+        ],
+        "roll": [
+          "L.眼睛",
+          "R.眼睛"
+        ],
+        "spiral_material_angle": "Native keyframeable shader input in addition to per-eye bone roll.",
+        "sprites": {
+          "container": "b92355b32f566dd5ec209dcf6f25ddd239fdf967a70af42308ef9607aab3b194",
+          "full": "acb11da7611dc8239d4da2fe500cca2fe88a2c4facccf42fa7207c0e9dba4a16"
+        },
+        "scale": "The common eye control scales every expression along X and Z. Pupil and brow expressions also support per-eye scaling.",
+        "shadow": "Packed 16-bit grayscale texture face_shadow_mask.png, sampled from the deformed eyelid and face positions on the front of the base head. Independent of the eye switches and skin overlay."
+      }
     }
   },
   "source_kind": "offline derivative of authored complete standalone native model",
@@ -1541,5 +1703,14 @@
     "derivation": "One native FONT/Curve and its original Active Camera geometry nodes and packed Minecraft fonts from the immutable declared 196 resource. Source rig references are detached, and only the selected target rig/head is rebound during an explicit name-enable transaction. No source rig, scene or Python callback is bundled.",
     "compatibility": "The original template head rest matrix matches all 14 version-specific head matrices in COMPAT_PARTS.json within 0.00002; runtime also verifies the target head rest matrix and parent. Names missing from an old project are created only on explicit enable; existing precisely bound native names remain in place.",
     "transforms": "Child Of basis and inverse are mapped together from source rig to target rig; target world translation, rotation and scale do not apply twice."
+  },
+  "source_model": {
+    "path": "白珀-人模V2.4.9.blend",
+    "sha256": "8267b3f2f11ed69e3f710c071da777d069313a84aa18d9d3ad4596c3ae9ab48f",
+    "kind": "Complete native human source with face controls",
+    "derived_from": {
+      "path": "白珀-人模V2.4.8.blend",
+      "sha256": "eca292a69d5afad54a3171f271cae24153bd61064946ef1c4eea017853c497b1"
+    }
   }
 }

@@ -6,7 +6,7 @@ re-sign an old graph. Every candidate must match the saved historical hash.
 
 import bpy
 
-HOSTS = {(5, 0), (5, 1), (5, 2)}
+HOSTS = {(5, 0), (5, 1), (5, 2), (5, 3)}
 
 
 def _static(node, socket, expected, animated):
@@ -15,7 +15,12 @@ def _static(node, socket, expected, animated):
 
 
 def _principled_insert(node, animated):
-    return (node.bl_idname == "ShaderNodeBsdfPrincipled" and len(node.inputs) == 32
+    extra53 = (bpy.app.version[:2] == (5, 3) and len(node.inputs) == 34
+               and node.inputs[20].identifier == "Transmission Dispersion Scale"
+               and node.inputs[21].identifier == "Transmission Dispersion Abbe Number"
+               and _static(node, node.inputs[20], 0.0, animated)
+               and _static(node, node.inputs[21], 20.0, animated))
+    return (node.bl_idname == "ShaderNodeBsdfPrincipled" and (len(node.inputs) == 32 or extra53)
             and node.inputs[4].identifier == "Alpha" and node.inputs[5].identifier == "Thin Wall"
             and node.inputs[6].identifier == "Normal" and node.inputs[-1].identifier == "Thin Film IOR"
             and _static(node, node.inputs[5], False, animated))
@@ -41,7 +46,9 @@ def legacy_driver_paths(tree, captured):
                 continue
             index, closing, suffix = path[len(prefix):].partition("]")
             if closing and index.isdecimal() and 5 < int(index) < count:
-                path = prefix + str(int(index) - 1) + "]" + suffix
+                number = int(index)
+                shift = 1 + (int(number > 20) + int(number > 21) if count == 34 else 0)
+                path = prefix + str(number - shift) + "]" + suffix
             break
         curves.append({**record, "path": path})
     return {**captured, "curves": curves}
@@ -58,7 +65,7 @@ def properties(owner, values):
 
 
 def random_float(node):
-    return (bpy.app.version[:2] == (5, 2) and node.bl_idname == "FunctionNodeRandomValue"
+    return (bpy.app.version[:2] in {(5, 2), (5, 3)} and node.bl_idname == "FunctionNodeRandomValue"
             and node.data_type == "FLOAT"
             and tuple((s.identifier, s.bl_idname) for s in node.inputs) == (
                 ("Min", "NodeSocketFloat"), ("Max", "NodeSocketFloat"),
@@ -72,11 +79,25 @@ def node_record(node, scalar, values, animated):
         return scalar, values
     scalar = properties(node, scalar)
     kind = node.bl_idname
-    if _principled_insert(node, animated):
+    if (bpy.app.version[:2] == (5, 3) and kind == "GeometryNodeRealizeInstances"
+            and tuple(s.identifier for s in node.inputs)
+            == ("Geometry", "Selection", "Realize All", "Depth", "Preserve Normals")
+            and node.inputs[4].bl_idname == "NodeSocketBool"
+            and _static(node, node.inputs[4], False, animated)):
+        # Preserve Normals was added after the historical 4.5 contract.
+        values = [(index - (index > 4), value) for index, value in values if index != 4]
+    elif (bpy.app.version[:2] == (5, 3) and kind == "ShaderNodeAttribute"
+          and len(node.inputs) == 1 and node.inputs[0].identifier == "LightIndex"
+          and node.inputs[0].bl_idname == "NodeSocketInt"
+          and _static(node, node.inputs[0], 0, animated)):
+        values = [(index - 1, value) for index, value in values if index != 0]
+    elif _principled_insert(node, animated):
         scalar = [(key, "RANDOM_WALK" if value == "RANDOM_WALK_LEGACY" else
                    "RANDOM_WALK_5X" if value == "RANDOM_WALK" else value)
                   if key == "subsurface_method" else (key, value) for key, value in scalar]
-        values = [(index - (index > 5), value) for index, value in values if index != 5]
+        removed = {5, 20, 21} if len(node.inputs) == 34 else {5}
+        values = [(index - sum(index > position for position in removed), value)
+                  for index, value in values if index not in removed]
     elif (kind == "GeometryNodeRemoveAttribute" and tuple(s.identifier for s in node.inputs) == ("Geometry", "Pattern Mode", "Name")
             and _static(node, node.inputs[1], "Exact", animated)):
         scalar = [*scalar, ("pattern_mode", "EXACT")]
@@ -86,7 +107,7 @@ def node_record(node, scalar, values, animated):
           and _static(node, node.inputs[2], "All", animated)):
         scalar = [*scalar, ("mode", "ALL")]
         values = [(index - (index > 2), value) for index, value in values if index != 2]
-    elif (bpy.app.version[:2] == (5, 2) and kind == "GeometryNodeCaptureAttribute"
+    elif (bpy.app.version[:2] in {(5, 2), (5, 3)} and kind == "GeometryNodeCaptureAttribute"
           and len(node.inputs) >= 3 and len(node.outputs) >= 3
           and node.inputs[1].identifier == node.outputs[1].identifier == "Selection"
           and _static(node, node.inputs[1], True, animated)
@@ -116,6 +137,6 @@ def modifier_record(modifier, scalar, storage):
     if bpy.app.version[:2] not in HOSTS:
         return scalar, storage
     scalar = properties(modifier, scalar)
-    if bpy.app.version[:2] == (5, 2) and storage == [[], []]:
+    if bpy.app.version[:2] in {(5, 2), (5, 3)} and storage == [[], []]:
         storage = {}
     return scalar, storage

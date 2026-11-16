@@ -3,7 +3,7 @@
 from functools import cache
 from importlib import import_module
 
-MODULES = ("asset_lightning","asset_potions","asset_particles","asset_environment","asset_poses","asset_banners","asset_projectiles","asset_book","asset_beacon","asset_crystal")
+MODULES = ("asset_lightning","asset_potions","asset_particles","asset_environment","asset_poses","asset_banners","asset_projectiles","asset_book","asset_beacon","asset_crystal","asset_armor")
 
 
 @cache

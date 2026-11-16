@@ -1,0 +1,113 @@
+"""Copy to business/<domain>/<name>.py and implement resource-specific hooks.
+
+This is a design skeleton, not an automatically loaded plugin module.
+Hooks deliberately fail until implemented. No resource IO runs on import.
+Adapt this request/result shape to the actual endpoint before wiring it.
+Resource rules: .agents/skills/oxal-resource-import/SKILL.md.
+Bus and Undo integration: .agents/skills/oxal-bus/SKILL.md.
+"""
+
+from dataclasses import dataclass
+from time import perf_counter
+
+
+@dataclass(frozen=True, slots=True)
+class ImportRequest:
+    scene_uid: int
+    variant: str = "default"
+
+
+@dataclass(frozen=True, slots=True)
+class ImportResult:
+    asset_id: str
+    asset_version: str
+    instance_id: str
+    display_name: str
+    source_reused: bool
+    created: bool
+    service_ms: float
+
+
+class ResourceTool:
+    ASSET_ID = "oxal.example.resource"
+    ASSET_VERSION = "1"
+    # Choose explicitly. A character usually needs NEW_INSTANCE, not activation.
+    POLICY = "NEW_INSTANCE"
+    SCOPE = "scene"
+
+    def load(self, request: ImportRequest) -> ImportResult:
+        started = perf_counter()
+        target = self._resolve_and_validate(request)
+        candidate = self._find_reusable(target, request)
+
+        # This result may be an existing instance OR a reusable source template,
+        # according to POLICY. Do not perform file IO before checking this path.
+        if candidate is not None:
+            instance_id, name, created = self._reuse_or_clone(
+                target, candidate, request
+            )
+            return self._result(instance_id, name, True, created, started)
+
+        self._validate_source(request)
+        instance_id, name = self._import_new_transaction(target, request)
+        return self._result(instance_id, name, False, True, started)
+
+    def _result(
+        self,
+        instance_id: str,
+        name: str,
+        source_reused: bool,
+        created: bool,
+        started: float,
+    ) -> ImportResult:
+        # Return small plain data, never Scene/Object/Material RNA references.
+        return ImportResult(
+            self.ASSET_ID,
+            self.ASSET_VERSION,
+            instance_id,
+            name,
+            source_reused,
+            created,
+            (perf_counter() - started) * 1000,
+        )
+
+    def _resolve_and_validate(self, request: ImportRequest) -> object:
+        # Resolve scene_uid now; validate options, writeability and ownership.
+        raise NotImplementedError("Implement execution-time target validation")
+
+    def _find_reusable(self, target: object, request: ImportRequest) -> object | None:
+        # Check identity/version/variant/scope and the resource contract.
+        # Return None when a fresh import is needed. Names alone are insufficient.
+        raise NotImplementedError("Implement the declared reuse policy")
+
+    def _reuse_or_clone(
+        self, target: object, candidate: object, request: ImportRequest
+    ) -> tuple[str, str, bool]:
+        # ACTIVATE_EXISTING: activate the validated instance.
+        # NEW_INSTANCE: clone only from a validated template, remap mutable refs,
+        # assign a NEW instance UUID and do not modify the source instance.
+        # REUSE_DATABLOCK: verify purpose and mutability before sharing.
+        # Any existing-state changes still need explicit failure restoration.
+        # Return (instance_id, display_name, created). A clone has created=True
+        # even though its already loaded source data was reused.
+        raise NotImplementedError("Implement activation or safe instance creation")
+
+    def _validate_source(self, request: ImportRequest) -> None:
+        # Check required file/format now. For .blend, inspect entry names inside
+        # the same library context used for append, not in another probe open.
+        raise NotImplementedError("Implement source validation")
+
+    def _import_new_transaction(
+        self, target: object, request: ImportRequest
+    ) -> tuple[str, str]:
+        # 1. Prepare a single read plan for each required source file.
+        # 2. Append/stage the necessary entries and track owned new IDs locally.
+        # 3. Prepare/remap dependencies; validate the resulting resource.
+        # 4. Journal existing fields/references before changing them.
+        # 5. Commit/link to the target; perform necessary dependency updates.
+        # 6. Return a stable instance ID and display name.
+        # On failure restore journaled fields in reverse order and remove only
+        # confirmed owned IDs. A global ID difference alone is not ownership.
+        # Implement failure restoration here. Execution/Undo wiring follows
+        # .agents/skills/oxal-bus/SKILL.md instead of a duplicated local protocol.
+        raise NotImplementedError("Implement the resource backend and rollback")

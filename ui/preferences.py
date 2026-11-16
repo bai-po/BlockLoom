@@ -32,14 +32,14 @@ class OXALMCSTUDIO_AP_preferences(AddonPreferences):
         title.label(text=PRODUCT_NAME, translate=False)
         title.label(text=f"版本：{DISPLAY_VERSION}", translate=False)
         title.label(text="作者：白珀、空树林")
-        title.label(text="兼容 Blender 4.5 / 5.0 / 5.1 / 5.2")
+        title.label(text="兼容 Blender 4.5 / 5.0 / 5.1 / 5.2 / 5.3")
         box = layout.box()
         box.label(text="面向 Blender 的 Minecraft 创作工具。")
         for label, icon in (
             ("白珀人模：皮肤、骨骼控制、盔甲与背饰", "ARMATURE_DATA"),
             ("OXAL 天空：昼夜、日月、云与环境", "WORLD"),
             ("独立物品栏：第一／第三人称与原生槽位控制", "VIEW_CAMERA"),
-            ("资产库：方块、物品、图片资产与材质包", "ASSET_MANAGER"),
+            ("资产库：方块、物品、图片资产、材质包与生物（测试中）", "ASSET_MANAGER"),
         ):
             box.label(text=label, icon=cast(Any, icon))
         layout.operator("wm.url_open", text="访问 OXAL 官网", icon="URL").url = WEBSITE

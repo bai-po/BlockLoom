@@ -109,6 +109,7 @@ class OXALMCSTUDIO_OT_human_migrate(Operator):
         layout.label(text="目标人模：白珀-人模V" + source.get("target_version", CURRENT), icon="IMPORT")
         layout.label(text=f'动画：{source["actions"]} 个 Action / {source["curves"]} 条曲线')
         layout.label(text="导入新版并复制同名骨骼的姿态、关键帧和普通 NLA。")
+        layout.label(text="已通过插件绑定的物品会跟随新版对应的控制骨。")
         layout.label(text=f'旧人模 {source["archived_objects"]} 个对象将放入“旧人模”合集并从视图层排除。', icon="INFO")
         layout.label(text="不匹配通道会跳过并提示；不重绑外部物品或约束。")
         layout.prop(self, "arm_mode")
@@ -283,10 +284,12 @@ class OXALMCSTUDIO_OT_human_command(Operator):
             if action not in {"library_add", "library_list"}:
                 options["instance_id"] = _root(context)[INSTANCE]
             if action in {"bind", "unbind"}:
+                from ..business.human.viewport_character_state import wrist
+
                 root = _root(context)
                 members = set(root.all_objects)
                 selected = [o for o in context.selected_objects if o not in members]
-                options.update(objects=[o.name for o in selected], object_uids=[o.session_uid for o in selected], wrist=state.wrist)
+                options.update(objects=[o.name for o in selected], object_uids=[o.session_uid for o in selected], wrist=wrist(rig_of(root)))
             if action == "parameters":
                 options["values"] = json.loads(self.values_json)
             if action == "apply_initial":

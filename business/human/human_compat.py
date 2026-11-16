@@ -130,7 +130,9 @@ def _identify(scene, rig, *, version_hint=None):
     if _catalog is None or rig.type != "ARMATURE" or scene.objects.get(rig.name) != rig:
         return None
     # A copied/broken Beta ownership marker is not a legacy escape hatch.
-    if rig.get(OWNER) or any(c.get(ASSET_ID) == "oxal.human" for c in rig.users_collection):
+    if rig.get("oxal_humanoid_mob") or rig.get("blockloom_creature_version"):
+        return None
+    if rig.get(OWNER) or any(c.get(ASSET_ID) in {"oxal.human", "blockloom.creature"} for c in rig.users_collection):
         return None
     for name in _CORE:
         bone = rig.data.bones.get(name)

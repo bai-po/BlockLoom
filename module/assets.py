@@ -47,7 +47,7 @@ def execute(scene_uid, options):
 class AssetEndpoint(CommandEndpoint):
     def submit(self,scene_uid,options):
         ensure_mutation_allowed()
-        if options.get("action") in {"IMPORT","IMAGE","LIGHTNING"}:
+        if options.get("action") in {"IMPORT","IMAGE","LIGHTNING","CREATURE_IMPORT"}:
             options = prepare_creation_options(options)
         if options.get("action") == "IMPORT" and "particles_window" not in options and options.get("identifier") in {
             "minecraft:"+name for name in ("torch","wall_torch","soul_torch","soul_wall_torch","copper_torch","copper_wall_torch","brewing_stand","spore_blossom","spawner","trial_spawner","sculk_shrieker","sculk_sensor","calibrated_sculk_sensor","redstone_torch","redstone_wall_torch","end_rod","enchanting_table")
@@ -157,6 +157,16 @@ endpoint = AssetEndpoint("assets.execute", execute, allowed_modes=("OBJECT","POS
 def submit(scene_uid, options):
     ensure_mutation_allowed()
     return endpoint.submit(scene_uid, options)
+
+
+def creature_icon(name):
+    from ..business.asset.creatures import icon_path
+
+    if _previews is None:
+        return 0
+    if name not in _previews:
+        _previews.load(name, str(icon_path(name)), "IMAGE")
+    return _previews[name].icon_id
 
 
 def register():

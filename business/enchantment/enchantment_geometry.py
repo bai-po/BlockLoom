@@ -6,7 +6,10 @@ Only small face descriptors are prepared in Python. Native fields resample the
 input corners every frame, preserving shape/deformation and texture animation.
 """
 
+import hashlib
 import math
+from array import array
+from typing import NoReturn
 
 import bpy
 
@@ -84,7 +87,19 @@ def needs_weapon_contour(obj, *, transaction=None):
             and needs_contour(obj, transaction=transaction))
 
 
-def _mesh_signature(mesh, names):
+def _mesh_signature(mesh, names, *, packed=False):
+    if packed:
+        digest = hashlib.sha256()
+        for name in names:
+            attribute = mesh.attributes.get(name)
+            if attribute is None or attribute.domain != "FACE" or attribute.data_type not in {"FLOAT_VECTOR", "INT"}:
+                return "MISSING"
+            vector = attribute.data_type == "FLOAT_VECTOR"
+            buffer = array("f" if vector else "i", [0]) * (len(attribute.data) * (3 if vector else 1))
+            attribute.data.foreach_get("vector" if vector else "value", buffer)
+            digest.update(name.encode("utf8"))
+            digest.update(buffer)
+        return digest.hexdigest()
     result = []
     for name in names:
         attribute = mesh.attributes.get(name)
@@ -125,9 +140,11 @@ def validate_data(root, obj, *, transaction=None):
     outline._owned(root, (mesh,), transaction)
     expected = [PREFIX + part for part in ("nx", "ny", "corner0", "corner1", "corner2", "corner3")]
     expected.extend(PREFIX + f"uv{index}_{corner}" for index in range(len(mesh.uv_layers)) for corner in range(4))
+    if record.get("grouped_sprite"):
+        expected.extend(PREFIX + f"sample_corner{i}" for i in range(4))
     if list(record.get("attributes", ())) != expected:
         raise ValueError("附魔像素属性列表不符合已知生成合同，未覆盖")
-    if record.get("hash") != _mesh_signature(mesh, tuple(record["attributes"])):
+    if record.get("hash") != _mesh_signature(mesh, tuple(record["attributes"]), packed=bool(record.get("grouped_sprite"))):
         raise ValueError("附魔像素描述属性含用户修改，未覆盖")
 
 
@@ -155,7 +172,47 @@ def _frame_size(material):
     return width, height
 
 
-def _prepare(transaction, root, obj):
+def _surface_uv(mesh, material):
+    """Resolve the source image's pre-animation UV, separately for each slot."""
+    fallback = next((layer for layer in mesh.uv_layers if layer.active_render), None) or mesh.uv_layers.active or mesh.uv_layers[0]
+    if material is None or material.node_tree is None:
+        return fallback
+    tree = material.node_tree
+    texture = tree.nodes.get("OXAL Source Texture")
+    if texture is None:
+        images = [n for n in tree.nodes if n.type == "TEX_IMAGE" and n.image and not n.name.startswith(enchantment.PREFIX)]
+        texture = images[0] if len(images) == 1 else None
+    mapping = tree.nodes.get("OXAL Animation Current Mapping")
+    socket = mapping.inputs[0] if mapping is not None else texture.inputs.get("Vector") if texture else None
+    pending = [link.from_node for link in socket.links] if socket else []
+    seen, names = set(), set()
+    while pending:
+        node = pending.pop()
+        if node in seen:
+            continue
+        seen.add(node)
+        if node.type == "UVMAP" and node.uv_map:
+            names.add(node.uv_map)
+        else:
+            pending.extend(link.from_node for inp in node.inputs for link in inp.links)
+    if len(names) > 1:
+        raise ValueError("材质来源贴图使用多个UV，无法确定凹凸采样；原模型未修改")
+    name = next(iter(names), "") or str(material.get(enchantment.SOURCE_UV, ""))
+    layer = mesh.uv_layers.get(name) if name else fallback
+    if layer is None:
+        raise ValueError(f"材质来源UV不存在：{name}；原模型未修改")
+    return layer
+
+
+def _face_steps(face, uvs, sizes, cell_size):
+    coords = [uvs[face.material_index].data[i].uv for i in face.loop_indices]
+    width, height = sizes[face.material_index]
+    a, b = coords[1] - coords[0], coords[3] - coords[0]
+    return (max(1, math.ceil(math.hypot(a.x * width, a.y * height) / cell_size - 1e-5)),
+            max(1, math.ceil(math.hypot(b.x * width, b.y * height) / cell_size - 1e-5)))
+
+
+def _prepare(transaction, root, obj, cell_size):
     source = obj.data
     outline._owned(root, (source,), transaction)
     old = _saved(obj)
@@ -172,28 +229,58 @@ def _prepare(transaction, root, obj):
             raise ValueError("形态键网格被其它数据共享，不能保持原Key身份并准备像素")
         if old and source != old["mesh"] and source.shape_keys != old["mesh"].shape_keys:
             raise ValueError("原生形态键在材质准备中被私有复制，未替换其实际绑定")
-    if len(source.polygons) > MAX_SOURCE_FACES or not source.uv_layers:
-        raise ValueError("像素凹凸需要有效UV，原始面数不得超过65536")
+    sprite_groupable = obj.get("oxal_mc_studio_pixel_topology") == 2 and not in_place and not obj.vertex_groups
+    grouped = cell_size > 1 and sprite_groupable
+    # Authored sprite source faces already represent individual texels, including side walls.
+    limit = 6 * 262144 if sprite_groupable else MAX_SOURCE_FACES
+    if not source.uv_layers:
+        raise ValueError("像素凹凸需要有效UV；原模型未修改")
+    if len(source.polygons) > limit:
+        raise ValueError(f"像素凹凸原始面数 {len(source.polygons)} 超过处理上限 {limit}；界面可选格大小均不可用，请降低模型面数；原模型未修改")
     if any(len(polygon.vertices) != 4 for polygon in source.polygons):
         raise ValueError("此模型含非四边形面，不能可靠重采样UV像素；原模型未修改")
     sizes = [_frame_size(material) if material else (16, 16) for material in _materials(obj)]
-    uv = source.uv_layers.active or source.uv_layers[0]
+    if any(p.material_index >= len(sizes) for p in source.polygons):
+        raise ValueError("像素凹凸原表面缺少实际材质槽，未猜测对应贴图")
+    uvs = [_surface_uv(source, material) for material in _materials(obj)]
+
+    def budget_error(total=None) -> NoReturn:
+        candidate_size = None
+        if sprite_groupable:
+            from .enchantment_sprite_cells import candidate_size as find_candidate
+
+            candidate_size = find_candidate(source, uvs, sizes, cell_size, MAX_PIXELS)
+        elif cell_size != 16 and len(source.polygons) <= MAX_SOURCE_FACES:
+            candidate = sum(nx * ny for nx, ny in (_face_steps(face, uvs, sizes, 16) for face in source.polygons))
+            if candidate <= MAX_PIXELS:
+                candidate_size = 16
+        detail = (f"预计 {total} 面，超过 {MAX_PIXELS} 面预算" if total is not None else
+                  f"原始面数 {len(source.polygons)} 超过 {MAX_SOURCE_FACES} 面上限")
+        advice = (f"可将凹凸像素格大小设为 {candidate_size}" if candidate_size else
+                  "界面可选格大小均不可用，请降低模型面数或材质分辨率")
+        raise ValueError(f"像素凹凸{detail}；{advice}；原模型未修改")
+
+    if not grouped and len(source.polygons) > MAX_SOURCE_FACES:
+        budget_error()
+    retained, sample_loops = bytearray(), {}
+    if grouped:
+        from .enchantment_sprite_cells import rectangles
+
+        retained, sample_loops = rectangles(source, uvs, sizes, cell_size)
     rows, total = [], 0
     for polygon in source.polygons:
-        if polygon.material_index >= len(sizes):
-            raise ValueError("像素凹凸原表面缺少实际材质槽，未猜测对应贴图")
-        coords = [uv.data[index].uv.copy() for index in polygon.loop_indices]
-        width, height = sizes[polygon.material_index]
-        a, b = coords[1] - coords[0], coords[3] - coords[0]
-        nx = max(1, math.ceil(math.hypot(a.x * width, a.y * height) - 1e-5))
-        ny = max(1, math.ceil(math.hypot(b.x * width, b.y * height) - 1e-5))
+        if grouped and not retained[polygon.index]:
+            rows.append((0, 0))
+            continue
+        nx, ny = _face_steps(polygon, uvs, sizes, cell_size)
         total += nx * ny
         rows.append((nx, ny))
     if total > MAX_PIXELS:
-        raise ValueError(f"像素凹凸预计{total}面，超过65536面预算；请降低材质分辨率")
+        del retained, sample_loops, rows
+        budget_error(total)
     mesh = source if in_place else transaction.track(source.copy())
     previous_names = [name for name in old["attributes"] if mesh.attributes.get(name)] if old else []
-    if old and previous_names and (len(previous_names) != len(old["attributes"]) or _mesh_signature(mesh, previous_names) != old["hash"]):
+    if old and previous_names and (len(previous_names) != len(old["attributes"]) or _mesh_signature(mesh, previous_names, packed=bool(old.get("grouped_sprite"))) != old["hash"]):
         raise ValueError("本次材质网格副本中的像素属性不完整，未覆盖")
     previous_attributes = _attribute_values(mesh, previous_names) if in_place else []
     names = []
@@ -226,9 +313,14 @@ def _prepare(transaction, root, obj):
     for index, layer in enumerate(source.uv_layers):
         for corner in range(4):
             attribute(f"uv{index}_{corner}", "FLOAT_VECTOR",
-                      [(*layer.data[polygon.loop_indices[corner]].uv, 0) for polygon in source.polygons])
+                      ((*layer.data[sample_loops[corner][polygon.index] if grouped else polygon.loop_indices[corner]].uv, 0)
+                       for polygon in source.polygons))
+    if grouped:
+        for corner in range(4):
+            attribute(f"sample_corner{corner}", "INT", (source.loops[i].vertex_index for i in sample_loops[corner]))
     obj.data = mesh
-    obj[DATA] = {"mesh": mesh, "attributes": names, "hash": _mesh_signature(mesh, names), "pixels": total}
+    obj[DATA] = {"mesh": mesh, "attributes": names, "hash": _mesh_signature(mesh, names, packed=bool(grouped)),
+                 "grouped_sprite": bool(grouped), "pixels": total}
     return mesh
 
 
@@ -396,9 +488,11 @@ def _grid(graph, obj):
     index = graph.node("GeometryNodeInputIndex", "Source Vertex Index").outputs[0]
     geometry, ids = _capture(graph, source, "POINT", [("INT", "Original Vertex", index)])
     corners = [graph.attribute(PREFIX + "corner" + str(i), "INT") for i in range(4)]
+    sampling = ([graph.attribute(PREFIX + "sample_corner" + str(i), "INT") for i in range(4)]
+                if obj[DATA].get("grouped_sprite") else corners)
     position = graph.node("GeometryNodeInputPosition", "Source Position").outputs[0]
     items = [("VECTOR", "Position " + str(i), _sample(graph, source, position, corner, "FLOAT_VECTOR"))
-             for i, corner in enumerate(corners)]
+             for i, corner in enumerate(sampling)]
     used = {weight.group for vertex in obj.data.vertices for weight in vertex.groups if abs(weight.weight) > 1e-8}
     groups = tuple(group.name for group in obj.vertex_groups if group.index in used)
     if len(groups) > 32:
@@ -406,7 +500,7 @@ def _grid(graph, obj):
     for gi, group in enumerate(groups):
         value = graph.attribute(group, "FLOAT")
         items.extend(("FLOAT", f"Weight {gi} {i}", _sample(graph, source, value, corner, "FLOAT"))
-                     for i, corner in enumerate(corners))
+                     for i, corner in enumerate(sampling))
     material_index = graph.node("GeometryNodeInputMaterialIndex", "Original Material Index").outputs[0]
     items.append(("INT", "Original Material Slot", material_index))
     geometry, captured = _capture(graph, geometry, "FACE", items)
@@ -452,8 +546,8 @@ def _cutout(graph, obj, geometry, source_material=None):
               if source_material is None else source_material)
     opacity = 0
     sampler = Alpha(graph)
-    sampler.uv_name = (obj.data.uv_layers.active or obj.data.uv_layers[0]).name
     for index, material in enumerate(_materials(obj)):
+        sampler.uv_name = _surface_uv(obj.data, material).name
         selected = graph.math("COMPARE", source, index, "Material Selection")
         if material is not None:
             graph.embedded_owners[material.node_tree] = material
@@ -487,6 +581,8 @@ def _connect_contour(graph, obj, geometry):
     nx, ny = mesh.attributes[PREFIX + "nx"], mesh.attributes[PREFIX + "ny"]
     steps = []
     for face in mesh.polygons:
+        if nx.data[face.index].value == 0:
+            continue
         corners = [mesh.vertices[index].co for index in face.vertices]
         for a, b, count in ((0, 1, nx.data[face.index].value), (3, 2, nx.data[face.index].value),
                             (0, 3, ny.data[face.index].value), (1, 2, ny.data[face.index].value)):
@@ -568,7 +664,7 @@ def prepare(transaction, root, obj, owner, *, relief, outline_proxy=False):
     if obj.data.attributes.get(OUTLINE_PROXY_ATTRIBUTE) is not None:
         raise ValueError("网格已有同名用户描边表面属性，未覆盖")
     contour = needs_contour(obj, transaction=transaction)
-    _prepare(transaction, root, obj)
+    _prepare(transaction, root, obj, owner.get("glint_relief_cell_size", 1) if relief else 1)
     graph = outline.Graph(transaction, owner, "geometry")
     geometry, source_material = _grid(graph, obj)
     geometry = _cutout(graph, obj, geometry, source_material)
@@ -602,9 +698,14 @@ def prepare(transaction, root, obj, owner, *, relief, outline_proxy=False):
         proxy = _connect_contour(graph, obj, proxy)
         proxy = graph.store(proxy, OUTLINE_PROXY_ATTRIBUTE, "BOOLEAN", "FACE", True)
         geometry = graph.store(geometry, OUTLINE_PROXY_ATTRIBUTE, "BOOLEAN", "FACE", False)
+        gate = graph.node("GeometryNodeSwitch", "Emit Proxy Only For Visible Outline")
+        gate.input_type = "GEOMETRY"
+        enabled = graph.math("MULTIPLY", graph.value("glint_enabled"), graph.value("glint_outline_enabled"))
+        graph.feed(gate.inputs["Switch"], graph.math("MULTIPLY", enabled, graph.value("glint_outline_width", "value>0")))
+        graph.feed(gate.inputs["True"], proxy)
         joined = graph.node("GeometryNodeJoinGeometry", "Relief And Connected Outline Input")
         graph.feed(joined.inputs["Geometry"], geometry)
-        graph.feed(joined.inputs["Geometry"], proxy)
+        graph.feed(joined.inputs["Geometry"], gate.outputs[0])
         geometry = joined.outputs["Geometry"]
         graph.tree[OUTLINE_PROXY_MARK] = 1
     tree = graph.finish(geometry, outline.GEOMETRY_MARK)
@@ -616,7 +717,7 @@ def remove_data(transaction, root, obj):
     if not record:
         return
     validate_data(root, obj, transaction=transaction)
-    if obj.data != record["mesh"] and (obj.data not in transaction.ids or _mesh_signature(obj.data, record["attributes"]) != record["hash"]):
+    if obj.data != record["mesh"] and (obj.data not in transaction.ids or _mesh_signature(obj.data, record["attributes"], packed=bool(record.get("grouped_sprite"))) != record["hash"]):
         raise ValueError("像素输入被用户替换，未删除其属性")
     old = obj.data
     in_place = old.shape_keys is not None

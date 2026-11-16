@@ -240,14 +240,25 @@ def rod_phases(transaction, collection, root, material_for):
     root["oxal_mc_studio_fishing_states"] = 1
 
 
-def attachments(transaction, scene, collection, root, identifier, material_for):
+def attachments(transaction, scene, collection, root, identifier, material_for, *, center_grip=True):
     short = identifier.split(":")[-1]
+    # All authored components now exist. Translate the rest skeleton; bone-
+    # parented meshes follow it, preserving their original mesh coordinates.
+    grip_point = Vector(root.get("oxal_mc_studio_grip", (0, 0, 0))) if center_grip else Vector()
+    if grip_point.length and root.type == "ARMATURE":
+        root.data.transform(Matrix.Translation(-grip_point))
+        for child in root.children:
+            if child.parent_type != "BONE":
+                child.location -= grip_point
+        root["oxal_mc_studio_raw_grip"] = tuple(grip_point)
+        root["oxal_mc_studio_grip"] = root["握持支点"] = (0., 0., 0.)
     if short not in {"lead", "fishing_rod"} or root.type != "ARMATURE":
         return
     from . import asset_rope
 
     fishing = short == "fishing_rod"
     label, names, points = asset_rope.layout(fishing)
+    points = [point - grip_point for point in points]
     start, end = points[0], points[-1]
     with asset_rigs._edit(root, scene) as bones:
         for index, (name, point) in enumerate(zip(names, points, strict=True)):

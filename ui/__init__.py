@@ -2,6 +2,7 @@
 
 from ..util.lifecycle import register_modules, unregister_modules
 from . import (
+    asset_rail,
     assets,
     common,
     human,
@@ -11,9 +12,10 @@ from . import (
     sidebar,
     sky,
     statusbar,
+    workbench,
 )
 
-MODULES = (common, preferences, instances, sky, inventory, human, assets, sidebar, statusbar)
+MODULES = (common, preferences, instances, sky, inventory, human, asset_rail, assets, sidebar, statusbar, workbench)
 
 
 def register():

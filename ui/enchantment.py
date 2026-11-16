@@ -62,9 +62,7 @@ def draw_armor_controls(layout, root, parts, *, ui_state=None):
     from ..business.enchantment.enchantment_pixels import (
         display_prepared as pixels_prepared,
     )
-    from ..business.human.human import parameter_owner
     from ..business.human.human_armor import objects
-    from ..business.human.human_state import key
 
     titles = {"head": "头盔附魔", "chest": "胸甲附魔", "legs": "护腿附魔", "feet": "靴子附魔"}
     parts = tuple(parts)
@@ -99,12 +97,11 @@ def draw_armor_controls(layout, root, parts, *, ui_state=None):
         if materials:
             layout.label(text=titles[part])
             draw_controls(layout, owner, geometry_allowed=False,
-                          outline_allowed=not parameter_owner(root).get(key(part + "_3d"), False),
                           outline_prepared=all(outline_prepared(obj) for obj in members),
                           pixel_materials=materials)
 
 
-def draw_controls(layout, owner, *, prepared=False, geometry_allowed=True, outline_allowed=True, outline_prepared=False, stable_sprite=False,
+def draw_controls(layout, owner, *, prepared=False, geometry_allowed=True, outline_prepared=False, stable_sprite=False,
                   pixel_materials=()):
     row = layout.row(align=True)
     _prop(row, owner, "glint_enabled", "附魔")
@@ -136,7 +133,6 @@ def draw_controls(layout, owner, *, prepared=False, geometry_allowed=True, outli
         return
     if outline_prepared:
         outline = layout.box()
-        outline.enabled = outline_allowed
         _prop(outline, owner, "glint_outline_enabled", "附魔描边")
         _prop(outline, owner, "glint_outline_color", "描边色")
         _prop(outline, owner, "glint_outline_width", "描边粗细")

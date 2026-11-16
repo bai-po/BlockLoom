@@ -11,9 +11,9 @@ import bpy
 
 from ...util.resources import VERSION
 
-CURRENT = "2.4.7"
+CURRENT = "2.4.9"
 LEGACY = "2.4.0"
-UNIFIED_VERSIONS = frozenset({"2.4.2", "2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7"})
+UNIFIED_VERSIONS = frozenset({"2.4.2", "2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7", "2.4.8", "2.4.9"})
 HEAD_HD_MARKER = "oxal_human_head_hd_uv_schema"
 DATA = Path(__file__).resolve().parents[2] / "asset/human"
 HEAD_SOURCE = "头部 · 八型单网格"
@@ -38,7 +38,9 @@ _PROFILES = {
     "2.4.4": NativeProfile("2.4.4", "baip人模2.4.4", "legacy/oxal_baipo_mc_body_2_4_4.blend", "oxal_armor_parts_2_4_2.blend", "ARMOR_2_4_2.json", "LAYER_RESOLUTION_UNIFIED.json"),
     "2.4.5": NativeProfile("2.4.5", "baip人模2.4.5", "legacy/oxal_baipo_mc_body_2_4_5.blend", "oxal_armor_parts_2_4_2.blend", "ARMOR_2_4_2.json", "LAYER_RESOLUTION_UNIFIED.json"),
     "2.4.6": NativeProfile("2.4.6", "baip人模2.4.6", "legacy/oxal_baipo_mc_body_2_4_6.blend", "oxal_armor_parts_2_4_2.blend", "ARMOR_2_4_2.json", "LAYER_RESOLUTION_UNIFIED.json"),
-    CURRENT: NativeProfile(CURRENT, "baip人模2.4.7", "oxal_baipo_mc_body_2_4_7.blend", "oxal_armor_parts_2_4_2.blend", "ARMOR_2_4_2.json", "LAYER_RESOLUTION_UNIFIED.json"),
+    "2.4.7": NativeProfile("2.4.7", "baip人模2.4.7", "oxal_baipo_mc_body_2_4_7.blend", "oxal_armor_parts_2_4_2.blend", "ARMOR_2_4_2.json", "LAYER_RESOLUTION_UNIFIED.json"),
+    "2.4.8": NativeProfile("2.4.8", "baip人模2.4.8", "oxal_baipo_mc_body_2_4_8.blend", "oxal_armor_parts_2_4_2.blend", "ARMOR_2_4_2.json", "LAYER_RESOLUTION_UNIFIED.json"),
+    CURRENT: NativeProfile(CURRENT, "baip人模2.4.9", "oxal_baipo_mc_body_2_4_9.blend", "oxal_armor_parts_2_4_2.blend", "ARMOR_2_4_2.json", "LAYER_RESOLUTION_UNIFIED.json"),
 }
 
 

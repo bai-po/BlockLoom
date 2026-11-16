@@ -11,7 +11,7 @@ from uuid import uuid4
 import bpy
 
 from ...core.runtime import ensure_mutation_allowed
-from ...util.ownership import SCENE_ROOTS, owns, require_owned
+from ...util.ownership import ROOT_UID, SCENE_ROOTS, owns, require_owned
 from ...util.resources import resolve_scene
 from ..asset.asset_geometry import Creation
 from . import enchantment as shader
@@ -131,6 +131,15 @@ def _journal_property(transaction, obj, key, value):
 
 def _owner(transaction, scene, obj, creation_id):
     owner = controller(obj)
+    if owner is None:
+        candidate = obj.get(REFERENCE)
+        if (isinstance(candidate, bpy.types.Object) and candidate.get(TARGET) == obj
+                and candidate.get(SCHEMA) == 1 and not candidate.users_collection
+                and scene.get(SCENE_ROOTS, {}).get(candidate.get(ROOT_UID, "")) == candidate):
+            from .enchantment_collections import relink_controller
+
+            relink_controller(transaction, scene, candidate)
+            owner = controller(obj)
     if owner is not None:
         if owner.get("oxal_external_creation_id") == creation_id:
             raise ValueError("本次通用附魔创建标识重复，未重复创建")

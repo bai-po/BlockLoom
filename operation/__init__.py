@@ -2,9 +2,9 @@
 
 from ..core import commands
 from ..util.lifecycle import register_modules, unregister_modules
-from . import assets, human, resources, sky
+from . import assets, human, resources, sky, viewport_pose
 
-MODULES = (commands, sky, resources, human, assets)
+MODULES = (commands, sky, resources, human, assets, viewport_pose)
 
 
 def register() -> None:

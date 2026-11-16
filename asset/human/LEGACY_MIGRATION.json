@@ -10758,6 +10758,699 @@
         }
       ],
       "variant": "native_shared_head_246_eyelid_uv"
+    },
+    {
+      "version": "2.4.7",
+      "filename": "白珀-人模V2.4.7.blend",
+      "sha256": "e547f08db33be39fa9db47914ef907dcf393fdad73cc783a4b1ee5a4a66f4a7e",
+      "collection": "baip人模2.4.7",
+      "rig": "白珀-人模V2.4.7骨架",
+      "bone_count": 97,
+      "version_properties": {
+        "bp_asset_version": "2.4.7",
+        "bp_model_version": "2.4.7",
+        "原始_bp_asset_version": "2.4.0",
+        "原始_bp_model_version": "2.4.0",
+        "人模版本": "2.4.7"
+      },
+      "bone_names": [
+        "L.大腿-官方版IK",
+        "L.大腿IK绑定",
+        "L.大臂",
+        "L.大臂-IK",
+        "L.大臂-IK-节",
+        "L.大臂-IK中间节",
+        "L.大臂-IK绑定",
+        "L.大臂-IK角度提取",
+        "L.大臂-拉伸",
+        "L.小腿-官方版IK-绑定",
+        "L.小腿IK",
+        "L.小腿中间节",
+        "L.小腿弯曲-绑定",
+        "L.小腿节",
+        "L.小臂",
+        "L.小臂-IK",
+        "L.小臂-IK角度提取",
+        "L.小臂-绑定",
+        "L.手腕",
+        "L.拉伸",
+        "L.眼皮",
+        "L.眼睛",
+        "L.肩膀",
+        "L.胳膊IK-朝向",
+        "L.胳膊控制器",
+        "L.脚控制器",
+        "L.脚腕",
+        "L.腿朝向",
+        "MCH·披风·单段中点·首尾跟随",
+        "R.大腿-官方版IK",
+        "R.大腿IK绑定",
+        "R.大臂",
+        "R.大臂-IK",
+        "R.大臂-IK-节",
+        "R.大臂-IK中间节",
+        "R.大臂-IK绑定",
+        "R.大臂-IK角度提取",
+        "R.大臂-拉伸",
+        "R.小腿-官方版IK-绑定",
+        "R.小腿IK",
+        "R.小腿中间节",
+        "R.小腿弯曲-绑定",
+        "R.小腿节",
+        "R.小臂",
+        "R.小臂-IK",
+        "R.小臂-IK角度提取",
+        "R.小臂-绑定",
+        "R.手腕",
+        "R.拉伸",
+        "R.眼皮",
+        "R.眼睛",
+        "R.肩膀",
+        "R.胳膊IK-朝向",
+        "R.胳膊控制器",
+        "R.脚控制器",
+        "R.脚腕",
+        "R.腿朝向",
+        "bottom.L",
+        "bottom.R",
+        "down.L",
+        "down.R",
+        "l.下盘",
+        "r.下盘",
+        "up.L",
+        "up.R",
+        "wing.L",
+        "wing.R",
+        "上身",
+        "下半身",
+        "嘴巴",
+        "嘴巴控制器",
+        "嘴巴控制器-控制",
+        "嘴巴控制器-线性控制",
+        "嘴巴线性切换",
+        "嘴巴线性切换·轨道",
+        "嘴巴表情切换·三档轨道",
+        "头",
+        "披风·单段",
+        "披风·单段中点",
+        "披风·单段目标",
+        "披风·根",
+        "披风模式",
+        "披风模式·轨道",
+        "根",
+        "眼睛",
+        "肚",
+        "肩膀",
+        "胸口",
+        "脖子",
+        "表情切换",
+        "身体-绑定",
+        "面部兼容",
+        "面部切换框",
+        "面部控制器位置",
+        "鞘翅展开",
+        "鞘翅开合·轨道",
+        "骨骼.002"
+      ],
+      "root_child_collections": [
+        "盔甲",
+        "手臂-三格",
+        "手臂-四格",
+        "腿-官方动画",
+        "腿-常规弯曲",
+        "背饰·控件形状"
+      ],
+      "object_roles": [
+        {
+          "name": "L.细胳膊",
+          "type": "MESH",
+          "parent": "L臂",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            1699,
+            3392,
+            1696
+          ]
+        },
+        {
+          "name": "L.细胳膊二层",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            770,
+            1536,
+            768
+          ]
+        },
+        {
+          "name": "L粗胳膊二层",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            898,
+            1792,
+            896
+          ]
+        },
+        {
+          "name": "L粗隔壁",
+          "type": "MESH",
+          "parent": "L臂",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            1698,
+            3392,
+            1696
+          ]
+        },
+        {
+          "name": "L腿",
+          "type": "MESH",
+          "parent": "L腿晶格",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            1698,
+            3392,
+            1696
+          ]
+        },
+        {
+          "name": "L腿-官方",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            1698,
+            3392,
+            1696
+          ]
+        },
+        {
+          "name": "L腿-官方二层",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            898,
+            1792,
+            896
+          ]
+        },
+        {
+          "name": "L腿二层",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            898,
+            1792,
+            896
+          ]
+        },
+        {
+          "name": "L腿晶格",
+          "type": "LATTICE",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": null
+        },
+        {
+          "name": "L臂",
+          "type": "LATTICE",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": null
+        },
+        {
+          "name": "New model",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            144,
+            280,
+            140
+          ]
+        },
+        {
+          "name": "R.细胳膊",
+          "type": "MESH",
+          "parent": "R臂",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            1698,
+            3392,
+            1696
+          ]
+        },
+        {
+          "name": "R.细胳膊二层",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            770,
+            1536,
+            768
+          ]
+        },
+        {
+          "name": "R粗胳膊二层",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            898,
+            1792,
+            896
+          ]
+        },
+        {
+          "name": "R粗隔壁",
+          "type": "MESH",
+          "parent": "R臂",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            1698,
+            3392,
+            1696
+          ]
+        },
+        {
+          "name": "R腿",
+          "type": "MESH",
+          "parent": "R腿晶格",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            1698,
+            3392,
+            1696
+          ]
+        },
+        {
+          "name": "R腿-官方",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            1698,
+            3392,
+            1696
+          ]
+        },
+        {
+          "name": "R腿-官方二层",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            898,
+            1792,
+            896
+          ]
+        },
+        {
+          "name": "R腿二层",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            898,
+            1792,
+            896
+          ]
+        },
+        {
+          "name": "R腿晶格",
+          "type": "LATTICE",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": null
+        },
+        {
+          "name": "R臂",
+          "type": "LATTICE",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": null
+        },
+        {
+          "name": "WGT-白珀2.1.1人模骨骼_名称",
+          "type": "MESH",
+          "parent": "控制器",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            4,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "WGT-白珀2.1.1人模骨骼_控制器外壳",
+          "type": "MESH",
+          "parent": "控制器",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            24,
+            24,
+            0
+          ]
+        },
+        {
+          "name": "WGT-白珀2.1.1人模骨骼_控制器外壳.001",
+          "type": "MESH",
+          "parent": "控制器",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            24,
+            24,
+            0
+          ]
+        },
+        {
+          "name": "WGT-白珀2.1.1人模骨骼_面部兼容",
+          "type": "MESH",
+          "parent": "控制器",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            4,
+            4,
+            0
+          ]
+        },
+        {
+          "name": "名字",
+          "type": "FONT",
+          "parent": null,
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": null
+        },
+        {
+          "name": "嘴",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            4,
+            4,
+            1
+          ]
+        },
+        {
+          "name": "头二层",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            1538,
+            3072,
+            1536
+          ]
+        },
+        {
+          "name": "头部 · 八型单网格",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            2987,
+            5834,
+            2767
+          ]
+        },
+        {
+          "name": "披风 · 首尾跟随计算（内部）",
+          "type": "EMPTY",
+          "parent": null,
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": null
+        },
+        {
+          "name": "披风·单段",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "BONE",
+          "parent_bone": "披风·根",
+          "mesh_counts": [
+            164,
+            324,
+            162
+          ]
+        },
+        {
+          "name": "披风·单段 · 原生平滑路径",
+          "type": "CURVE",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "BONE",
+          "parent_bone": "披风·根",
+          "mesh_counts": null
+        },
+        {
+          "name": "白珀-人模V2.4.7骨架",
+          "type": "ARMATURE",
+          "parent": null,
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": null
+        },
+        {
+          "name": "盔甲右脚",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            322,
+            640,
+            320
+          ]
+        },
+        {
+          "name": "盔甲右脚-官方腿",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            322,
+            640,
+            320
+          ]
+        },
+        {
+          "name": "盔甲右腿",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            306,
+            608,
+            304
+          ]
+        },
+        {
+          "name": "盔甲右腿-官方腿",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            306,
+            608,
+            304
+          ]
+        },
+        {
+          "name": "盔甲头盔",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            386,
+            768,
+            384
+          ]
+        },
+        {
+          "name": "盔甲左手",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            226,
+            448,
+            224
+          ]
+        },
+        {
+          "name": "盔甲左脚",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            306,
+            608,
+            304
+          ]
+        },
+        {
+          "name": "盔甲左脚-官方腿",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            306,
+            608,
+            304
+          ]
+        },
+        {
+          "name": "盔甲左腿",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            306,
+            608,
+            304
+          ]
+        },
+        {
+          "name": "盔甲左腿-官方腿",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            306,
+            608,
+            304
+          ]
+        },
+        {
+          "name": "盔甲裤子",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            354,
+            704,
+            352
+          ]
+        },
+        {
+          "name": "盔甲躯干",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            354,
+            704,
+            352
+          ]
+        },
+        {
+          "name": "立方体.001",
+          "type": "MESH",
+          "parent": "控制器",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            32,
+            60,
+            24
+          ]
+        },
+        {
+          "name": "腿甲右手",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            226,
+            448,
+            224
+          ]
+        },
+        {
+          "name": "身体",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            1552,
+            3100,
+            1550
+          ]
+        },
+        {
+          "name": "身体第二层",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            1410,
+            2816,
+            1408
+          ]
+        },
+        {
+          "name": "面部兼容图片",
+          "type": "MESH",
+          "parent": "白珀-人模V2.4.7骨架",
+          "parent_type": "OBJECT",
+          "parent_bone": "",
+          "mesh_counts": [
+            4,
+            4,
+            1
+          ]
+        }
+      ],
+      "variant": "native_shared_head_247_eyelid_uv"
     }
   ]
 }

@@ -367,7 +367,8 @@ def apply(transaction, scene, target, owner):
     modifier = proxy.modifiers.new("外部描边 · 仅外壳", "NODES")
     modifier.node_group = after
     for field in ("hide_viewport", "hide_render"):
-        _driver(owner, proxy, field, "value>0.5", [("value", target, field)])
+        _driver(owner, proxy, field, "hidden or not (enabled>0.5 and width>0)",
+                [("hidden", target, field), *declarations])
     state = {"schema": 1, "target": target, "proxy": proxy, "mesh": mesh,
              "groups": {"source": before, "shell": after},
              "materials": {str(index): material for index, material in enumerate(materials)}}

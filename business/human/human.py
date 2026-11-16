@@ -1,6 +1,6 @@
 """Independent BaiPo instances with native controls and explicit edit commands.
 
-Identity oxal.human / 2.4.7; NEW_INSTANCE; instance ownership.
+Identity oxal.human / 2.4.9; NEW_INSTANCE; instance ownership.
 Versioned native templates in human_source, pinned by SOURCE.json.
 No plugin driver functions, frame handlers, or playback-time reconstruction.
 """
@@ -272,7 +272,39 @@ def _private_materials(root: Any, transaction: AppendTransaction) -> None:
                         if node.type == "GROUP" and node.node_tree:
                             node.node_tree = private_group(node.node_tree)
             slot.material = materials[original]
+    from .human_face_preview import bind_instance_skin
+
+    bind_instance_skin(root, transaction, materials)
     _audit_drivers([*materials.values(), *groups.values()])
+
+
+def prepare_skin_shader_repair(transaction, root):
+    """Migrate the selected Beta instance without replacing its skin material."""
+    if model_version(root) not in {"2.4.8", "2.4.9"}:
+        return
+    from .human_skin_shader import compact_lid_group, lid_group, validate_lid_faces
+
+    (material,) = skin_materials(root)
+    meshes = {obj.data for obj in root.all_objects if obj.type == "MESH"
+              and any(slot.material == material for slot in obj.material_slots)}
+    if not meshes:
+        raise ValueError("所选人模的主皮肤材质未用于网格")
+
+    group_node = lid_group(material)
+    if group_node is None:
+        return
+    original = group_node.node_tree
+    require_owned(root, (material, original))
+    require_no_external_users(cast(Any, bpy.context.scene), root, (material,))
+    for mesh in meshes:
+        validate_lid_faces(mesh)
+    if original.animation_data:
+        raise ValueError("眼皮材质节点组含自定义动画，未修改：" + original.name)
+    replacement = transaction.track(original.copy())
+    replacement.use_fake_user = False
+    compact_lid_group(replacement)
+    transaction.on_rollback(lambda: setattr(group_node, "node_tree", original))
+    group_node.node_tree = replacement
 
 
 def _constraint_animated(obj: Any, constraint: Any) -> bool:
@@ -594,6 +626,10 @@ class HumanTool:
         layer = resolve_view_layer(scene, require_active=True)
         action = str(options.get("action", ""))
         values = options.get("values")
+        if action == "viewport_pose":
+            from .viewport_pose import edit
+
+            return edit(scene_uid, options)
         if action == "legacy_compat":
             from .human_compat import execute
 
@@ -774,6 +810,7 @@ class HumanTool:
         if action == "armor_unenchant":
             return "已移除所选盔甲附魔"
         labels = {
+            "repair": "已修复所选 Beta 实例",
             "outline_prepare": "已开启人模描边",
             "outline_remove": "已移除人模描边",
             "outline_repair": "已按源工程重建人模描边",
@@ -899,6 +936,9 @@ class HumanTool:
                 image[OWNER] = root[INSTANCE]
                 image.pack()
                 remember(transaction, root, source)
+            from .human_face_brow_mode import set_skin_layout
+
+            set_skin_layout(root, builtin=source is None, changed=changed)
             prepare_layer_resolution(transaction, root, tuple(root.all_objects), image)
             root["oxal_human_current_skin"] = image
             root["oxal_human_skin_pixels"] = int(image.size[0])
@@ -993,71 +1033,7 @@ class HumanTool:
     def _bind(scene: Any, root: Any, rig: Any, options: Mapping[str, object], *, unbind: bool) -> None:
         ensure_mutation_allowed()
         _require_instance(root)
-        require_owned(root, (rig, rig.data))
-        names = options.get("objects", [])
-        if not isinstance(names, list) or not all(isinstance(n, str) for n in names):
-            raise ValueError("绑定对象快照无效")
-        targets: list[Any] = [bpy.data.objects.get(n) for n in names]
-        identifiers = options.get("object_uids")
-        if identifiers is not None:
-            if not isinstance(identifiers, list) or not all(isinstance(i, int) and not isinstance(i, bool) for i in identifiers):
-                raise ValueError("绑定对象标识无效")
-            objects = {o.session_uid: o for o in bpy.data.objects}
-            targets = [objects.get(i) for i in identifiers]
-        members = set(root.all_objects)
-        scene_members = set(scene.objects)
-        if not targets or any(o is None or o not in scene_members or o in members or o.library or o.override_library for o in targets):
-            raise ValueError("请选择人模以外的可编辑物品")
-        if len(set(targets)) != len(targets):
-            raise ValueError("绑定请求含重复对象")
-        bone = {"L": "L.手腕", "R": "R.手腕", "H": "头"}.get(str(options.get("wrist", "L")))
-        if bone not in rig.pose.bones:
-            raise ValueError("绑定目标骨骼不存在")
-        ancestors = set()
-        parent = rig.parent
-        while parent is not None and parent not in ancestors:
-            ancestors.add(parent)
-            parent = parent.parent
-        for obj in targets:
-            if not unbind and (obj == rig or obj in ancestors or obj.constraints.get(BINDING)):
-                raise ValueError("绑定可能形成循环或物品已有绑定，请先解除")
-        if unbind:
-            plan = []
-            attrs = ("name", "target", "subtarget", "influence", "mute", "owner_space", "target_space", "use_location_x", "use_location_y", "use_location_z", "use_rotation_x", "use_rotation_y", "use_rotation_z", "use_scale_x", "use_scale_y", "use_scale_z")
-            for obj in targets:
-                for c in tuple(obj.constraints):
-                    if c.name == BINDING and c.type == "CHILD_OF" and c.target == rig:
-                        if _constraint_animated(obj, c):
-                            raise ValueError("绑定约束含驱动或 Action/NLA 动画，请先处理该约束动画；未修改用户动画")
-                        saved = {attr: getattr(c, attr) for attr in attrs}
-                        saved["inverse_matrix"] = c.inverse_matrix.copy()
-                        plan.append((obj, c, obj.matrix_world.copy(), saved))
-            removed = []
-            try:
-                for obj, c, matrix, saved in plan:
-                    obj.constraints.remove(c)
-                    removed.append((obj, matrix, saved))
-                    obj.matrix_world = matrix
-            except Exception:
-                for obj, matrix, saved in reversed(removed):
-                    c = obj.constraints.new("CHILD_OF")
-                    for attr, value in saved.items():
-                        setattr(c, attr, value)
-                    obj.matrix_world = matrix
-                raise
-            return
-        created = []
-        try:
-            bone_world = rig.matrix_world @ rig.pose.bones[bone].matrix
-            for obj in targets:
-                constraint = obj.constraints.new("CHILD_OF")
-                created.append((obj, constraint))
-                constraint.name, constraint.target, constraint.subtarget = BINDING, rig, bone
-                constraint.inverse_matrix = bone_world.inverted_safe()
-        except Exception:
-            for obj, constraint in reversed(created):
-                obj.constraints.remove(constraint)
-            raise
+        bind_rig_items(scene, root, rig, options, unbind=unbind)
 
     @staticmethod
     def _remove(scene: Any, root: Any) -> None:
@@ -1082,3 +1058,73 @@ class HumanTool:
         if was_active and "oxal_mc_studio_active_human" in scene:
             del scene["oxal_mc_studio_active_human"]
         remove_unused_owned(captured)
+
+
+def bind_rig_items(scene, root, rig, options, *, unbind):
+    """Attach external items to a verified character rig, preserving world transforms."""
+    ensure_mutation_allowed()
+    require_owned(root, (rig, rig.data))
+    names = options.get("objects", [])
+    if not isinstance(names, list) or not all(isinstance(n, str) for n in names):
+        raise ValueError("绑定对象快照无效")
+    targets: list[Any] = [bpy.data.objects.get(n) for n in names]
+    identifiers = options.get("object_uids")
+    if identifiers is not None:
+        if not isinstance(identifiers, list) or not all(isinstance(i, int) and not isinstance(i, bool) for i in identifiers):
+            raise ValueError("绑定对象标识无效")
+        objects = {o.session_uid: o for o in bpy.data.objects}
+        targets = [objects.get(i) for i in identifiers]
+    members = set(root.all_objects)
+    scene_members = set(scene.objects)
+    if not targets or any(o is None or o not in scene_members or o in members or o.library or o.override_library for o in targets):
+        raise ValueError("请选择人模以外的可编辑物品")
+    if len(set(targets)) != len(targets):
+        raise ValueError("绑定请求含重复对象")
+    bone = {"L": "L.手腕", "R": "R.手腕", "H": "头"}.get(str(options.get("wrist", "L")))
+    if bone not in rig.pose.bones:
+        raise ValueError("绑定目标骨骼不存在")
+    ancestors = set()
+    parent = rig.parent
+    while parent is not None and parent not in ancestors:
+        ancestors.add(parent)
+        parent = parent.parent
+    for obj in targets:
+        if not unbind and (obj == rig or obj in ancestors or obj.constraints.get(BINDING)):
+            raise ValueError("绑定可能形成循环或物品已有绑定，请先解除")
+    if unbind:
+        plan = []
+        attrs = ("name", "target", "subtarget", "influence", "mute", "owner_space", "target_space", "use_location_x", "use_location_y", "use_location_z", "use_rotation_x", "use_rotation_y", "use_rotation_z", "use_scale_x", "use_scale_y", "use_scale_z")
+        for obj in targets:
+            for c in tuple(obj.constraints):
+                if c.name == BINDING and c.type == "CHILD_OF" and c.target == rig:
+                    if _constraint_animated(obj, c):
+                        raise ValueError("绑定约束含驱动或 Action/NLA 动画，请先处理该约束动画；未修改用户动画")
+                    saved = {attr: getattr(c, attr) for attr in attrs}
+                    saved["inverse_matrix"] = c.inverse_matrix.copy()
+                    plan.append((obj, c, obj.matrix_world.copy(), saved))
+        removed = []
+        try:
+            for obj, c, matrix, saved in plan:
+                obj.constraints.remove(c)
+                removed.append((obj, matrix, saved))
+                obj.matrix_world = matrix
+        except Exception:
+            for obj, matrix, saved in reversed(removed):
+                c = obj.constraints.new("CHILD_OF")
+                for attr, value in saved.items():
+                    setattr(c, attr, value)
+                obj.matrix_world = matrix
+            raise
+        return
+    created = []
+    try:
+        bone_world = rig.matrix_world @ rig.pose.bones[bone].matrix
+        for obj in targets:
+            constraint = obj.constraints.new("CHILD_OF")
+            created.append((obj, constraint))
+            constraint.name, constraint.target, constraint.subtarget = BINDING, rig, bone
+            constraint.inverse_matrix = bone_world.inverted_safe()
+    except Exception:
+        for obj, constraint in reversed(created):
+            obj.constraints.remove(constraint)
+        raise

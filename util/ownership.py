@@ -207,6 +207,7 @@ def explicit_scene_ids(
 def require_no_external_users(
     scene: Scene, root: ID, items: Iterable[ID], *,
     scene_properties: Mapping[str, ID] | None = None,
+    collection_parent: Collection | None = None,
 ) -> None:
     """Preflight exact owned IDs, including Collections and explicit Scene use."""
     proven = set(owned_ids(root))
@@ -219,7 +220,8 @@ def require_no_external_users(
         raise ValueError("待修改数据不属于该实例，未删除或重建")
     references = explicit_scene_ids(scene, root=root, scene_properties=scene_properties)
     for item, users in bpy.data.user_map(subset=checked).items():
-        if any(user not in domain and not (user == scene and item not in references) for user in users):
+        if any(user not in domain and not (user == scene and item not in references)
+               and not (item == root and user == collection_parent) for user in users):
             raise ValueError("其它数据或场景显式引用仍使用该实例，未删除或重建")
 
 

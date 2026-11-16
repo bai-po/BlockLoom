@@ -368,6 +368,32 @@ def _leg_graph(tree, seen=frozenset()):
                                    if node.type == "GROUP" and node.node_tree is not None])
 
 
+def _leg_driver_matches(actual, expected, prepared, layer_prefixes):
+    if actual == expected:
+        return True
+    # _prepare_controls recreates body visibility and second-layer socket /
+    # visibility drivers. Blender 4.5 gave driver_add() a y=x Generator; 5.x gives
+    # it two identity keys instead. All user-authored driver fields still
+    # have to match the freshly prepared source, including its variable IDs.
+    if (not prepared or not (actual["path"] in {"hide_viewport", "hide_render"}
+                             or actual["path"].startswith(layer_prefixes))
+            or actual["path"] != expected["path"] or actual["keys"] or actual["samples"]
+            or actual["properties"]["extrapolation"] != "CONSTANT"
+            or expected["properties"]["extrapolation"] != "LINEAR" or expected["modifiers"]
+            or [p["co"] for p in expected["keys"]] != [[0., 0.], [1., 1.]]):
+        return False
+    generator = {
+        "name": "Generator", "show_expanded": True, "active": True, "mute": False,
+        "use_restricted_range": False, "frame_start": 0., "frame_end": 0.,
+        "blend_in": 0., "blend_out": 0., "use_influence": False, "influence": 1.,
+        "mode": "POLYNOMIAL", "poly_order": 1, "coefficients": [0., 1.], "use_additive": False,
+    }
+    if actual["modifiers"] != [{"type": "GENERATOR", "properties": generator}]:
+        return False
+    return {**actual, "properties": {**actual["properties"], "extrapolation": "LINEAR"},
+            "keys": expected["keys"], "modifiers": []} == expected
+
+
 def _validate_body_legs(root, members, references, graphs, prepare, rig, skin, lattice_references=None, raw_members=()):
     """Compare retiring native legs with this transaction's immutable source."""
     from . import human_layer_resolution as layer
@@ -475,7 +501,12 @@ def _validate_body_legs(root, members, references, graphs, prepare, rig, skin, l
                         set_input(reference_source, socket.identifier, skin)
             actual = curves(obj, generated.path_from_id() + "." if generated else "")
             expected = curves(reference)
-            if actual != expected:
+            layer_prefixes = (tuple(reference_source.path_from_id() + separator for separator in (".", "["))
+                              if reference_source is not None else ())
+            if len(actual) != len(expected) or not all(
+                _leg_driver_matches(a, e, obj not in raw_members, layer_prefixes)
+                for a, e in zip(actual, expected, strict=True)
+            ):
                 raise ValueError("腿部包含未知驱动，未替换：" + obj.name)
             animated = {curve["path"] for curve in actual}
             for modifier, template in zip(actual_modifiers, expected_modifiers, strict=True):

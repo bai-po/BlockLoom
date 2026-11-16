@@ -2,6 +2,7 @@
 
 import json
 import logging
+from functools import lru_cache
 from typing import Any, cast
 
 import bpy
@@ -23,7 +24,7 @@ from ..business.asset.assets import IDENTIFIER, root_of, roots
 from ..core.runtime import mutation_allowed
 from ..module import assets
 from ..util.resources import INSTANCE, VERSION
-from . import common
+from . import asset_rail, character_wrist, common
 
 logger = logging.getLogger(__name__)
 STATE_PROPERTY = "oxal_mc_studio_assets_ui"
@@ -261,6 +262,52 @@ def display_slot_items(self, context):
     return _DISPLAY_SLOTS[:count]
 
 
+
+
+@lru_cache(maxsize=1)
+def _creature_choices():
+    from ..business.asset.creatures import catalog, display_name
+
+    return tuple((name, display_name(name), "minecraft:" + name.rsplit(" · ", 1)[-1])
+                 for name in catalog())
+
+
+def _creature_items(self, context):
+    return _creature_choices()
+
+
+@lru_cache(maxsize=1)
+def _creature_categories():
+    from ..business.asset.creatures import GROUPS
+
+    return (("ALL", "全部", ""), *((group, group, "") for group in GROUPS))
+
+
+def _creature_category_items(self, context):
+    return _creature_categories()
+
+
+def _open_creature_catalog(state, context):
+    from ..business.asset.creatures import categories
+
+    if not state.creature_open:
+        return
+    rows = state.creature_rows
+    selected = rows[state.creature_index].identifier if 0 <= state.creature_index < len(rows) else ""
+    query = state.creature_search.strip().casefold()
+    rows.clear()
+    selected_index = 0
+    for identifier, label, game_id in _creature_choices():
+        if state.creature_category not in ("ALL", *categories(identifier)) or query not in (label + " " + game_id).casefold():
+            continue
+        row = rows.add()
+        row.identifier, row.name, row.label = identifier, label + " " + game_id, label
+        row.icon_id = assets.creature_icon(identifier)
+        if identifier == selected:
+            selected_index = len(rows) - 1
+    state.creature_index = selected_index
+
+
 class OXALMCSTUDIO_PG_assets_ui(PropertyGroup):
     variant_instance: StringProperty(default="",options={"SKIP_SAVE"})
     library_open: BoolProperty(name="原版方块物品", update=library_changed, options={"SKIP_SAVE"})
@@ -314,7 +361,28 @@ class OXALMCSTUDIO_PG_assets_ui(PropertyGroup):
         items=(("ITEM", "物品", ""), ("BLOCK", "方块", "")),
         default="ITEM",
     )
-    image_depth: FloatProperty(name="物品厚度", default=0.03, min=0, soft_min=0.001, max=1)
+    compositor_open: BoolProperty(name="合成器描边")
+    creature_field: EnumProperty(name="基础功能", items=(
+        ("arm_mode", "胳膊", ""), ("leg_mode", "腿", ""),
+        ("leg_fixed", "腿部固定", ""), ("foot_fixed", "脚腕固定", "")))
+    creature_arm_mode: EnumProperty(name="胳膊", items=(("SLIM", "3格", ""), ("WIDE", "4格", "")))
+    creature_leg_mode: EnumProperty(name="腿", items=(("NORMAL", "常规弯曲", ""), ("OFFICIAL", "官方动画", "")))
+    creature_leg_fixed: BoolProperty(name="腿部固定")
+    creature_foot_fixed: BoolProperty(name="脚腕固定")
+    creature_wrist: character_wrist.property_for_character(creature=True)
+    creature_armor_open: BoolProperty(name="盔甲设置", options={"SKIP_SAVE"})
+    creature_armor_target: EnumProperty(name="盔甲部位", items=(
+        ("ALL", "全部", ""), ("HEAD", "头盔", ""), ("CHEST", "胸甲", ""),
+        ("LEGS", "护腿", ""), ("FEET", "靴子", "")), default="ALL", options={"SKIP_SAVE"})
+    creature_open: BoolProperty(name="生物资产库（测试中）", update=_open_creature_catalog, options={"SKIP_SAVE"})
+    creature_category: EnumProperty(name="分类", items=_creature_category_items, default=0,
+                                    update=_open_creature_catalog, options={"SKIP_SAVE"})
+    creature_search: StringProperty(name="搜索生物", update=_open_creature_catalog, options={"SKIP_SAVE"})
+    creature_rows: CollectionProperty(type=OXALMCSTUDIO_PG_asset_row, options={"SKIP_SAVE"})
+    creature_index: IntProperty(default=0, min=0, options={"SKIP_SAVE"})
+    creature: EnumProperty(name="生物", items=_creature_items)
+    image_depth: FloatProperty(name="物品厚度", default=0.03, min=0.0001, soft_min=0.001, max=1)
+    relief_cell_size: IntProperty(name="凹凸像素格大小", description="每格每边包含的贴图像素数，在准备凹凸时应用", default=1, min=1, max=16)
     future_pack: BoolProperty(name="用于后续导入")
     pbr_format: EnumProperty(
         name="PBR 格式",
@@ -348,39 +416,154 @@ def _action(layout, label, action, icon="NONE"):
 
 
 def _section(layout, state, prop):
-    row = layout.row()
-    row.prop(
-        state,
-        prop,
-        icon="TRIA_DOWN" if getattr(state, prop) else "TRIA_RIGHT",
-        emboss=False,
+    header, body = layout.panel_prop(state, prop)
+    header.label(text=state.bl_rna.properties[prop].name)
+    return body
+
+
+def draw_compositor(layout, scene):
+    from ..business.outline.compositor import outline_color_socket, outline_mode_socket
+
+    layout.label(text="在最终渲染（F12）中查看描边", icon="RENDER_STILL")
+    _action(layout, "启用合成器描边", "COMP_OUTLINE", "NODE_COMPOSITING")
+    mode = outline_mode_socket(scene)
+    if mode is not None:
+        row = layout.row()
+        row.enabled = not mode.is_linked and mutation_allowed()
+        row.prop(mode, "default_value", text="全描边（含内部线条）")
+    color = outline_color_socket(scene)
+    if color is not None:
+        row = layout.row()
+        row.enabled = not color.is_linked and mutation_allowed()
+        row.prop(color, "default_value", text="描边颜色")
+    _action(layout, "排除所选物体", "COMP_EXCLUDE", "RESTRICT_RENDER_ON")
+    _action(layout, "恢复所选物体描边", "COMP_RESTORE", "RESTRICT_RENDER_OFF")
+    _action(layout, "清空排除列表", "COMP_CLEAR", "X")
+
+
+def draw_creatures(layout, context, *, show_catalog=True):
+    from ..business.asset.creature_parts import option_value
+    from ..business.asset.creatures import (
+        CREATURE_VERSION,
+        RIG,
+        instances,
+        needs_upgrade,
+        selected_instance,
     )
-    return layout.box() if getattr(state, prop) else None
+    state = getattr(context.window_manager, STATE_PROPERTY)
+    layout.label(text="生物功能当前处于测试阶段", icon="INFO")
+    if show_catalog:
+        layout.prop(state, "creature_category")
+        layout.prop(state, "creature_search")
+        if state.creature_rows:
+            split = layout.split(factor=0.66)
+            listing = split.column()
+            listing.template_list("OXALMCSTUDIO_UL_assets", "creatures", state, "creature_rows",
+                                  state, "creature_index", rows=6)
+            actions = split.column(align=True)
+            for destination, label, icon in (("ORIGIN", "原点导入", "IMPORT"), ("CURSOR", "游标导入", "PIVOT_CURSOR")):
+                _action(actions, label, "CREATURE_IMPORT", icon).destination = destination
+            if 0 <= state.creature_index < len(state.creature_rows):
+                detail = layout.row()
+                detail.active = False
+                selected = state.creature_rows[state.creature_index].identifier
+                detail.label(text="minecraft:" + selected.rsplit(" · ", 1)[-1], translate=False)
+        else:
+            layout.label(text="没有匹配的生物", icon="INFO")
+    root = selected_instance(context.scene, context.selected_objects)
+    if root:
+        version = root.get("blockloom_creature_version", "0.1.0")
+        layout.label(text="生物模型 v" + str(version))
+        if needs_upgrade(root):
+            label = "更新所选生物资源" if version == CREATURE_VERSION else "升级所选生物至 v" + CREATURE_VERSION
+            _action(layout, label, "CREATURE_UPGRADE", "FILE_REFRESH")
+    for old in instances(context.scene):
+        if not old.get("blockloom_parts_version"):
+            row = layout.column(align=True)
+            row.label(text="旧版实例：" + old.name, icon="INFO")
+            button = _action(row, "移除这个旧实例", "CREATURE_REMOVE", "TRASH")
+            button.creature_instance = old[INSTANCE]
+    if root is not None and root.get("blockloom_parts_version"):
+        rig = root[RIG]
+        _action(layout, "移除所选生物实例", "CREATURE_REMOVE", "TRASH")
+        from ..business.human.human_compat import LegacyHuman
+        from ..business.human.human_compat_controls import _foot_value, _leg_value
+
+        target = LegacyHuman(rig, "", tuple(root.all_objects), (root,), True, "")
+        arm = option_value(root, rig, "arm_mode")
+        leg = option_value(root, rig, "leg_mode")
+        for field, label, values, current in (
+            ("arm_mode", "胳膊", ("4格", "3格"), None if arm is None else arm == "SLIM"),
+            ("leg_mode", "腿", ("常规弯曲", "官方动画"), None if leg is None else leg == "OFFICIAL"),
+            ("leg_fixed", "腿部固定", ("关", "开"), _leg_value(target)),
+            ("foot_fixed", "脚腕固定", ("关", "开"), _foot_value(target)),
+        ):
+            if current is None:
+                continue
+            row = layout.row(align=True)
+            row.label(text=label)
+            for enabled, title in enumerate(values):
+                button = row.operator("oxal_mc_studio.asset_action", text=title, depress=bool(enabled) == current)
+                button.action = "CREATURE_STYLE"
+                button.creature_part = field
+                button.creature_enabled = bool(enabled)
+        parts = [("name", "名字")]
+        if rig.get("oxal_humanoid_can_fold"):
+            parts.append(("player_arms", "独立手臂"))
+        for field, label in parts:
+            present = option_value(root, rig, field)
+            if present is None:
+                continue
+            button = _action(layout, ("移除" if present else "添加") + label, "CREATURE_STYLE",
+                             "REMOVE" if present else "ADD")
+            button.creature_part = field
+            button.creature_enabled = not present
+        if rig.get("oxal_humanoid_armor_supported"):
+            armor = layout.column(align=True)
+            armor.prop(state, "creature_armor_open", icon="TRIA_DOWN" if state.creature_armor_open else "TRIA_RIGHT",
+                       emboss=False)
+            if state.creature_armor_open:
+                box = armor.box()
+                box.prop(state, "creature_armor_target")
+                field = "armor_" + state.creature_armor_target
+                targets = ("HEAD", "CHEST", "LEGS", "FEET") if state.creature_armor_target == "ALL" else (state.creature_armor_target,)
+                present_parts = [option_value(root, rig, "armor_" + part) for part in targets]
+                row = box.row(align=True)
+                for adding, title, icon in ((False, "移除所选", "REMOVE"), (True, "添加所选", "ADD")):
+                    col = row.column()
+                    col.enabled = not all(present_parts) if adding else any(present_parts)
+                    button = _action(col, title, "CREATURE_STYLE", icon)
+                    button.creature_part = field
+                    button.creature_enabled = adding
+        if "blockloom_heat" in rig:
+            layout.prop(rig, '["blockloom_heat"]', text="红温", slider=True)
+        layout.prop(state, "creature_wrist")
+        layout.label(text="同时选择一个生物和要绑定的物品")
+        row = layout.row(align=True)
+        _action(row, "绑定所选物品", "CREATURE_BIND", "CONSTRAINT")
+        _action(row, "解除绑定", "CREATURE_UNBIND", "X")
 
 
 def draw(layout, context):
     state = getattr(context.window_manager, STATE_PROPERTY)
-    box = layout.box()
-    box.enabled = mutation_allowed()
+    layout.enabled = mutation_allowed()
     if not mutation_allowed():
-        box.label(text="渲染期间暂停资产修改", icon="LOCKED")
+        layout.label(text="渲染期间暂停资产修改", icon="LOCKED")
     status = assets.endpoint.state(context.scene.session_uid)
     from ..business.human.human_selection import armor_snapshot
     if armor_snapshot(context.scene, context.selected_objects) is not None:
         from ..module import human
         status = human.commands.state(context.scene.session_uid)
     if assets.endpoint.busy(context.scene.session_uid):
-        box.label(text="正在处理资产请求…", icon="TIME")
+        layout.label(text="正在处理资产请求…", icon="TIME")
     elif status.message:
-        box.label(
+        layout.label(
             text=status.message, icon="CHECKMARK" if status.succeeded else "ERROR"
         )
-    _action(box, "整理工程内插件着色器", "SHADER_LAYOUT", "NODETREE")
     active = root_of(context.object)
-    library_section = box.column()
-    library_section.enabled = not assets.endpoint.busy(context.scene.session_uid)
-    library = _section(library_section, state, "library_open")
+    library = _section(layout, state, "library_open")
     if library is not None:
+        library.enabled = not assets.endpoint.busy(context.scene.session_uid)
         library.prop(state, "category")
         library.prop(state, "search")
         _action(library, "刷新资产目录 / 搜索", "CATALOG", "FILE_REFRESH")
@@ -453,6 +636,20 @@ def draw(layout, context):
                 _action(library,"应用持物形态","SLOT_PHASE","FILE_REFRESH")
                 library.prop(active,'["'+PROPERTY+'"]',text="阶段（可插帧）")
             control_owner = active if active.type == "ARMATURE" else active.get("oxal_mc_studio_control_rig",active)
+            from ..business.asset import asset_armor
+
+            if asset_armor.PART in active:
+                armor = library.box()
+                armor.label(text="白珀盔甲设置", icon="MOD_CLOTH")
+                prefix = asset_armor.PREFIX
+                for prop, label in (("material", "材质"), ("pattern", "纹饰"),
+                                    ("leather_color", "皮革颜色"), ("trim_color", "纹饰颜色"),
+                                    ("3d", "3D 盔甲"), ("thickness", "厚度")):
+                    if (prop == "leather_color" and active[prefix + "material"] != 0
+                            or prop == "trim_color" and active[prefix + "pattern"] == 0
+                            or prop == "thickness" and not active[prefix + "3d"]):
+                        continue
+                    armor.prop(active, '["' + prefix + prop + '"]', text=label)
             if active.get(IDENTIFIER, "").startswith("minecraft:"):
                 _action(library, "读取所选资产变体", "READ_VARIANT", "EYEDROPPER")
                 apply = library.row()
@@ -479,14 +676,14 @@ def draw(layout, context):
                             if specification is not None and control_owner.type == "ARMATURE"
                             else None)
                     if bone is not None:
-                        library.prop(bone, "location", index=0, text=label, slider=True)
+                        asset_rail.draw(library, bone, label)
                     else:
                         library.prop(control_owner, '["' + prop + '"]', text=label)
             if control_owner.type == "ARMATURE":
                 for spec in dynamic_specs:
                     pose = control_owner.pose.bones.get(spec.get("bone","控制 · "+spec["label"]))
                     if pose is not None:
-                        library.prop(pose,"location",index=0,text=spec["label"],slider=True)
+                        asset_rail.draw(library, pose, spec["label"])
                 library.label(text="姿态模式可直接拖动原生骨骼控件",icon="POSE_HLT")
                 _action(library,"进入原生控件姿态模式","POSE_CONTROLS","POSE_HLT")
             if "展示物品旋转" in active:
@@ -557,14 +754,26 @@ def draw(layout, context):
                     bone_name = native_sliders.get(field)
                     if bone_name and active.pose is not None and bone_name in active.pose.bones:
                         if bone_name not in shown_sliders:
-                            library.prop(active.pose.bones[bone_name], "location", index=0, text=field, slider=True)
+                            asset_rail.draw(library, active.pose.bones[bone_name], field)
                             shown_sliders.add(bone_name)
                     else:
                         library.prop(active,'['+json.dumps(field,ensure_ascii=False)+']',text=field)
     from ..util.ownership import owns
 
     enchant_active = active if active is not None and owns(active, active) and owns(active, context.object) else None
-    enchant = _section(box, state, "enchant_open")
+    creatures = _section(layout, state, "creature_open")
+    if creatures is not None:
+        draw_creatures(creatures, context)
+    image = _section(layout, state, "image_open")
+    if image is not None:
+        image.prop(state, "image_kind", expand=True)
+        if state.image_kind == "ITEM":
+            image.prop(state, "image_depth")
+        image.operator(
+            "oxal_mc_studio.asset_file", text="导入 PNG 图片资产", icon="IMAGE_DATA"
+        ).action = "IMAGE"
+        image.label(text="动态贴图读取同名 .png.mcmeta")
+    enchant = _section(layout, state, "enchant_open")
     if enchant is not None:
         row = enchant.row(align=True)
         _action(row, "一键附魔", "ENCHANT", "ADD")
@@ -582,8 +791,16 @@ def draw(layout, context):
             _action(enchant, "准备附魔描边", "ENCHANT_OUTLINE_PREPARE", "MOD_SOLIDIFY")
         from ..business.enchantment.enchantment_targets import pixel_geometry_allowed
 
-        geometry_allowed = enchant_active is not None and pixel_geometry_allowed(enchant_active)
+        armor_item = enchant_active is not None and enchant_active.get("oxal_mc_studio_geometry_kind") == "ARMOR"
+        if armor_item:
+            _action(enchant, "准备盔甲像素格流光", "ENCHANT_PIXELS_PREPARE", "SHADING_RENDERED")
+            enchant.label(text="3D 盔甲和厚度可在白珀盔甲设置中调整")
+        geometry_allowed = enchant_active is not None and not armor_item and pixel_geometry_allowed(enchant_active)
         if geometry_allowed:
+            enchant.prop(state, "relief_cell_size", slider=True)
+            if enchant_active is not None and "glint_relief_cell_size" in enchant_active:
+                n = enchant_active["glint_relief_cell_size"]
+                enchant.label(text=f"当前凹凸每格 {n} × {n} 像素")
             _action(enchant, "准备像素3D凹凸", "ENCHANT_3D_PREPARE", "MOD_SOLIDIFY")
         rebuild_row = enchant.row()
         rebuild_row.enabled = enchant_active is not None and enchant_active.get(
@@ -623,16 +840,10 @@ def draw(layout, context):
 
                 draw_external(enchant, context)
         enchant.label(text="实例参数支持右键插入关键帧", icon="KEY_HLT")
-    image = _section(box, state, "image_open")
-    if image is not None:
-        image.prop(state, "image_kind", expand=True)
-        if state.image_kind == "ITEM":
-            image.prop(state, "image_depth")
-        image.operator(
-            "oxal_mc_studio.asset_file", text="导入 PNG 图片资产", icon="IMAGE_DATA"
-        ).action = "IMAGE"
-        image.label(text="动态贴图读取同名 .png.mcmeta")
-    packs = _section(box, state, "packs_open")
+    compositor = _section(layout, state, "compositor_open")
+    if compositor is not None:
+        draw_compositor(compositor, context.scene)
+    packs = _section(layout, state, "packs_open")
     if packs is not None:
         packs.prop(state, "pbr_format")
         packs.template_list(
@@ -651,6 +862,9 @@ def draw(layout, context):
             text="后续导入："
             + ("材质包" if context.scene.get("oxal_mc_studio_future_pack") else "原版贴图")
         )
+    layout.separator()
+    _action(layout, "整理工程内插件着色器", "SHADER_LAYOUT", "NODETREE")
+
 
 
 CLASSES = (
@@ -663,6 +877,8 @@ _registered_classes = []
 
 
 def register():
+    _creature_choices()
+    _creature_categories()
     if _registered_classes:
         raise RuntimeError("资产 UI 已登记")
     try:

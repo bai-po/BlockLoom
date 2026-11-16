@@ -1463,7 +1463,7 @@ def upgrade_pbr(scene, options):
     return {"message": "已升级所选资产的 PBR 材质，保留几何、绑定及附魔"}
 
 
-def _set_glint(transaction, root, old, *, copy=True, uv_name=None):
+def _set_glint(transaction, root, old, *, copy=True, uv_name=None, prepare_pixels=False):
     from ..enchantment import enchantment as service
     _AddedProperties(transaction).glint_defaults(root)
     kind = root.get("oxal_mc_studio_geometry_kind", "BLOCK" if catalog.resource(root.get(IDENTIFIER,""),"blockstates").is_file() else "ITEM")
@@ -1479,7 +1479,8 @@ def _set_glint(transaction, root, old, *, copy=True, uv_name=None):
             require_owned(root, (texture, baseline))
             images = texture, baseline
     result = service.apply(transaction,root,old,geometry_kind=kind,scene=scene,
-                           texture_path=selected,original_path=original,copy=copy,uv_name=uv_name)
+                           texture_path=selected,original_path=original,copy=copy,uv_name=uv_name,
+                           prepare_pixels=prepare_pixels)
     if images is not None and result != old:
         # A shader-schema upgrade changes the generated layer, not the
         # instance's actual packed/custom glint texture or restore baseline.
@@ -1491,7 +1492,7 @@ def _set_glint(transaction, root, old, *, copy=True, uv_name=None):
 
 def enchant(scene, options, remove=False):
     ensure_mutation_allowed()
-    if remove or options.get("action", "ENCHANT") == "ENCHANT":
+    if remove or options.get("action", "ENCHANT") in {"ENCHANT", "ENCHANT_PIXELS_PREPARE"}:
         from . import asset_enchantment
 
         # Preserve direct business callers. UI submissions always carry the
@@ -1529,6 +1530,16 @@ def enchant(scene, options, remove=False):
                     features.suspend(transaction, root, obj)
             if not remove:
                 added.glint_defaults(root)
+            if prepare_geometry:
+                size = options.get("relief_cell_size", root.get("glint_relief_cell_size", 1))
+                if type(size) is not int or not 1 <= size <= 16:
+                    raise ValueError("凹凸像素格大小应为 1 至 16 的整数")
+                if "glint_relief_cell_size" in root:
+                    previous = root["glint_relief_cell_size"]
+                    transaction.on_rollback(lambda root=root, previous=previous: root.__setitem__("glint_relief_cell_size", previous))
+                else:
+                    added.added.append((root, "glint_relief_cell_size"))
+                root["glint_relief_cell_size"] = size
             cache = {}
             for obj in meshes:
                 for index, slot in outline_native.base_slots(root, obj, transaction=transaction):
@@ -1633,6 +1644,15 @@ def execute(scene_uid: int, options):
     action = options.get("action")
     from ..enchantment import enchantment_external
 
+    if action in {"COMP_GLOW", "COMP_OUTLINE", "COMP_EXCLUDE", "COMP_RESTORE", "COMP_CLEAR"}:
+        from ..outline import compositor
+        return compositor.apply(scene, options)
+    if action in {"CREATURE_BIND", "CREATURE_UNBIND", "CREATURE_STYLE", "CREATURE_REMOVE", "CREATURE_UPGRADE", "CREATURE_FACE_REPAIR"}:
+        from . import creatures
+        return creatures.edit(scene, options)
+    if action == "CREATURE_IMPORT":
+        from . import creatures
+        return creatures.load(scene, options)
     if action in enchantment_external.ACTIONS:
         return enchantment_external.execute(scene_uid, options)
     if action == "ENCHANT_OUTLINE_REBIND":
@@ -1723,7 +1743,7 @@ def execute(scene_uid: int, options):
         return {"message": "后续导入：" + ("所选材质包" if digest else "原版贴图")}
     if action == "PBR_UPGRADE":
         return upgrade_pbr(scene, options)
-    if action in {"ENCHANT", "UNENCHANT", "ENCHANT_3D_PREPARE", "ENCHANT_OUTLINE_PREPARE"}:
+    if action in {"ENCHANT", "UNENCHANT", "ENCHANT_3D_PREPARE", "ENCHANT_OUTLINE_PREPARE", "ENCHANT_PIXELS_PREPARE"}:
         return enchant(scene, options, action == "UNENCHANT")
     if action == "POTION":
         from .asset_potions import set_preset

@@ -200,7 +200,7 @@ def _legacy_light_path_output(node, socket, index, animated, *, strict=True):
         "Ray Length", "Ray Depth", "Diffuse Depth", "Glossy Depth", "Transparent Depth", "Transmission Depth",
         "Portal Depth",
     )
-    if (bpy.app.version[:2] not in {(5, 0), (5, 1), (5, 2)}
+    if (bpy.app.version[:2] not in {(5, 0), (5, 1), (5, 2), (5, 3)}
             or tuple(part.identifier for part in node.outputs) != expected
             or socket.is_linked or socket.default_value != 0.0
             or socket.path_from_id("default_value") in animated):
@@ -229,6 +229,15 @@ def _tree_record(tree, *, generated=False, seen=None, legacy_light_path=False, l
             if not hasattr(socket, "default_value"):
                 continue
             path = socket.path_from_id("default_value")
+            # Blender 5.3 adds an unconnected, zero-valued LightIndex input
+            # to Attribute nodes. Project only that exact native default when
+            # comparing a historical generated contract.
+            if (legacy_light_path and bpy.app.version[:2] == (5, 3)
+                    and node.bl_idname == "ShaderNodeAttribute" and index == 0
+                    and len(node.inputs) == 1 and socket.identifier == "LightIndex"
+                    and socket.bl_idname == "NodeSocketInt" and not socket.is_linked
+                    and socket.default_value == 0 and path not in animated):
+                continue
             if path not in animated:
                 values.append((index, _plain(socket.default_value)))
         record = [node.name, node.bl_idname, values,
@@ -324,7 +333,7 @@ def _material_digest(material, *, legacy45=False):
     if material.animation_data is not None:
         return ""
     values = _rna_values(material, excluded={"use_fake_user", "tag"})
-    if legacy45 and bpy.app.version[:2] in {(5, 0), (5, 1), (5, 2)} and material.use_backface_culling:
+    if legacy45 and bpy.app.version[:2] in {(5, 0), (5, 1), (5, 2), (5, 3)} and material.use_backface_culling:
         # Native 4.5 files load this culling flag as False on 5.x. Preserve
         # every field and compare the exact historical True-valued candidate.
         values = [(key, True if key == "use_backface_culling_lightprobe_volume" and value is False else value)
@@ -368,7 +377,7 @@ def _generated_contract_matches(material):
     expected = material.get(_CONTRACT)
     if expected == _generated_digest(material) or expected == _generated_digest(material, legacy_animation=True):
         return True
-    if bpy.app.version[:2] not in {(5, 0), (5, 1), (5, 2)}:
+    if bpy.app.version[:2] not in {(5, 0), (5, 1), (5, 2), (5, 3)}:
         return False
     # Verify the saved historical bytes against the current graph projected
     # through one proven native addition; never bless the current graph anew.
@@ -490,7 +499,7 @@ def inspect(material) -> dict[str, Any] | None:
         if native_time.metadata(material) is not None:
             if _SCENE in material:
                 raise ValueError("附魔原生时间含未知场景依赖，未覆盖")
-            native_time.require_material(material)
+            native_time.require_material(material, allow_deleted=True)
         for tree in trees:
             animation = tree.animation_data
             for curve in animation.drivers if animation else ():
@@ -861,7 +870,7 @@ def apply(transaction, owner, material, *, geometry_kind="ITEM", scene=None,
 
     timing_current = current and native_time.metadata(material) is not None
     if timing_current:
-        native_time.require_material(material, scene=scene)
+        timing_current = native_time.require_material(material, scene=scene, allow_deleted=True) is not None
     want_pixels = geometry_kind != "ARMOR" or prepare_pixels or pixels.requested(material, owner)
     preparation_current = (geometry_kind != "ARMOR" or pixels.armor_preparation(material) == int(want_pixels))
     if (current and current["version"] == VERSION and current["profile"] == geometry_kind
@@ -869,7 +878,8 @@ def apply(transaction, owner, material, *, geometry_kind="ITEM", scene=None,
             and material.get(OUTLINE_SHADER) == 4
             and (str(material.get(SOURCE_UV, "")) == (uv_name or "") if geometry_kind == "GENERIC"
                  else uv_name is None or material.get(SOURCE_UV) == uv_name)
-            and material.get(_CONTRACT) == _generated_digest(material, legacy_light_path=True)
+            and (material.get(_CONTRACT) == _generated_digest(material)
+                 or material.get(_CONTRACT) == _generated_digest(material, legacy_light_path=True))
             and timing_current
             and preparation_current and (pixels.prepared(material) if want_pixels else not pixels._revision(material))
             and (not want_pixels or material.get(PIXEL_BRIGHTNESS) == 1)

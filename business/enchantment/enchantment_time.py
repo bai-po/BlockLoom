@@ -95,7 +95,7 @@ def _validate(scene, clock):
     return token
 
 
-def require_material(material, *, scene=None):
+def require_material(material, *, scene=None, allow_deleted=False):
     """Resolve a scalar token through the exact persisted Scene registry."""
     record = metadata(material)
     if record is None:
@@ -106,9 +106,27 @@ def require_material(material, *, scene=None):
         roots = candidate.get(SCENE_ROOTS)
         if roots is not None and hasattr(roots, "get") and roots.get(token) is not None:
             matches.append((candidate, roots[token]))
+    if allow_deleted and not matches:
+        # Old shaders use the Scene RNA path, even after the old clock ID was
+        # deleted. Only a local, still-owned material may rebuild that binding.
+        from ...util.ownership import owns
+
+        owner = material.get("oxal_mc_studio_glint_controls")
+        if owner is None and material.get("oxal_mc_studio_glint_profile") == "GENERIC":
+            # The Outliner can remove the external Empty and the clock together.
+            # The shader service verifies the sealed graph and copies the
+            # selected surface before binding it to the replacement controller.
+            return None
+        if owner is not None and owns(owner, material):
+            owners = tuple(owner.users_scene) if isinstance(owner, bpy.types.Object) else ()
+            if len(owners) == 1 and (scene is None or scene == owners[0]):
+                return None
     if len(matches) != 1 or scene is not None and matches[0][0] != scene:
         raise ValueError("附魔原生时间实际来源缺失或跨场景，未修改")
     candidate, clock = matches[0]
+    if (allow_deleted and candidate.get(SCENE_CLOCK) == clock and not clock.users_collection
+            and clock.get(_ASSET) == _ASSET_ID):
+        return None
     if _validate(candidate, clock) != token:
         raise ValueError("附魔原生时间实际引用不匹配，未修改")
     return clock
@@ -121,8 +139,14 @@ def prepare(transaction, scene):
         raise TypeError("附魔动画需要明确的场景")
     if any(SCENE_CLOCK in layer for layer in scene.view_layers):
         raise ValueError("视图层含同名附魔时间字段，未覆盖用户属性")
-    if SCENE_CLOCK in scene:
-        clock = scene[SCENE_CLOCK]
+    clock = scene.get(SCENE_CLOCK)
+    if clock is not None:
+        if (isinstance(clock, bpy.types.Object) and not clock.users_collection
+                and clock.get(_ASSET) == _ASSET_ID
+                and scene.get(SCENE_ROOTS, {}).get(clock.get(ROOT_UID, "")) == clock):
+            from .enchantment_collections import relink_controller
+
+            relink_controller(transaction, scene, clock)
         _validate(scene, clock)
         return clock
     roots = scene.get(SCENE_ROOTS)

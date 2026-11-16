@@ -30,7 +30,8 @@ MARK = "oxal_mc_studio_solidify_outline_schema"
 RECORD = "oxal_mc_studio_solidify_outline"
 SOURCE_SHA256 = "41065561ad769a75eb90954f7f18e6ba00b1525a0e3969074af40d07bc04baec"
 RESOURCE = Path(__file__).resolve().parents[2] / "asset/outline/outline_reference.blend"
-_MOD_KEYS = ("pre", "solidify", "filter", "adapter")
+_MOD_KEYS = ("pre", "solidify", "filter", "adapter", "armor_shell")
+_ARMOR_SURFACE = "oxal_outline_native_armor_surface"
 
 
 def invalidate(transaction, obj, *, materials=()):
@@ -406,7 +407,7 @@ def validate(root, obj, *, transaction=None, role="human"):
     action_paths = _action_paths(obj)
     driver_paths = {curve.data_path for curve in obj.animation_data.drivers} if obj.animation_data else set()
     for key, row in sorted(state["roles"].items(), key=lambda item: item[1]["slot_start"]):
-        if row.get("generation", 1) not in {1, 2, 3, 4, 5, 6}:
+        if row.get("generation", 1) not in {1, 2, 3, 4, 5, 6, 7}:
             raise ValueError("Solidify描边生成版本不兼容，未覆盖")
         _owned(root, (row["owner"], *row["materials"].values(), *row.get("driver_refs", {}).values()), transaction)
         values = []
@@ -428,7 +429,7 @@ def validate(root, obj, *, transaction=None, role="human"):
             if (slot.link != "DATA" or slot.material != material or material.get(MARK) != 1
                     or not _material_valid(root, material, transaction)):
                 raise ValueError("Solidify描边专属材质/槽位含用户修改")
-        for part in ("pre", "filter", "adapter"):
+        for part in ("pre", "filter", "adapter", "armor_shell"):
             if part + "_group" in row:
                 _owned(root, (row[part + "_group"],), transaction)
                 if not contract_matches(row[part + "_group"]):
@@ -508,7 +509,7 @@ def _color(socket, owner, color, follow, multiplier):
 
 
 def _material(transaction, obj, owner, source, color, brightness, follow, *,
-              sprite_normal=None, inward=False, shared_variant=None, unused=False):
+              sprite_normal=None, inward=False, shared_variant=None, unused=False, camera_only=False):
     from ..enchantment.enchantment_outline import CONTRACT, contract
 
     # The shader contains no object binding: UVs, face normals and geometry
@@ -559,7 +560,14 @@ def _material(transaction, obj, owner, source, color, brightness, follow, *,
     hidden = tree.nodes.new("ShaderNodeMath")
     hidden.operation = "MAXIMUM"
     tree.links.new(facing, hidden.inputs[0])
-    tree.links.new(light.outputs["Is Shadow Ray"], hidden.inputs[1])
+    if camera_only:
+        indirect = tree.nodes.new("ShaderNodeMath")
+        indirect.operation = "SUBTRACT"
+        indirect.inputs[0].default_value = 1
+        tree.links.new(light.outputs["Is Camera Ray"], indirect.inputs[1])
+        tree.links.new(indirect.outputs[0], hidden.inputs[1])
+    else:
+        tree.links.new(light.outputs["Is Shadow Ray"], hidden.inputs[1])
     visible = tree.nodes.new("ShaderNodeMath")
     visible.operation = "SUBTRACT"
     visible.inputs[0].default_value = 1
@@ -571,6 +579,20 @@ def _material(transaction, obj, owner, source, color, brightness, follow, *,
         alpha.inputs[1].default_value = opacity
     else:
         tree.links.new(opacity, alpha.inputs[1])
+    if camera_only:
+        # Extruded armor already cuts geometry to the selected armor texture.
+        # Its silhouette has no source UV. Flat armor still uses the exact UV
+        # opacity above, including open visors and transparent boot cuffs.
+        original = tree.nodes.new("ShaderNodeMath")
+        original.operation = "MAXIMUM"
+        if isinstance(opacity, (int, float)):
+            original.inputs[0].default_value = opacity
+        else:
+            tree.links.new(opacity, original.inputs[0])
+        attributed = tree.nodes.new("ShaderNodeAttribute")
+        attributed.attribute_name = _ARMOR_SURFACE
+        tree.links.new(attributed.outputs["Fac"], original.inputs[1])
+        tree.links.new(original.outputs[0], alpha.inputs[1])
     # Keep the actual Principled -> actual Material Output connection intact.
     # Principled Alpha itself supplies necessary Cycles backface transparency.
     tree.links.new(alpha.outputs[0], shader.inputs["Alpha"])
@@ -637,6 +659,118 @@ def _positions(state, obj):
         for key in _MOD_KEYS:
             if key in row:
                 row[key]["position"] = list(obj.modifiers).index(obj.modifiers[row[key]["name"]])
+
+
+def _armor_shell(transaction, material, owner, enabled, width, gate, suppression, native_3d, quality):
+    """Outline one native armor piece after its material, relief and pose evaluation."""
+    from ..enchantment.enchantment_outline import CONTRACT, contract
+
+    tree = transaction.track(bpy.data.node_groups.new("附魔描边 · 盔甲外缘", "GeometryNodeTree"))
+    tree[MARK] = 1
+    tree["oxal_mc_studio_human_source"] = "oxal.outline.generated.armor_shell." + transaction.token
+    for direction in ("INPUT", "OUTPUT"):
+        tree.interface.new_socket(name="Geometry", in_out=direction, socket_type="NodeSocketGeometry")
+    node, link = tree.nodes.new, tree.links.new
+    source = node("NodeGroupInput").outputs["Geometry"]
+    output = node("NodeGroupOutput")
+
+    # Each authored armor mesh covers one limb segment. A single connected
+    # hull cannot fold the coincident pixel caps into the front of that mesh.
+    hull = node("GeometryNodeConvexHull")
+    link(source, hull.inputs["Geometry"])
+    extruded = node("ShaderNodeValue").outputs[0]
+    curve = extruded.driver_add("default_value")
+    _variables(curve, [("native", native_3d[0], _property(native_3d[1]))])
+    curve.driver.expression = "native"
+    surface = node("GeometryNodeSwitch")
+    surface.input_type = "GEOMETRY"
+    link(extruded, surface.inputs["Switch"])
+    # Flat armor stores transparency in the original UVs. The full modeled
+    # leg extends well above a boot's visible cuff; preserve that alpha mask.
+    link(source, surface.inputs["False"])
+    subdivide = node("GeometryNodeSubdivideMesh")
+    subdivide.inputs["Level"].default_value = 3
+    link(hull.outputs[0], subdivide.inputs["Mesh"])
+    nearest = node("GeometryNodeProximity")
+    nearest.target_element = "FACES"
+    link(source, nearest.inputs[0])
+    beyond = node("ShaderNodeMath")
+    beyond.operation = "GREATER_THAN"
+    link(nearest.outputs["Distance"], beyond.inputs[0])
+    carve = node("GeometryNodeDeleteGeometry")
+    carve.domain, carve.mode = "FACE", "ALL"
+    link(subdivide.outputs["Mesh"], carve.inputs["Geometry"])
+    link(beyond.outputs[0], carve.inputs["Selection"])
+    marker = node("GeometryNodeStoreNamedAttribute")
+    marker.data_type, marker.domain = "FLOAT", "FACE"
+    marker.inputs["Name"].default_value = _ARMOR_SURFACE
+    marker.inputs["Value"].default_value = 1
+    link(carve.outputs[0], marker.inputs["Geometry"])
+    link(marker.outputs[0], surface.inputs["True"])
+    move = node("GeometryNodeSetPosition")
+    link(surface.outputs[0], move.inputs["Geometry"])
+    offset = node("ShaderNodeVectorMath")
+    offset.operation = "SCALE"
+    normal = node("GeometryNodeInputNormal").outputs[0]
+    link(normal, offset.inputs[0])
+    amount = node("ShaderNodeValue").outputs[0]
+    curve = amount.driver_add("default_value")
+    active, declarations = _activation(owner, enabled, gate, None, None, None)
+    if suppression:
+        # The ordinary armor outline is disabled while native extrusion is on.
+        # Suppress glint only when the ordinary shell is actually visible.
+        active += " and (native>0.5 or not (human>0.5 if follow>0.5 else regular>0.5))"
+        declarations.extend((name, suppression[0], _property(key)) for name, key in
+                            zip(("follow", "human", "regular"), suppression[1:], strict=True))
+        declarations.append(("native", native_3d[0], _property(native_3d[1])))
+    _variables(curve, [*declarations, ("width", owner, _property(width))])
+    curve.driver.expression = "max(width,0) if (" + active + ") else 0"
+    # Clip convex faces which bridge an actual visor, neck or cuff opening.
+    # The remaining margin follows the same object-space width as the shell.
+    link(amount, beyond.inputs[1])
+    averaged = node("GeometryNodeFieldOnDomain")
+    averaged.data_type, averaged.domain = "FLOAT_VECTOR", "FACE"
+    link(normal, averaged.inputs["Value"])
+    length = node("ShaderNodeVectorMath")
+    length.operation = "LENGTH"
+    link(averaged.outputs["Value"], length.inputs[0])
+    bound = node("ShaderNodeMath")
+    bound.operation = "MAXIMUM"
+    bound.inputs[1].default_value = .5
+    link(length.outputs["Value"], bound.inputs[0])
+    corrected = node("ShaderNodeMath")
+    corrected.operation = "DIVIDE"
+    link(amount, corrected.inputs[0])
+    link(bound.outputs[0], corrected.inputs[1])
+    even = node("GeometryNodeSwitch")
+    even.input_type = "FLOAT"
+    quality_curve = even.inputs["Switch"].driver_add("default_value")
+    _variables(quality_curve, [("quality", owner, _property(quality))])
+    quality_curve.driver.expression = "quality>0.5"
+    link(amount, even.inputs["False"])
+    link(corrected.outputs[0], even.inputs["True"])
+    link(even.outputs[0], offset.inputs["Scale"])
+    link(offset.outputs[0], move.inputs["Offset"])
+    reverse = node("GeometryNodeFlipFaces")
+    link(move.outputs[0], reverse.inputs["Mesh"])
+    assign = node("GeometryNodeSetMaterial")
+    assign.inputs["Material"].default_value = material
+    link(reverse.outputs[0], assign.inputs["Geometry"])
+    join = node("GeometryNodeJoinGeometry")
+    link(source, join.inputs["Geometry"])
+    link(assign.outputs["Geometry"], join.inputs["Geometry"])
+    choose = node("GeometryNodeSwitch")
+    choose.input_type = "GEOMETRY"
+    positive = node("ShaderNodeMath")
+    positive.operation = "GREATER_THAN"
+    positive.inputs[1].default_value = 0
+    link(amount, positive.inputs[0])
+    link(positive.outputs[0], choose.inputs["Switch"])
+    link(source, choose.inputs["False"])
+    link(join.outputs[0], choose.inputs["True"])
+    link(choose.outputs[0], output.inputs["Geometry"])
+    tree[CONTRACT] = contract(tree, create=True)
+    return tree
 
 
 def _adapter(transaction, materials, *, slot_start=None, flip_normals=True,
@@ -825,11 +959,15 @@ def _remove_created(transaction, obj, name, kind, created, group=None):
 def apply(transaction, root, obj, owner, *, enabled="outline_enabled", width="outline_width", color="outline_color",
           brightness=None, gate=None, role="human", rebuild=False, follow=None, suppression=None, source_attribute=None,
           quality_normals=None, quality_follow_key=None, disable_when=None, pixel_surface=False,
-          source_indices=None):
+          source_indices=None, armor_shell=None):
     ensure_mutation_allowed()
     if obj.type != "MESH":
         return
     _owned(root, (owner, suppression[0] if suppression else None, disable_when[0] if disable_when else None), transaction)
+    if armor_shell:
+        _owned(root, (armor_shell[0],), transaction)
+        if armor_shell[1] not in armor_shell[0] or not quality_normals:
+            raise ValueError("盔甲描边缺少原生厚度或法线控制")
     keys = {enabled, width, color, *(key for key in (brightness, gate, quality_normals, quality_follow_key) if key),
             *(follow or ())}
     if keys - set(owner.keys()):
@@ -872,7 +1010,7 @@ def apply(transaction, root, obj, owner, *, enabled="outline_enabled", width="ou
     if not obj.get(RECORD):
         _exclusive(root, obj, transaction)
     fixed_head = pixel_surface and source_attribute is not None
-    generation = 6 if fixed_head else 5 if proxy_attribute else 4 if pixel_surface else 3 if pixel_sprite(obj, role=role) else 2
+    generation = 7 if armor_shell else 6 if fixed_head else 5 if proxy_attribute else 4 if pixel_surface else 3 if pixel_sprite(obj, role=role) else 2
     if current:
         row = _state(obj)["roles"][role]
         if (not rebuild and row.get("generation") == generation
@@ -924,9 +1062,25 @@ def apply(transaction, root, obj, owner, *, enabled="outline_enabled", width="ou
                    if role == "armor" else None)
         materials[str(index)] = _material(transaction, obj, owner, source_material, color, brightness, follow,
                                            sprite_normal=sprite_normal, inward=inward, shared_variant=variant,
-                                           unused=source_indices is not None and index not in source_indices)
+                                           unused=source_indices is not None and index not in source_indices,
+                                           camera_only=bool(armor_shell))
     for material in materials.values():
         obj.data.materials.append(material)
+    if armor_shell:
+        group = _armor_shell(transaction, materials["0"], owner, enabled, width, gate, suppression, armor_shell,
+                            quality_normals)
+        shell = _publish_group(transaction, obj, group, "描边 · 盔甲外缘 · " + transaction.token[:8], len(obj.modifiers))
+        row = {"generation": generation, "owner": owner, "slot_start": start, "slot_count": count,
+               "materials": materials, "armor_shell": _spec(shell), "armor_shell_group": group, "driver_paths": [],
+               "controls": controls, "suppression": suppression_record, "disable_when": disable_record,
+               "source_sha256": SOURCE_SHA256}
+        row["driver_contract"] = _driver_signature(obj, row, create=True)
+        state["roles"][role] = row
+        _positions(state, obj)
+        obj[RECORD] = state
+        owner.update_tag()
+        obj.update_tag()
+        return
     name = "描边 · Solidify · " + role + " · " + transaction.token[:8]
     modifier = obj.modifiers.new(name, "SOLIDIFY")
     transaction.on_rollback(lambda: _remove_created(transaction, obj, name, "SOLIDIFY", modifier))
@@ -1181,6 +1335,9 @@ def remove(transaction, root, obj, *, role="human"):
         if key == role or later["slot_start"] < row["slot_start"]:
             continue
         later["slot_start"] -= row["slot_count"]
+        if "armor_shell" in later:
+            # This mesh branch references the material ID directly.
+            continue
         modifier = obj.modifiers[later["solidify"]["name"]]
         old_offset = modifier.material_offset
         def restore_offset(modifier=modifier, name=modifier.name, value=old_offset):

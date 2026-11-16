@@ -1,7 +1,7 @@
 [project]
 name = "oxal-mc-studio"
-version = "0.1.40b0"
-description = "BlockLoom Minecraft tools for Blender 4.5 through 5.2"
+version = "0.1.41b0"
+description = "BlockLoom Minecraft tools for Blender 4.5 through 5.3"
 requires-python = ">=3.11,<3.12"
 dependencies = []
 

@@ -60,7 +60,7 @@ def parameter_spec(name, root):
     """Version-local bounds keep legacy four-mode instances editable."""
     from .human_source import model_version
 
-    if name == "back_mode" and model_version(root) in {"2.4.2", "2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7"}:
+    if name == "back_mode" and model_version(root) in {"2.4.2", "2.4.3", "2.4.4", "2.4.5", "2.4.6", "2.4.7", "2.4.8", "2.4.9"}:
         return ("背饰（0 关闭 / 1 鞘翅 / 2 披风）", 0, 0, 2)
     return PARAMETERS[name]
 

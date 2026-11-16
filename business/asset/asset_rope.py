@@ -292,6 +292,9 @@ def prepare_repair(transaction, root, mapping):
         raise ValueError("绳线曲线含用户Action/NLA动画，未覆盖")
     fishing = root.get("oxal_mc_studio_library_identifier") == "minecraft:fishing_rod"
     label, names, points = layout(fishing, legacy=SCHEMA not in line)
+    if SCHEMA in line and "oxal_mc_studio_raw_grip" in rig:
+        offset = Vector(rig["oxal_mc_studio_raw_grip"])
+        points = [point - offset for point in points]
     mode_paths = {_bone(name, "rotation_mode") for name in names}
     if any(rig.pose.bones[name].rotation_mode != "XYZ" for name in names) or any(curve.data_path in mode_paths for curve in _actions(rig)):
         raise ValueError("绳线控制骨旋转模式含用户修改或动画，未覆盖")

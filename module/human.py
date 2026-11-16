@@ -5,6 +5,7 @@ from typing import Any, cast
 import bpy
 from bpy.types import Scene, ViewLayer
 
+from ..business.human import viewport_pose
 from ..business.human.human import HumanResult, HumanTool, resolve_human
 from ..core.commands import CommandEndpoint
 from ..core.importing import ImportEndpoint
@@ -64,6 +65,8 @@ class HumanImportEndpoint(ImportEndpoint):
 
 class HumanCommandEndpoint(CommandEndpoint[HumanResult]):
     def after_apply(self, result) -> None:
+        if isinstance(result, dict) and result.get("viewport_pose"):
+            return
         if isinstance(result, dict) and "selected_human_rig_uid" in result:
             active = cast(ViewLayer, bpy.context.view_layer).objects.active
             if active is not None and active.session_uid == result["selected_human_rig_uid"]:
@@ -151,6 +154,7 @@ class HumanCommandEndpoint(CommandEndpoint[HumanResult]):
 
 tool = HumanTool()
 endpoint = HumanImportEndpoint("human.import", "oxal_mc_studio.apply_resource_import", tool.load, new_instance=True)
+pose_selection = CommandEndpoint("human.pose.select", viewport_pose.select, allowed_modes=("OBJECT", "POSE"))
 commands = HumanCommandEndpoint("human.edit", tool.edit, allowed_modes=("OBJECT", "POSE"))
 
 
@@ -162,6 +166,11 @@ def register() -> None:
         endpoint.register()
         try:
             commands.register()
+            try:
+                pose_selection.register()
+            except Exception:
+                commands.unregister()
+                raise
         except Exception:
             endpoint.unregister()
             raise
@@ -173,6 +182,7 @@ def register() -> None:
 def unregister() -> None:
     from ..business.human.human_compat import clear_catalog
 
+    pose_selection.unregister()
     commands.unregister()
     endpoint.unregister()
     clear_catalog()

@@ -461,8 +461,13 @@ def apply(transaction, root, obj, owner, *, prepare_geometry=False, prepare_outl
     if not wants_outline:
         obj.update_tag()
         return
-    suppression = disable_when = None
-    if is_armor:
+    suppression = None
+    armor_shell = None
+    if is_armor and root.get("oxal_mc_studio_geometry_kind") == "ARMOR":
+        from ..asset.asset_armor import PREFIX
+
+        armor_shell = (root, PREFIX + "3d")
+    elif is_armor:
         from ..human.human import parameter_owner
         from ..human.human_armor import part_of
         from ..human.human_armor_outline import prepared as armor_prepared
@@ -471,17 +476,17 @@ def apply(transaction, root, obj, owner, *, prepare_geometry=False, prepare_outl
         part = part_of(obj)
         if part:
             controller = parameter_owner(root)
-            disable_when = (controller, key(part + "_3d"))
+            armor_shell = (controller, key(part + "_3d"))
             if armor_prepared(root, (part,)):
                 suppression = (controller, key(part + "_outline_follow_human"),
                                key("outline_enabled"), key(part + "_outline_enabled"))
     outline_native.apply(transaction, root, obj, owner,
                          enabled="glint_outline_enabled", width="glint_outline_width",
                          color="glint_outline_color", brightness="glint_outline_brightness",
-                         quality_normals="glint_outline_quality_normals", disable_when=disable_when,
+                         quality_normals="glint_outline_quality_normals",
                          gate="glint_enabled", role="enchant",
                          suppression=suppression,
-                         source_attribute=None)
+                         armor_shell=armor_shell)
     obj.update_tag()
 
 

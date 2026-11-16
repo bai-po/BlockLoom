@@ -176,12 +176,17 @@ def _remap_assigners(transaction, root, obj, replacements):
         if modifier.type != "NODES" or modifier.node_group is None:
             continue
         group = modifier.node_group
-        if any(node.bl_idname == "GeometryNodeGroup"
+        # The BaiPo armor extrusion uses a nested UV calculator. A numeric
+        # subgroup cannot assign a material if no geometry/material leaves it.
+        if any((node.bl_idname == "GeometryNodeGroup"
+                and any(socket.type not in {"VALUE", "INT", "BOOLEAN", "VECTOR", "RGBA"}
+                        for socket in node.outputs))
                or (node.bl_idname == "GeometryNodeSetMaterial" and node.inputs["Material"].is_linked)
                for node in group.nodes):
             raise ValueError("几何节点含嵌套或动态材质分配，无法确认当前表面，请先整理：" + modifier.name)
-        assigners = [node for node in group.nodes if node.bl_idname == "GeometryNodeSetMaterial"]
-        if not assigners:
+        affected = [node for node in group.nodes if node.bl_idname == "GeometryNodeSetMaterial"
+                    and node.inputs["Material"].default_value in replacements]
+        if not affected:
             continue
         table = features._record(obj)
         row = table.get("geometry", {})
@@ -192,9 +197,6 @@ def _remap_assigners(transaction, root, obj, replacements):
                 or not features.contract_matches(group)):
             raise ValueError("几何节点固定引用此材质，但其来源或节点已改变：" + modifier.name)
         require_owned(root, (obj, group))
-        affected = [node for node in assigners if node.inputs["Material"].default_value in replacements]
-        if not affected:
-            continue
         if group.animation_data and (group.animation_data.action or group.animation_data.nla_tracks):
             raise ValueError("材质分配节点包含用户动画，未改写：" + modifier.name)
         if any(node.inputs["Material"].is_linked for node in affected):
@@ -282,7 +284,8 @@ def execute(scene, options, *, remove=False):
                     cache[cache_key] = service.remove(transaction, root, material)
                 else:
                     _AddedProperties(transaction).glint_defaults(root)
-                    cache[cache_key] = _set_glint(transaction, root, material, uv_name=uv_name)
+                    cache[cache_key] = _set_glint(transaction, root, material, uv_name=uv_name,
+                                                  prepare_pixels=options.get("action") == "ENCHANT_PIXELS_PREPARE")
             private = cache[cache_key]
             if private != material:
                 changes.append((root, obj, index, material, private))

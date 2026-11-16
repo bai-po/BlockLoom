@@ -14,11 +14,11 @@ MARKER = "oxal_mc_studio_enchantment_controls_collection_schema"
 
 
 def _container(transaction, scene):
-    if REFERENCE in scene:
-        collection = scene[REFERENCE]
+    collection = scene.get(REFERENCE)
+    if collection is not None:
         if (not isinstance(collection, bpy.types.Collection) or collection.get(MARKER) != 1
                 or collection.library or collection.override_library
-                or scene.collection.children.get(collection.name) != collection
+                or collection not in tuple(scene.collection.children_recursive)
                 or any(collection in tuple(other.collection.children_recursive)
                        for other in bpy.data.scenes if other != scene)):
             raise ValueError("附魔参数合集的实际场景引用已变化，未按名称接管")
@@ -37,6 +37,15 @@ def _container(transaction, scene):
     scene.collection.children.link(collection)
     scene[REFERENCE] = collection
     return collection
+
+
+def relink_controller(transaction, scene, obj):
+    """Restore a surviving registered Empty unlinked by deleting its collection."""
+    if obj.users_collection or obj.users_scene:
+        raise ValueError("附魔参数对象已经链接到其它位置")
+    collection = _container(transaction, scene)
+    collection.objects.link(obj)
+    transaction.on_rollback(lambda: collection.objects.unlink(obj))
 
 
 def link(transaction, scene, obj):

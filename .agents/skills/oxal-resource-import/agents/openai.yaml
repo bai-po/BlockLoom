@@ -1,0 +1,4 @@
+interface:
+  display_name: "OXAL 资源导入规范"
+  short_description: "规范 OXAL 资源导入的复用、实例创建、共享依赖、事务清理与性能验证"
+  default_prompt: "使用 $oxal-resource-import 规范完成当前资源导入开发或审查，并引用 $oxal-bus 完成需要的接线。"

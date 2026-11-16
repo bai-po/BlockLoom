@@ -608,8 +608,14 @@ def set_parts(root, rig, parts, enabled, *, repair=False):
             features.owner = root
             features.on_rollback(restore)
             if repair:
+                from .human import prepare_skin_shader_repair
+                from .human_face_controls import REPAIRABLE_SCHEMAS, refine
+                from .human_face_controls import SCHEMA as FACE_SCHEMA
                 from .human_state import refresh_limits
 
+                prepare_skin_shader_repair(features, root)
+                if rig.get(FACE_SCHEMA) in REPAIRABLE_SCHEMAS:
+                    refine(features, rig, root.all_objects)
                 refresh_limits(features, controller)
             for obj in incoming:
                 for coll in tuple(obj.users_collection):
