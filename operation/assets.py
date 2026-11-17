@@ -44,11 +44,13 @@ def _snapshot(context: Context, action, destination="", *, part="", enabled=Fals
     state = cast(
         "OXALMCSTUDIO_PG_assets_ui", getattr(context.window_manager, STATE_PROPERTY)
     )
-    if action in {"COMP_GLOW", "COMP_OUTLINE", "COMP_REMOVE", "COMP_EXCLUDE", "COMP_RESTORE", "COMP_CLEAR"}:
+    from ..business.outline import stylized
+
+    if action in stylized.ACTIONS:
         from ..business.outline.compositor import exclusion_targets
 
         targets = []
-        if action in {"COMP_EXCLUDE", "COMP_RESTORE"}:
+        if action in {"COMP_EXCLUDE", "COMP_RESTORE", "COMP_SUBJECT_ADD", "COMP_SUBJECT_REMOVE"}:
             selected = context.selected_objects
             if context.mode == "POSE" and context.selected_pose_bones:
                 selected = tuple({bone.id_data for bone in context.selected_pose_bones})

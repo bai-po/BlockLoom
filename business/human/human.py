@@ -86,6 +86,23 @@ def _matches(item: Any, name: str) -> bool:
     return actual == name or (actual.startswith(name + ".") and actual[len(name) + 1:].isdigit())
 
 
+def _place_at_cursor(root: Any, rig: Any, position: Any) -> None:
+    """Move independent objects once; the native plate follows the head bone."""
+    for obj in tuple(root.all_objects):
+        if obj.parent is not None:
+            continue
+        constraints = tuple(obj.constraints)
+        if _matches(obj, "名字") and len(constraints) == 1:
+            constraint = constraints[0]
+            if (constraint.type == "CHILD_OF" and constraint.target == rig
+                    and constraint.subtarget == "头" and not constraint.mute
+                    and constraint.influence == 1.0
+                    and all(getattr(constraint, "use_location_" + axis) for axis in "xyz")):
+                continue
+        for axis in range(3):
+            obj.location[axis] += position[axis]
+
+
 def roots(scene: Any) -> list[Any]:
     return [c for c in scene.collection.children_recursive if c.get(ASSET_ID) == RESOURCE_ID and c.get(INSTANCE)]
 
@@ -580,10 +597,7 @@ class HumanTool:
                     prepare_layer_resolution(tx, root, tuple(root.all_objects), skin)
                 root["oxal_human_skin_label"] = "默认皮肤"
                 if options.get("at_cursor"):
-                    for obj in tuple(root.all_objects):
-                        if obj.parent is None:
-                            for axis in range(3):
-                                obj.location[axis] += position[axis]
+                    _place_at_cursor(root, rig, position)
                 for obj in selected:
                     obj.select_set(False)
                 layer.objects.active = rig

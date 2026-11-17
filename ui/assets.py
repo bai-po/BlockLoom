@@ -424,32 +424,95 @@ def _section(layout, state, prop):
 def draw_compositor(layout, scene):
     from ..business.outline.compositor import (
         outline_color_socket,
+        outline_enable_socket,
         outline_mode_socket,
         outline_width_socket,
+        style_controls,
     )
 
     layout.label(text="在最终渲染（F12）中查看描边", icon="RENDER_STILL")
     if scene.render.engine == "CYCLES":
         layout.label(text="Cycles 不支持实时视口预览", icon="INFO")
         layout.label(text="不影响 F12 最终渲染")
-    _action(layout, "启用合成器描边", "COMP_OUTLINE", "NODE_COMPOSITING")
+    style, switch = style_controls(scene)
+    color = outline_color_socket(scene)
+    enable = outline_enable_socket(scene)
+    if enable is not None:
+        _draw_outline_socket(layout, enable, "启用描边")
+    elif color is not None:
+        # Older saved graphs acquire the shared bypass on their first edit.
+        previous = style.inputs.get("启用描边") if style else None
+        row = layout.row()
+        row.enabled = mutation_allowed() and not (previous and previous.is_linked)
+        checked = previous is None or previous.default_value
+        _action(row, "启用描边", "COMP_TOGGLE_ENABLE", "CHECKBOX_HLT" if checked else "CHECKBOX_DEHLT")
+    if style is None or switch is None:
+        if color is None:
+            _action(layout, "启用风格化描边", "COMP_STYLE", "NODE_COMPOSITING")
+            _action(layout, "启用普通描边", "COMP_OUTLINE", "MOD_SOLIDIFY")
+        else:
+            _action(layout, "使用风格化描边", "COMP_STYLE", "CHECKBOX_DEHLT")
+    else:
+        toggle = switch.inputs["Switch"]
+        if enable is None and not toggle.is_linked:
+            _action(layout, "使用风格化描边", "COMP_OUTLINE" if toggle.default_value else "COMP_STYLE",
+                    "CHECKBOX_HLT" if toggle.default_value else "CHECKBOX_DEHLT")
+        else:
+            _draw_outline_socket(layout, toggle, "使用风格化描边")
+        if toggle.default_value:
+            for label in ("全描边（含内部线条）", "描边扩展（像素）", "描边颜色", "描边强度"):
+                _draw_outline_socket(layout, style.inputs[label], label)
+            for key, title, fields in (
+                ("blockloom_outline_lighting", "定向边光", (
+                    "边光采样距离（像素）", "方向角（度）", "折角强度", "暗部保留描边", "棱角提亮")),
+                ("blockloom_outline_distance", "距离与主体权重", (
+                    "按距离衰减", "近处距离", "远处距离", "近处保留描边（%）", "远处保留描边（%）",
+                    "环境保留描边（%）", "主体保留描边（%）")),
+            ):
+                # Popovers share this draw routine and do not support collapsible panels.
+                if getattr(bpy.context.region, "type", None) == "UI":
+                    header, body = layout.panel(key, default_closed=True)
+                    header.label(text=title)
+                else:
+                    body = layout.column()
+                    body.label(text=title)
+                if body:
+                    for label in fields:
+                        _draw_outline_socket(body, style.inputs[label], label)
+                    if key == "blockloom_outline_distance":
+                        row = body.row(align=True)
+                        _action(row, "加入主体", "COMP_SUBJECT_ADD", "ADD")
+                        _action(row, "移出主体", "COMP_SUBJECT_REMOVE", "REMOVE")
+                        _action(body, "清空主体列表", "COMP_SUBJECT_CLEAR", "X")
+            _action(layout, "移除描边", "COMP_REMOVE", "TRASH")
+            _draw_outline_exclusion(layout)
+            return
     width = outline_width_socket(scene)
     if width is not None:
         row = layout.row()
         row.enabled = not width.is_linked and mutation_allowed()
         row.prop(width, "default_value", text="描边扩展（像素）")
-    if outline_color_socket(scene) is not None:
+    if color is not None:
         _action(layout, "移除描边", "COMP_REMOVE", "TRASH")
     mode = outline_mode_socket(scene)
     if mode is not None:
         row = layout.row()
         row.enabled = not mode.is_linked and mutation_allowed()
         row.prop(mode, "default_value", text="全描边（含内部线条）")
-    color = outline_color_socket(scene)
     if color is not None:
         row = layout.row()
         row.enabled = not color.is_linked and mutation_allowed()
         row.prop(color, "default_value", text="描边颜色")
+    _draw_outline_exclusion(layout)
+
+
+def _draw_outline_socket(layout, socket, label):
+    row = layout.row()
+    row.enabled = not socket.is_linked and mutation_allowed()
+    row.prop(socket, "default_value", text=label)
+
+
+def _draw_outline_exclusion(layout):
     _action(layout, "排除所选物体", "COMP_EXCLUDE", "RESTRICT_RENDER_ON")
     _action(layout, "恢复所选物体描边", "COMP_RESTORE", "RESTRICT_RENDER_OFF")
     _action(layout, "清空排除列表", "COMP_CLEAR", "X")

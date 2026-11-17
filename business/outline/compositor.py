@@ -6,6 +6,8 @@ from typing import Any, cast
 
 import bpy
 
+from . import stylized
+
 MARK = "blockloom_depth_outline"
 OUTLINE_READY = "已连接 Viewer 描边预览，可按 F12 查看最终渲染"
 GEOMETRY_TYPES = {
@@ -222,6 +224,7 @@ def _remove_outline(tree, mix):
     pending = [link.from_node for link in mix.inputs[0].links]
     candidates = {mix}
     finish = {n for n in tree.nodes if n.get(MARK) in {"outline_alpha", "outline_alpha_channel"}}
+    master = stylized.role(tree, "enable")
     while pending:
         node = pending.pop()
         if node in candidates or node.type == "R_LAYERS" or node == source.node:
@@ -229,7 +232,11 @@ def _remove_outline(tree, mix):
         candidates.add(node)
         pending.extend(link.from_node for socket in node.inputs for link in socket.links)
     candidates.update(finish)
-    for node in (mix, *(n for n in finish if n.get(MARK) == "outline_alpha")):
+    candidates.update(n for n in tree.nodes if n.get(stylized.ROLE))
+    outputs = {mix, *(n for n in finish if n.get(MARK) == "outline_alpha")}
+    if master:
+        outputs.add(master)
+    for node in outputs:
         for output in node.outputs:
             for edge in tuple(output.links):
                 if edge.to_node not in candidates:
@@ -245,6 +252,9 @@ def _remove_outline(tree, mix):
                 if edge.from_node in candidates and edge.from_node not in retained:
                     retained.add(edge.from_node)
                     pending.append(edge.from_node)
+    for node in retained:
+        if stylized.ROLE in node:
+            del node[stylized.ROLE]
     for node in candidates - retained:
         tree.nodes.remove(node)
     return {"message": "已移除合成器描边，恢复原图连接"}
@@ -308,15 +318,9 @@ def _reconnect_outline(link, mix, target):
     current = _source(target)
     if _includes(current, mix):
         return
-    alpha = next(
-        (
-            conn.to_node
-            for socket in mix.outputs
-            for conn in socket.links
-            if conn.to_node.bl_idname == "CompositorNodeSetAlpha"
-        ),
-        None,
-    )
+    alpha = next((n for n in mix.id_data.nodes if n.get(MARK) == "outline_alpha"), None)
+    style = stylized.role(mix.id_data, "style")
+    master = stylized.role(mix.id_data, "enable")
     if alpha is None:
         raise ValueError("原描边缺少透明度输出，请检查合成器节点连接")
     split = _source(alpha.inputs["Alpha"])
@@ -325,7 +329,40 @@ def _reconnect_outline(link, mix, target):
     if current is not None:
         link(current, _color_inputs(mix)[0])
         link(current, split.node.inputs[0])
-    link(alpha.outputs[0], target)
+        if style is not None:
+            link(current, style.inputs["图像"])
+        if master is not None:
+            link(current, master.inputs["Off"])
+    link((master or alpha).outputs[0], target)
+
+
+def _ensure_outline_enable(tree, new, link, mix):
+    if stylized.role(tree, "enable"):
+        return
+    alpha = next((n for n in tree.nodes if n.get(MARK) == "outline_alpha"), None)
+    source = _source(_color_inputs(mix)[0])
+    if alpha is None or source is None:
+        raise ValueError("请检查描边的原图与透明度输出")
+    destinations = [edge.to_socket for edge in alpha.outputs[0].links]
+    style = stylized.role(tree, "style")
+    if style:
+        signal = stylized.enable_output(style)
+    else:
+        # The compositor in 4.5 has no Boolean constant node. Keep one animatable
+        # checkbox that a later style installation can also use.
+        control = new("CompositorNodeSwitch", "启用描边", 440, 260)
+        control[stylized.ROLE] = "enable_control"
+        control.inputs["Switch"].default_value = True
+        control.inputs["Off"].default_value = (0, 0, 0, 0)
+        control.inputs["On"].default_value = (1, 1, 1, 1)
+        signal = control.outputs[0]
+    master = new("CompositorNodeSwitch", "描边总开关", 670, 0)
+    master[stylized.ROLE] = "enable"
+    link(signal, master.inputs["Switch"])
+    link(source, master.inputs["Off"])
+    link(alpha.outputs[0], master.inputs["On"])
+    for destination in destinations:
+        link(master.outputs[0], destination)
 
 
 def _encoded_matte(name: str) -> float:
@@ -418,6 +455,26 @@ def _target_tree(scene, marker):
     return effects, effect, grouped, original
 
 
+def style_controls(scene):
+    try:
+        _, _, grouped, tree = _target_tree(scene, "mix")
+    except ValueError:
+        return None, None
+    if not tree or tree.library or (grouped and tree.users > 1):
+        return None, None
+    return stylized.role(tree, "style"), stylized.role(tree, "switch")
+
+
+def outline_enable_socket(scene):
+    try:
+        _, _, grouped, tree = _target_tree(scene, "mix")
+    except ValueError:
+        return None
+    if not tree or tree.library or (grouped and tree.users > 1) or not stylized.role(tree, "enable"):
+        return None
+    return stylized.enable_socket(tree)
+
+
 def outline_color_socket(scene):
     """Expose the installed outline's actual color, including existing saved colors."""
     try:
@@ -436,14 +493,23 @@ def apply(scene, options):
     if layer is None:
         raise ValueError("目标视图层已移除")
     action = options["action"]
-    if action not in {"COMP_GLOW", "COMP_OUTLINE", "COMP_REMOVE", "COMP_EXCLUDE", "COMP_RESTORE", "COMP_CLEAR"}:
+    if action not in stylized.ACTIONS:
         raise ValueError("未知合成器操作")
+    want_style = action == "COMP_STYLE"
+    if want_style:
+        action = "COMP_OUTLINE"
     marker = "glow" if action == "COMP_GLOW" else "mix"
     effects, effect, grouped, original = _target_tree(scene, marker)
     # Node subclasses, menu sockets and even the scene tree owner vary by host.
     tree: Any = original
     if grouped and tree and (tree.library or tree.users > 1):
         raise ValueError("请先将共享合成树设为当前场景独立使用")
+    if action in stylized.SUBJECT_ACTIONS:
+        subject = stylized.role(tree, "subject")
+        if subject is None:
+            raise ValueError("请先启用风格化描边")
+        _edit_exclusion(subject, scene, stylized.SUBJECT_ACTIONS[action], options.get("targets", ()))
+        return {"message": f"主体权重列表已更新，包含 {len(subject.entries)} 个物体"}
     if action in {"COMP_EXCLUDE", "COMP_RESTORE", "COMP_CLEAR"}:
         mask = (
             next((n for n in tree.nodes if n.get(MARK) == "mask"), None)
@@ -469,7 +535,8 @@ def apply(scene, options):
             raise ValueError("原描边节点缺少物体遮罩，请检查合成器节点连接")
         mask_layer = mask.layer_name.removesuffix(".CryptoObject")
         layer = scene.view_layers.get(mask_layer) or layer
-    before = layer.use_pass_z, layer.use_pass_cryptomatte_object, layer.use_pass_cryptomatte_asset
+    imported_groups = []
+    before = layer.use_pass_z, layer.use_pass_cryptomatte_object, layer.use_pass_cryptomatte_asset, layer.use_pass_normal
     old_enabled = scene.use_nodes if not grouped else False
     old_compositing = scene.render.use_compositing
     old_effect_enabled = effect.enable_for_render if effect else True
@@ -494,9 +561,20 @@ def apply(scene, options):
         previous_links.append((destination, previous))
 
     try:
+        if action == "COMP_TOGGLE_ENABLE":
+            if not existing:
+                raise ValueError("请先添加合成器描边")
+            _ensure_outline_enable(tree, new, link, existing)
+            enable = stylized.enable_socket(tree)
+            if enable is None or enable.is_linked:
+                raise ValueError("描边总开关由节点连接控制")
+            enable.default_value = not enable.default_value
+            return {"message": "已启用描边" if enable.default_value else "已关闭描边"}
         scene.render.use_compositing = True
         if action == "COMP_OUTLINE":
             layer.use_pass_z = layer.use_pass_cryptomatte_object = layer.use_pass_cryptomatte_asset = True
+            if want_style:
+                layer.use_pass_normal = True
             layer.update_render_passes()
         if grouped and tree is None:
             tree = cast(
@@ -553,7 +631,17 @@ def apply(scene, options):
                 inverse = _upgrade_outline(new, link, existing, mask)
             _install_outline_modes(new, link, existing, layer)
             _reconnect_outline(link, existing, target)
+            style_switch = stylized.role(tree, "switch")
+            if want_style and style_switch is None:
+                alpha = next((node for node in tree.nodes if node.get(MARK) == "outline_alpha"), None)
+                if alpha is None:
+                    raise ValueError("请检查原描边的透明度输出")
+                style_switch = stylized.install(tree, scene, layer, new, link, alpha, mask, existing,
+                                               _source(_color_inputs(existing)[0]), imported_groups)
+            _ensure_outline_enable(tree, new, link, existing)
             _preview(scene, tree, new, link, target)
+            if style_switch is not None:
+                style_switch.inputs["Switch"].default_value = want_style
             for node in (existing, mask):
                 if node is not None and node.mute:
                     enabled_nodes.append(node)
@@ -650,6 +738,9 @@ def apply(scene, options):
         )
         link(separate.outputs["Alpha"], alpha.inputs["Alpha"])
         link(alpha.outputs[0], target)
+        if want_style:
+            stylized.install(tree, scene, layer, new, link, alpha, mask, mix, source, imported_groups)
+        _ensure_outline_enable(tree, new, link, mix)
         _preview(scene, tree, new, link, target)
     except Exception:
         if tree:
@@ -679,6 +770,7 @@ def apply(scene, options):
         if not grouped:
             scene.use_nodes = old_enabled
         scene.render.use_compositing = old_compositing
-        layer.use_pass_z, layer.use_pass_cryptomatte_object, layer.use_pass_cryptomatte_asset = before
+        layer.use_pass_z, layer.use_pass_cryptomatte_object, layer.use_pass_cryptomatte_asset, layer.use_pass_normal = before
+        stylized.discard_unused(imported_groups)
         raise
     return {"message": OUTLINE_READY}
